@@ -13,59 +13,22 @@
 #ifndef LIST_HPP
 # define LIST_HPP
 
-# include <iostream>
+# include "Node.hpp"
 
-template < typename T >
-struct dlist
-{
-		T elem;
-		struct dlist *next;
-		struct dlist *prev;
-};
-
-template < typename T >
-dlist *ft_lstnew(T elem)
-{
-	dlist *new1;
-
-	new1 = new dlist();
-	new1->elem = elem;
-	new1->prev = 0;
-	new1->next = 0;
-	return (new1);
-}
-
-template < typename T >
-void	ft_lstadd_back(dlist **alst, dlist **new1)
-{
-	dlist *lst;
-
-	lst = *alst;
-	if(!lst)
-		*alst = new1;
-	else
-	{
-		while(lst->next)
-			lst = lst->next;
-		new1->prev = lst;
-		lst->next = new1;
-	}
-}
-
-template < class T, class Alloc = allocator<T> >
+template < class T, class Alloc = std::allocator<T> >
 class List
 {
 	private:
-		dlist *p;
+		struct Node<T> *p;
 	public:
-		List(void) : (0) {}
+		List(void) : p(0) {}
 		List<T>(int n, T elem)
 		{
 			p = 0;
 			for (int i = 0; i < n; i++)
 				this->push_back(elem);
 		}
-		List<T>(List<T> const &l)
+/*		List<T>(List<T> const &l)
 		{
 			*this = l;
 		}
@@ -83,10 +46,19 @@ class List
 		{
 			while(!this->empty())
 				this->pop_back();
-		}
+		}*/
 		void push_back(T elem)
 		{
-			ft_lstadd_back(&(this->p), ft_lstnew(elem));
+			ft_lstadd_back<T>(&(this->p), ft_lstnew(elem));
+		}
+		void	getAllElem(void) const
+		{
+			Node<T> *tmp = p;
+			while(tmp)
+			{
+				std::cout << p->elem << std::endl;
+				tmp = tmp->next;
+			}
 		}
 };
 
