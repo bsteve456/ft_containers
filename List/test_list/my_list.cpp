@@ -5,6 +5,9 @@
 int main()
 {
 	List<int> second (4,100);
-	second.getAllElem();
+	List<int>::iterator ite = second.end();
+
+	for (List<int>::iterator it = second.begin(); it != ite; it++)
+		std::cout << *it << std::endl;
 }
 

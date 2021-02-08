@@ -29,7 +29,7 @@ class List
 		typedef	value_type *				pointer;
 		typedef	const value_type *			const_pointer;
 		typedef	MyIterator<T>				iterator;
-		typdef	MyIterator<const T>			const_iterator;
+		typedef	MyIterator<const T>			const_iterator;
 		typedef	size_t						size_type;
 		typedef	ptrdiff_t					difference_type;
 		List(void) : p(0) {}
@@ -102,12 +102,17 @@ class List
 		}
 		iterator end()
 		{
-			if(p = 0)
+			if(p == 0)
 				return begin();
 			Node<T> *tmp = this->p;
 			while(tmp->next)
 				tmp = tmp->next;
 			return iterator(tmp->next);
+		}
+		void assign(iterator first, iterator last)
+		{
+			for (iterator it = first; it != last; it++)
+				this->push_back(*it);
 		}
 };
 

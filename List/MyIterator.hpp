@@ -3,7 +3,7 @@
 
 #include "Node.hpp"
 
-Template< class T >
+template< class T >
 class MyIterator
 {
 	private:
