@@ -19,7 +19,17 @@ template < class T, class Alloc = std::allocator<T> >
 class List
 {
 	private:
-		struct Node<T> *p;
+		struct Node<T>						*p;
+		typedef T							value_type;
+		typedef std::allocator<value_type>	allocator_type;
+		typedef	value_type&					reference;
+		typedef	const	value_type&			const_reference;
+		typedef	value_type *				pointer;
+		typedef	const value_type *			const_pointer;
+		typedef	MyIterator<value_type>		iterator;
+		typdef	MyConstIterator<value_type>	const_iterator;
+		typedef	size_t						size_type;
+		typedef	ptrdiff_t					difference_type;
 	public:
 		List(void) : p(0) {}
 		List<T>(int n, T elem)
