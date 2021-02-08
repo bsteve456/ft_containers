@@ -32,10 +32,17 @@ class List
 		typedef	MyIterator<const T>			const_iterator;
 		typedef	size_t						size_type;
 		typedef	ptrdiff_t					difference_type;
-		List(void) : p(0) {}
+		List<value_type>(void) : p(0) {}
+		List<value_type>(int n)
+		{
+			p = 0;
+			for (int i = 0; i < n; i++)
+				this->push_back(0);
+		}
 		List<value_type>(int n, value_type elem)
 		{
 			p = 0;
+
 			for (int i = 0; i < n; i++)
 				this->push_back(elem);
 		}
@@ -61,7 +68,7 @@ class List
 		}
 		~List()
 		{
-			while(!this->empty())
+			while(this->empty())
 				this->pop_back();
 		}
 		void push_back(const value_type &elem)
@@ -100,6 +107,8 @@ class List
 				tmp = tmp->next;
 			}
 			t->next = 0;
+			if(this->size() == 1)
+				this->p = 0;
 			delete(tmp);
 		}
 		iterator begin() const

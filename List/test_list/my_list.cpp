@@ -17,6 +17,13 @@ int main()
 	ite = fourth.end();
 	for (List<int>::iterator it = fourth.begin(); it != ite; it++)
 		std::cout << *it << std::endl;
+	List<int> f (3);      // list of 3 zero-initialized ints
+	List<int> s (5);     // list of 5 zero-initialized ints
+
+	s = f;
+	f = List<int>();
+	std::cout << "Size of first: " << int (f.size()) << '\n';
+	std::cout << "Size of second: " << int (s.size()) << '\n';
 
 }
 
