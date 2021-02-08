@@ -60,16 +60,14 @@ class List
 		{
 			if (this != &l)
 			{
-				while(this->empty())
-					this->pop_back();
+				this->clear();
 				this->assign(l.begin(), l.end());
 			}
 			return (*this);
 		}
 		~List()
 		{
-			while(this->empty())
-				this->pop_back();
+			this->clear();
 		}
 		void push_back(const value_type &elem)
 		{
@@ -128,6 +126,11 @@ class List
 		{
 			for (iterator it = first; it != last; it++)
 				this->push_back(*it);
+		}
+		void clear()
+		{
+			while(this->empty())
+				this->pop_back();
 		}
 };
 
