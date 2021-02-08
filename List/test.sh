@@ -11,6 +11,7 @@ if [ -s res  ]
 then
 	echo "KO, you can see the result in the res file"
 else
-	echo "OK pass all test"
+	echo "OK pass all tests"
+	rm res
 fi
-rm my_result true_result
+rm my_result true_result my_list true_list

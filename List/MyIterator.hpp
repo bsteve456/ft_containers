@@ -27,6 +27,17 @@ class MyIterator
 				p = p->prev;
 			return *this;
 		}
+		MyIterator operator++(int n)
+		{
+			(void)n;
+			MyIterator tmp(*this);
+			operator++();
+			return tmp;
+		}
+		Node<T> *	getP() const
+		{
+			return p;
+		}
 		bool operator==(const MyIterator &rhs) const
 		{
 			return p==rhs.getP();
