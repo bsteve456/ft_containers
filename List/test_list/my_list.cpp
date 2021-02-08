@@ -9,5 +9,9 @@ int main()
 
 	for (List<int>::iterator it = second.begin(); it != ite; it++)
 		std::cout << *it << std::endl;
+	List<int> third (second.begin(),second.end());
+	ite = third.end();
+	for (List<int>::iterator it = third.begin(); it != ite; it++)
+		std::cout << *it << std::endl;
 }
 

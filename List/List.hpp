@@ -41,7 +41,13 @@ class List
 		}
 		List<value_type>(List<value_type> const &l)
 		{
+			p = 0;
 			*this = l;
+		}
+		List<value_type>(iterator first, iterator last)
+		{
+			p = 0;
+			this->assign(first, last);
 		}
 		List<value_type> & operator = (List<value_type> const &l)
 		{
