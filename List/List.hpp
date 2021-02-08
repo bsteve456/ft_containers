@@ -14,6 +14,7 @@
 # define LIST_HPP
 
 # include "Node.hpp"
+# include "MyIterator.hpp"
 
 template < class T, class Alloc = std::allocator<T> >
 class List
@@ -27,22 +28,22 @@ class List
 		typedef	const	value_type&			const_reference;
 		typedef	value_type *				pointer;
 		typedef	const value_type *			const_pointer;
-		typedef	MyIterator<value_type>		iterator;
-		typdef	MyConstIterator<value_type>	const_iterator;
+		typedef	MyIterator<T>				iterator;
+		typdef	MyIterator<const T>			const_iterator;
 		typedef	size_t						size_type;
 		typedef	ptrdiff_t					difference_type;
 		List(void) : p(0) {}
-		List<T>(int n, T elem)
+		List<value_type>(int n, value_type elem)
 		{
 			p = 0;
 			for (int i = 0; i < n; i++)
 				this->push_back(elem);
 		}
-/*		List<T>(List<T> const &l)
+		List<value_type>(List<value_type> const &l)
 		{
 			*this = l;
 		}
-		List<T> & operator = (List<T> const &l)
+		List<value_type> & operator = (List<value_type> const &l)
 		{
 			if (this != &l)
 			{
@@ -56,19 +57,57 @@ class List
 		{
 			while(!this->empty())
 				this->pop_back();
-		}*/
-		void push_back(T elem)
-		{
-			ft_lstadd_back<T>(&(this->p), ft_lstnew(elem));
 		}
-		void	getAllElem(void) const
+		void push_back(const value_type &elem)
 		{
-			Node<T> *tmp = p;
+			ft_lstadd_back<value_type>(&(this->p), ft_lstnew(elem));
+		}
+		size_type	size(void) const
+		{
+			Node<T> *tmp = this->p;
+			size_type count = 0;
+
+			if(p == 0)
+				return (0);
 			while(tmp)
 			{
-				std::cout << p->elem << std::endl;
+				count++;
 				tmp = tmp->next;
 			}
+			return count;
+		}
+		bool empty() const
+		{
+			if(!this->size())
+				return 0;
+			return 1;
+		}
+		void pop_back()
+		{
+			Node<value_type> *tmp = this->p;
+			Node<value_type> *t = tmp;
+			if(!tmp)
+				return ;
+			while(tmp->next)
+			{
+				t = tmp;
+				tmp = tmp->next;
+			}
+			t->next = 0;
+			delete(tmp);
+		}
+		iterator begin()
+		{
+			return iterator(this->p);
+		}
+		iterator end()
+		{
+			if(p = 0)
+				return begin();
+			Node<T> *tmp = this->p;
+			while(tmp->next)
+				tmp = tmp->next;
+			return iterator(tmp->next);
 		}
 };
 
