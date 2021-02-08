@@ -20,6 +20,7 @@ class List
 {
 	private:
 		struct Node<T>						*p;
+	public:
 		typedef T							value_type;
 		typedef std::allocator<value_type>	allocator_type;
 		typedef	value_type&					reference;
@@ -30,7 +31,6 @@ class List
 		typdef	MyConstIterator<value_type>	const_iterator;
 		typedef	size_t						size_type;
 		typedef	ptrdiff_t					difference_type;
-	public:
 		List(void) : p(0) {}
 		List<T>(int n, T elem)
 		{
