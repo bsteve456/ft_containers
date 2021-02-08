@@ -53,7 +53,7 @@ class List
 		{
 			if (this != &l)
 			{
-				while(!this->empty())
+				while(this->empty())
 					this->pop_back();
 				this->assign(l.begin(), l.end());
 			}
@@ -102,11 +102,11 @@ class List
 			t->next = 0;
 			delete(tmp);
 		}
-		iterator begin()
+		iterator begin() const
 		{
 			return iterator(this->p);
 		}
-		iterator end()
+		iterator end() const
 		{
 			if(p == 0)
 				return begin();

@@ -12,5 +12,10 @@ int main()
 	ite = third.end();
 	for (std::list<int>::iterator it = third.begin(); it != ite; it++)
 		std::cout << *it << std::endl;
+	std::list<int> fourth (third);
+	ite = fourth.end();
+	for (std::list<int>::iterator it = fourth.begin(); it != ite; it++)
+		std::cout << *it << std::endl;
+
 }
 
