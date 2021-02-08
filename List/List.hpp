@@ -109,11 +109,15 @@ class List
 				this->p = 0;
 			delete(tmp);
 		}
-		iterator begin() const
+		iterator begin() 
 		{
 			return iterator(this->p);
 		}
-		iterator end() const
+		const_iterator begin() const
+		{
+			return iterator(this->p);
+		}
+		iterator end()
 		{
 			if(p == 0)
 				return begin();
@@ -122,6 +126,16 @@ class List
 				tmp = tmp->next;
 			return iterator(tmp->next);
 		}
+		const_iterator end() const
+		{
+			if(p == 0)
+				return begin();
+			Node<T> *tmp = this->p;
+			while(tmp->next)
+				tmp = tmp->next;
+			return iterator(tmp->next);
+		}
+
 		void assign(iterator first, iterator last)
 		{
 			for (iterator it = first; it != last; it++)
