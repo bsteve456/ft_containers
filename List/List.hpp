@@ -16,11 +16,12 @@
 # include "Node.hpp"
 # include "MyIterator.hpp"
 
+
 template < class T, class Alloc = std::allocator<T> >
 class List
 {
 	private:
-		struct Node<T>						*p;
+		Node<T>						*p;
 	public:
 		typedef T							value_type;
 		typedef std::allocator<value_type>	allocator_type;
@@ -61,7 +62,9 @@ class List
 			if (this != &l)
 			{
 				this->clear();
-				this->assign(l.begin(), l.end());
+				const_iterator it = l.begin();
+				const_iterator ite = l.end();
+				this->assign(it, ite);
 			}
 			return (*this);
 		}
@@ -109,13 +112,14 @@ class List
 				this->p = 0;
 			delete(tmp);
 		}
-		iterator begin() 
+		iterator begin()
 		{
 			return iterator(this->p);
 		}
 		const_iterator begin() const
 		{
-			return iterator(this->p);
+			Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->p);
+			return const_iterator(tmp);
 		}
 		iterator end()
 		{
@@ -130,15 +134,15 @@ class List
 		{
 			if(p == 0)
 				return begin();
-			Node<T> *tmp = this->p;
+			Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->p);
 			while(tmp->next)
 				tmp = tmp->next;
-			return iterator(tmp->next);
+			return const_iterator(tmp->next);
 		}
-
-		void assign(iterator first, iterator last)
+		template < class InputIterator >
+		void assign(InputIterator first, InputIterator last)
 		{
-			for (iterator it = first; it != last; it++)
+			for (InputIterator it = first; it != last; it++)
 				this->push_back(*it);
 		}
 		void clear()

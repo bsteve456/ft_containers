@@ -13,8 +13,8 @@ class MyIterator
 		typedef ptrdiff_t	difference_type;
 		typedef T *			pointer;
 		typedef	T &			reference;
-		MyIterator(Node<T> * x) : p(x) {}
-		MyIterator(const MyIterator &mit) : p(mit.p) {}
+		MyIterator(struct Node<T> * x) : p(x) {}
+		MyIterator(MyIterator const & mit) : p(mit.p) {}
 		MyIterator & operator++()
 		{
 			if (p != 0)
