@@ -21,6 +21,12 @@ class MyIterator
 		}
 		MyIterator(MyIterator const & mit) : p(mit.getP())
 		{}
+		MyIterator & operator = (MyIterator const & mit)
+		{
+			p = mit.getP();
+			return *this;
+		}
+		~MyIterator(){}
 		MyIterator & operator++()
 		{
 			if(p && p->next)
@@ -51,6 +57,10 @@ class MyIterator
 			operator--();
 			return tmp;
 		}
+		pointer operator->() const
+		{
+			return &(operator *());
+		}
 		bool operator==(const MyIterator &rhs) const
 		{
 			return p==rhs.getP();
@@ -59,8 +69,13 @@ class MyIterator
 		{
 			return p!=rhs.getP();
 		}
-		T	& operator *()
+		T	& operator *() const
 		{
+			return p->elem;
+		}
+		T	& operator *(T & elem)
+		{
+			p->elem = elem;
 			return p->elem;
 		}
 };

@@ -16,7 +16,9 @@ int main()
 	List<int> fourth (third);
 	ite = fourth.end();
 	for (List<int>::iterator it = fourth.begin(); it != ite; it++)
-		std::cout << *it << std::endl;
+		*it = 5;
+	for (List<int>::iterator it = fourth.begin(); it != ite; it++)
+			std::cout << *it << std::endl;
 	List<int> f (3);      // list of 3 zero-initialized ints
 	List<int> s (5);     // list of 5 zero-initialized ints
 
@@ -33,5 +35,6 @@ int main()
 	ite++;
 	ite++;
 	std::cout << *ite << std::endl;
+
 }
 
