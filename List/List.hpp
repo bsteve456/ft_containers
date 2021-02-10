@@ -15,6 +15,8 @@
 
 # include "Node.hpp"
 # include "MyIterator.hpp"
+# include "MyReverseIterator.hpp"
+
 
 namespace ft
 {
@@ -51,6 +53,8 @@ namespace ft
 				typedef	const value_type *			const_pointer;
 				typedef	MyIterator<T>				iterator;
 				typedef	MyIterator<const T>			const_iterator;
+				typedef MyReverseIterator<T>		reverse_iterator;
+				typedef MyReverseIterator<const T>	const_reverse_iterator;
 				typedef	size_t						size_type;
 				typedef	ptrdiff_t					difference_type;
 				List<value_type>(void)  : p(0), Helem(this->init_last())

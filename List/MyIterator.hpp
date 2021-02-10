@@ -16,10 +16,6 @@ namespace ft
 				typedef	T &			reference;
 				MyIterator(struct Node<T> * x) : p(x)
 			{}
-/*				Node<T> *	getP() const
-				{
-					return p;
-				}*/
 				MyIterator(MyIterator const & mit) : p(mit.p)
 			{}
 				MyIterator & operator = (MyIterator const & mit)

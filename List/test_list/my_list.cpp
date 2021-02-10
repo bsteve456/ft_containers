@@ -33,6 +33,10 @@ int main()
 	ite++;
 	ite++;
 	std::cout << *ite++ << std::endl;
-
+	ft::List<int> mylist;
+	for (int i=1; i<=5; ++i)
+		mylist.push_back(i);
+	for (ft::List<int>::reverse_iterator it=mylist.begin(); it!=mylist.end(); ++it)
+    	std::cout << *it << std::endl;
 }
 
