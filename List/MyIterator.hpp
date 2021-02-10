@@ -13,12 +13,24 @@ class MyIterator
 		typedef ptrdiff_t	difference_type;
 		typedef T *			pointer;
 		typedef	T &			reference;
-		MyIterator(struct Node<T> * x) : p(x) {}
-		MyIterator(MyIterator const & mit) : p(mit.p) {}
+		MyIterator(struct Node<T> * x) : p(x)
+		{}
+		Node<T> *	getP() const
+		{
+			return p;
+		}
+		MyIterator(MyIterator const & mit) : p(mit.getP())
+		{}
 		MyIterator & operator++()
 		{
-			if (p != 0)
+			if(p && p->next)
+			{
 				p = p->next;
+			}
+			else if(p)
+			{
+				p = p->past_the_end;
+			}
 			return *this;
 		}
 		MyIterator & operator--()
@@ -34,9 +46,12 @@ class MyIterator
 			operator++();
 			return tmp;
 		}
-		Node<T> *	getP() const
+		MyIterator operator--(int n)
 		{
-			return p;
+			(void)n;
+			MyIterator tmp(*this);
+			operator--();
+			return tmp;
 		}
 		bool operator==(const MyIterator &rhs) const
 		{

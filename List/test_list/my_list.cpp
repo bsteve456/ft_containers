@@ -24,6 +24,11 @@ int main()
 	f = List<int>();
 	std::cout << "Size of first: " << int (f.size()) << '\n';
 	std::cout << "Size of second: " << int (s.size()) << '\n';
-
+	ite--;
+	std::cout << *ite << std::endl;
+	ite = fourth.begin();
+	ite--;
+	ite++;
+	std::cout << *ite << std::endl;
 }
 

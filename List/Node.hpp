@@ -10,6 +10,7 @@ struct Node
 		T elem;
 		struct Node<T> *next;
 		struct Node<T> *prev;
+		struct Node<T> *past_the_end;
 };
 
 template < typename T >
