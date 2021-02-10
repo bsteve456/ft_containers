@@ -10,7 +10,7 @@ int main()
 		std::cout << *it << std::endl;
 	std::list<int> third (second.begin(),second.end());
 	ite = third.end();
-	for (std::list<int>::iterator it = third.begin(); it != ite; it++)
+	for (std::list<int>::iterator it = third.begin(); it != ite; ++it)
 		std::cout << *it << std::endl;
 	std::list<int> fourth (third);
 	ite = fourth.end();
@@ -25,7 +25,7 @@ int main()
 	f = std::list<int>();
 	std::cout << "Size of first: " << int (f.size()) << '\n';
 	std::cout << "Size of second: " << int (s.size()) << '\n';
-	ite--;
+	--ite;
 	std::cout << *ite << std::endl;
 	ite = fourth.begin();
 	ite--;
