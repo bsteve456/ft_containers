@@ -24,19 +24,17 @@ class MyIterator
 		MyIterator & operator++()
 		{
 			if(p && p->next)
-			{
 				p = p->next;
-			}
 			else if(p)
-			{
 				p = p->past_the_end;
-			}
 			return *this;
 		}
 		MyIterator & operator--()
 		{
-			if (p != 0)
+			if (p && p->prev)
 				p = p->prev;
+			else if(p)
+				p = p->past_the_end;
 			return *this;
 		}
 		MyIterator operator++(int n)

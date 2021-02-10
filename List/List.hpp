@@ -98,7 +98,7 @@ class List
 		{
 			ft_lstadd_back<value_type>(&(this->p), ft_lstnew(elem));
 			this->Last()->past_the_end = this->Helem;
-			this->p->prev = this->Helem;
+			this->p->past_the_end = this->Helem;
 			this->Helem->prev = this->Last();
 			this->Helem->next = this->p;
 		}
