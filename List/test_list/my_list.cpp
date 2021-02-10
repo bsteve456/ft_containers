@@ -29,12 +29,10 @@ int main()
 	--ite;
 	std::cout << *ite << std::endl;
 	ite = fourth.begin();
-	ite--;
-	ite--;
-	std::cout << *ite << std::endl;
+	std::cout << *ite-- << std::endl;
 	ite++;
 	ite++;
-	std::cout << *ite << std::endl;
+	std::cout << *ite++ << std::endl;
 
 }
 
