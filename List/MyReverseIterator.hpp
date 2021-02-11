@@ -24,6 +24,7 @@ namespace ft
 			MyReverseIterator & operator = (MyReverseIterator const & mit)
 			{
 				p1 = mit.p1;
+				p = mit.p1;
 				return *this;
 			}
 			~MyReverseIterator(){}
