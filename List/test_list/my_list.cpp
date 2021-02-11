@@ -34,9 +34,9 @@ int main()
 	ite++;
 	std::cout << *ite++ << std::endl;
 	ft::List<int> mylist;
-	for (int i=1; i<=5; ++i)
+	for (int i=1; i<=6; ++i)
 		mylist.push_back(i);
 	for (ft::List<int>::reverse_iterator it=mylist.rbegin(); it!=mylist.rend(); ++it)
-    	std::cout << *it << std::endl;
+		std::cout << *it << std::endl;
 }
 

@@ -1,6 +1,6 @@
 #! bin/sh
 
-clang++ -Wall -Werror -Wextra test_list/my_list.cpp -o my_list
+clang++ -Wall -Werror -Wextra -I. test_list/my_list.cpp -o my_list
 clang++ -Wall -Werror -Wextra test_list/true_list.cpp -o true_list
 
 

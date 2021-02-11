@@ -32,9 +32,8 @@ int main()
 	ite++;
 	std::cout << *ite++ << std::endl;
 	std::list<int> mylist;
-	for (int i=1; i<=5; ++i)
+	for (int i=1; i<=6; ++i)
 		mylist.push_back(i);
-
 	for (std::list<int>::reverse_iterator it=mylist.rbegin(); it!=mylist.rend(); ++it)
     	std::cout << *it << std::endl;
 }

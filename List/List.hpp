@@ -26,7 +26,7 @@ namespace ft
 			private:
 				Node<T>						*p;
 				Node<T>						*Helem;
-				Node<T>		*Last() const
+				Node<T>						*Last() const
 				{
 					Node<T> *tmp = this->p;
 					if(!tmp)
@@ -45,18 +45,18 @@ namespace ft
 					return hollow_elem;
 				}
 			public:
-				typedef T							value_type;
-				typedef std::allocator<value_type>	allocator_type;
-				typedef	value_type&					reference;
-				typedef	const	value_type&			const_reference;
-				typedef	value_type *				pointer;
-				typedef	const value_type *			const_pointer;
-				typedef	MyIterator<T>				iterator;
-				typedef	MyIterator<const T>			const_iterator;
-				typedef MyReverseIterator<T>		reverse_iterator;
-				typedef MyReverseIterator<const T>	const_reverse_iterator;
-				typedef	size_t						size_type;
-				typedef	ptrdiff_t					difference_type;
+				typedef T													value_type;
+				typedef std::allocator<value_type>							allocator_type;
+				typedef	value_type&											reference;
+				typedef	const	value_type&									const_reference;
+				typedef	value_type *										pointer;
+				typedef	const value_type *									const_pointer;
+				typedef	MyIterator<bidirectional_iterator_tag, T>			iterator;
+				typedef	MyIterator<bidirectional_iterator_tag, const T>		const_iterator;
+				typedef MyReverseIterator<iterator>							reverse_iterator;
+				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
+				typedef	size_t												size_type;
+				typedef	ptrdiff_t											difference_type;
 				List<value_type>(void)  : p(0), Helem(this->init_last())
 			{
 			}
@@ -169,22 +169,21 @@ namespace ft
 				}
 				reverse_iterator rbegin()
 				{
-					return reverse_iterator(this->Last());
+					return reverse_iterator(iterator(this->Last()));
 				}
 				const_reverse_iterator rbegin() const
 				{
 					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->Last());
-					return const_reverse_iterator(tmp);
+					return const_reverse_iterator(const_iterator(tmp));
 				}
 				reverse_iterator rend()
 				{
-					return reverse_iterator(this->Helem);
+					return reverse_iterator(iterator(this->Helem));
 				}
 				const_reverse_iterator rend() const
 				{
 					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->Helem);
-
-					return const_reverse_iterator(tmp);
+					return const_reverse_iterator(const_iterator(tmp));
 				}
 				template < class InputIterator >
 					void assign(InputIterator first, InputIterator last)

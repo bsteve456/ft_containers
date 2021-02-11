@@ -6,42 +6,50 @@
 
 namespace ft
 {
-	template< class T >
-		class MyReverseIterator : public MyIterator<T>
+	template< class Iterator >
+		class MyReverseIterator
 	{
 		private:
-			Node<T>				*p1;
-			using	MyIterator<T>::p;
+				Iterator it;
+				template< class _IT>
+				friend bool operator==(const MyReverseIterator<_IT> &lhs, const MyReverseIterator<_IT> &rhs);
+				template< class _IT>
+				friend bool operator!=(const MyReverseIterator<_IT> &lhs, const MyReverseIterator<_IT> &rhs);
 		public:
-			typedef T			value_type;
-			typedef ptrdiff_t	difference_type;
-			typedef T *			pointer;
-			typedef	T &			reference;
-			MyReverseIterator(struct Node<T> * x) : MyIterator<T>(x), p1(x)
+		//		friend bool operator==(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs);
+		//		friend bool operator!=(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs);
+			typedef Iterator							iterator_type;
+			typedef typename Iterator::value_type		value_type;
+			typedef typename Iterator::difference_type	difference_type;
+			typedef typename Iterator::pointer			pointer;
+			typedef	typename Iterator::reference		reference;
+			MyReverseIterator() : it(0) {}
+			MyReverseIterator(iterator_type x) : it(x)
 		{}
-			MyReverseIterator(MyReverseIterator const & mit) : MyIterator<T>(mit.p1), p1(mit.p1)
+			template<class Iter>
+			MyReverseIterator(MyReverseIterator const & mit) : it(mit.it)
 		{}
 			MyReverseIterator & operator = (MyReverseIterator const & mit)
 			{
-				p1 = mit.p1;
-				p = mit.p1;
-				return *this;
+				it = mit.it;
 			}
 			~MyReverseIterator(){}
 			MyReverseIterator & operator++()
 			{
-				if(p1 && p1->prev)
-					p1 = p1->prev;
-				else if(p1)
-					p1 = p1->past_the_end;
+/*				if(it && it->prev)
+					it = it->prev;
+				else if(it)
+					it = it->past_the_end;*/
+				it--;
 				return *this;
 			}
 			MyReverseIterator & operator--()
 			{
-				if (p1 && p1->next)
-					p1 = p1->next;
+/*				if (it && it->next)
+					it = it->next;
 				else if(p)
-					p1 = p1->past_the_end;
+					it = it->past_the_end;*/
+				it++;
 				return *this;
 			}
 			MyReverseIterator operator++(int n)
@@ -62,24 +70,22 @@ namespace ft
 			{
 				return &(operator *());
 			}
-			bool operator==(const MyReverseIterator &rhs) const
+			value_type	& operator *() const
 			{
-				return p1 ==rhs.p1;
-			}
-			bool operator!=(const MyReverseIterator &rhs) const
-			{
-				return p1!=rhs.p1;
-			}
-			T	& operator *() const
-			{
-				return p1->elem;
-			}
-			T	& operator *(T & elem)
-			{
-				p1->elem = elem;
-				return p1->elem;
+				return *it;
 			}
 	};
+	template < class Iterator >
+	bool operator ==(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs)
+	{
+		return lhs.it == rhs.it;
+	}
+	template < class Iterator >
+	bool operator!=(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs)
+	{
+		return lhs.it != rhs.it;
+	}
+
 };
 
 #endif
