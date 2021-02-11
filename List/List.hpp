@@ -167,6 +167,25 @@ namespace ft
 
 					return const_iterator(tmp);
 				}
+				reverse_iterator rbegin()
+				{
+					return reverse_iterator(this->Last());
+				}
+				const_reverse_iterator rbegin() const
+				{
+					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->Last());
+					return const_reverse_iterator(tmp);
+				}
+				reverse_iterator rend()
+				{
+					return reverse_iterator(this->Helem);
+				}
+				const_reverse_iterator rend() const
+				{
+					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->Helem);
+
+					return const_reverse_iterator(tmp);
+				}
 				template < class InputIterator >
 					void assign(InputIterator first, InputIterator last)
 					{

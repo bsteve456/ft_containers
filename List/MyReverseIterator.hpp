@@ -17,9 +17,9 @@ namespace ft
 			typedef ptrdiff_t	difference_type;
 			typedef T *			pointer;
 			typedef	T &			reference;
-			MyReverseIterator(struct Node<T> * x) : p1(x)
+			MyReverseIterator(struct Node<T> * x) : MyIterator<T>(x), p1(x)
 		{}
-			MyReverseIterator(MyReverseIterator const & mit) : p1(mit.getP())
+			MyReverseIterator(MyReverseIterator const & mit) : MyIterator<T>(mit.p1), p1(mit.p1)
 		{}
 			MyReverseIterator & operator = (MyReverseIterator const & mit)
 			{
@@ -29,16 +29,16 @@ namespace ft
 			~MyReverseIterator(){}
 			MyReverseIterator & operator++()
 			{
-				if(p1 && p1->next)
-					p1 = p1->next;
+				if(p1 && p1->prev)
+					p1 = p1->prev;
 				else if(p1)
 					p1 = p1->past_the_end;
 				return *this;
 			}
 			MyReverseIterator & operator--()
 			{
-				if (p1 && p1->prev)
-					p1 = p1->prev;
+				if (p1 && p1->next)
+					p1 = p1->next;
 				else if(p)
 					p1 = p1->past_the_end;
 				return *this;

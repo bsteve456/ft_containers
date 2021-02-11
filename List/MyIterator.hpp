@@ -7,7 +7,7 @@ namespace ft
 	template< class T >
 		class MyIterator
 		{
-			private:
+			protected:
 				Node<T>				*p;
 			public:
 				typedef T			value_type;
