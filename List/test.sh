@@ -1,7 +1,7 @@
 #! bin/sh
 
-clang++ -Wall -Werror -Wextra -I. test_list/my_list.cpp -o my_list
-clang++ -Wall -Werror -Wextra test_list/true_list.cpp -o true_list
+clang++ -Wall -Werror -Wextra -std=c++98 test_list/my_list.cpp -o my_list
+clang++ -Wall -Werror -Wextra -std=c++98 test_list/true_list.cpp -o true_list
 
 
 ./my_list > my_result

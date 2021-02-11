@@ -10,11 +10,11 @@ namespace ft
 			private:
 				Node<T>				*p;
 			public:
-				typedef T			value_type;
-				typedef ptrdiff_t	difference_type;
-				typedef T *			pointer;
-				typedef	T &			reference;
-				typedef Category	iterator_category;
+				typedef T				value_type;
+				typedef std::ptrdiff_t	difference_type;
+				typedef T *				pointer;
+				typedef	T &				reference;
+				typedef Category		iterator_category;
 				MyIterator(struct Node<T> * x) : p(x)
 			{}
 				MyIterator(MyIterator const & mit) : p(mit.p)

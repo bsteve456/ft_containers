@@ -56,7 +56,7 @@ namespace ft
 				typedef MyReverseIterator<iterator>							reverse_iterator;
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
-				typedef	ptrdiff_t											difference_type;
+				typedef	std::ptrdiff_t											difference_type;
 				List<value_type>(void)  : p(0), Helem(this->init_last())
 			{
 			}
