@@ -29,17 +29,18 @@ namespace ft
 		{}
 			MyReverseIterator & operator = (MyReverseIterator const & mit)
 			{
-				it = mit.it;
+				this->it = mit.it;
+				return (*this);
 			}
 			~MyReverseIterator(){}
 			MyReverseIterator & operator++()
 			{
-				it--;
+				this->it--;
 				return *this;
 			}
 			MyReverseIterator & operator--()
 			{
-				it++;
+				this->it++;
 				return *this;
 			}
 			MyReverseIterator operator++(int n)
@@ -62,11 +63,11 @@ namespace ft
 			}
 			value_type	& operator *() const
 			{
-				return *it;
+				return *(this->it);
 			}
 			iterator_type base() const
 			{
-				return it;
+				return this->it;
 			}
 	};
 	template < class Iterator >

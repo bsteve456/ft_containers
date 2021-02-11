@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <iterator>
 
 int main()
 {
@@ -45,6 +46,5 @@ int main()
  	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
     	std::cout << ' ' << *it;
  	std::cout << '\n';
-
 }
 
