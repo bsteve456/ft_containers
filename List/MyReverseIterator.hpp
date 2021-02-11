@@ -16,8 +16,6 @@ namespace ft
 				template< class _IT>
 				friend bool operator!=(const MyReverseIterator<_IT> &lhs, const MyReverseIterator<_IT> &rhs);
 		public:
-		//		friend bool operator==(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs);
-		//		friend bool operator!=(const MyReverseIterator<Iterator> &lhs, const MyReverseIterator<Iterator> &rhs);
 			typedef Iterator							iterator_type;
 			typedef typename Iterator::value_type		value_type;
 			typedef typename Iterator::difference_type	difference_type;
@@ -35,20 +33,9 @@ namespace ft
 			}
 			~MyReverseIterator(){}
 			MyReverseIterator & operator++()
-			{
-/*				if(it && it->prev)
-					it = it->prev;
-				else if(it)
-					it = it->past_the_end;*/
-				it--;
 				return *this;
-			}
 			MyReverseIterator & operator--()
 			{
-/*				if (it && it->next)
-					it = it->next;
-				else if(p)
-					it = it->past_the_end;*/
 				it++;
 				return *this;
 			}
