@@ -48,10 +48,19 @@ int main()
 	std::cout << '\n';
 
 	std::cout << "Maximum size of a 'list' is " << mylist.max_size() << "\n";
+
 	mylist.push_front(300);
 	mylist.push_front(200);
 	for (std::list<int>::iterator it = mylist.begin(); it != mylist.end(); it++)
 			std::cout << *it << std::endl;
+
+	std::cout << "Popping out the elements in mylist:";
+	while (!mylist.empty())
+	{
+		std::cout << ' ' << mylist.front();
+		mylist.pop_front();
+	}
+	std::cout << "\nFinal size of mylist is " << mylist.size() << '\n';
 
 }
 

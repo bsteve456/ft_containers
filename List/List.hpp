@@ -101,7 +101,7 @@ namespace ft
 						this->clear();
 						delete Helem;
 						Helem = this->init_last();
-						if(l.empty())
+						if(!l.empty())
 						{
 							const_iterator it = l.begin();
 							const_iterator ite = l.end();
@@ -168,7 +168,7 @@ namespace ft
 				}
 				bool empty() const
 				{
-					if(!this->size())
+					if(this->size())
 						return 0;
 					return 1;
 				}
@@ -178,19 +178,32 @@ namespace ft
 					Node<value_type> *t = tmp;
 					if(!tmp)
 						return ;
-					while(tmp->next && tmp->next != this->Helem)
+					while(tmp->next != this->Helem)
 					{
 						t = tmp;
 						tmp = tmp->next;
 					}
-					t->next = 0;
-					if(this->size() == 1)
+					if(t == this->p)
 						this->p = 0;
+					t->next = 0;
 					if(this->p)
 					{
 						this->Last()->next = this->Helem;
 						this->Helem->prev = this->Last();
 					}
+					delete(tmp);
+				}
+				void pop_front()
+				{
+					Node<value_type> *tmp = this->p;
+					if(this->p->next != this->Helem)
+					{
+						this->p = this->p->next;
+						this->p->prev = this->Helem;
+					}
+					else
+						this->p = 0;
+					this->Helem->next = this->p;
 					delete(tmp);
 				}
 				iterator begin()
@@ -243,7 +256,7 @@ namespace ft
 				}*/
 				void clear()
 				{
-					while(this->empty())
+					while(!this->empty())
 						this->pop_back();
 				}
 				reference front()

@@ -17,7 +17,7 @@ int main()
 	for (ft::List<int>::iterator it = fourth.begin(); it != ite; it++)
 		*it = 5;
 	for (ft::List<int>::iterator it = fourth.begin(); it != ite; it++)
-			std::cout << *it << std::endl;
+		std::cout << *it << std::endl;
 
 	ft::List<int> f (3);      // list of 3 zero-initialized ints
 	ft::List<int> s (5);     // list of 5 zero-initialized ints
@@ -45,14 +45,22 @@ int main()
 	ft::MyReverseIterator<iter_type> rev_begin (mylist.end());
 
 	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
-    	std::cout << ' ' << *it;
+		std::cout << ' ' << *it;
 	std::cout << '\n';
 
 	std::cout << "Maximum size of a 'list' is " << mylist.max_size() << "\n";
+
 	mylist.push_front(300);
 	mylist.push_front(200);
 	for (ft::List<int>::iterator it = mylist.begin(); it != mylist.end(); it++)
-			std::cout << *it << std::endl;
+		std::cout << *it << std::endl;
 
+	std::cout << "Popping out the elements in mylist:";
+	while (!mylist.empty())
+	{
+		std::cout << ' ' << mylist.front();
+		mylist.pop_front();
+	}
+	std::cout << "\nFinal size of mylist is " << mylist.size() << '\n';
 }
 
