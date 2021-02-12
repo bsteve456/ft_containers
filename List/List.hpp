@@ -78,6 +78,7 @@ namespace ft
 
 				for (int i = 0; i < n; i++)
 					this->push_back(elem);
+//				assign(n, elem);
 			}
 				List<value_type>(List<value_type> const &l) : p(0)
 			{
@@ -134,6 +135,23 @@ namespace ft
 					this->Helem->prev = this->Last();
 					this->Helem->next = this->p;
 				}
+				void push_front (const value_type& val)
+				{
+					Node<T> *new1 = ft_lstnew(val);
+					Node<T> *lst  = this->p;
+					if(!lst)
+						this->p = new1;
+					else
+					{
+						lst->prev = new1;
+						new1->next = lst;
+						this->p = new1;
+					}
+					this->p->prev = this->Helem;
+					this->Helem->prev = this->Last();
+					this->Helem->next = this->p;
+				}
+
 				size_type	size(void) const
 				{
 					Node<T> *tmp = this->p;
@@ -218,6 +236,11 @@ namespace ft
 						for (InputIterator it = first; it != last; it++)
 							this->push_back(*it);
 					}
+/*				void assign(size_type n, const value_type &val)
+				{
+					for (size_type i = 0; i < n; i++)
+						this->push_back(val);
+				}*/
 				void clear()
 				{
 					while(this->empty())
