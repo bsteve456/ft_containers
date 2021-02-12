@@ -25,22 +25,5 @@ namespace ft
 			new1->next = 0;
 			return (new1);
 		}
-
-	template < typename T >
-		void	ft_lstadd_back(Node<T> **alst, Node<T> *new1)
-		{
-			Node<T> *lst;
-
-			lst = *alst;
-			if(!lst)
-				*alst = new1;
-			else
-			{
-				while(lst->next )
-					lst = lst->next;
-				new1->prev = lst;
-				lst->next = new1;
-			}
-		}
 };
 #endif
