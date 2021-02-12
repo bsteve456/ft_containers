@@ -12,7 +12,6 @@ namespace ft
 			T elem;
 			struct Node<T> *next;
 			struct Node<T> *prev;
-			struct Node<T> *past_the_end;
 		};
 
 	template < typename T >
@@ -37,7 +36,7 @@ namespace ft
 				*alst = new1;
 			else
 			{
-				while(lst->next)
+				while(lst->next )
 					lst = lst->next;
 				new1->prev = lst;
 				lst->next = new1;

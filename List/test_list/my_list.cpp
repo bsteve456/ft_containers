@@ -48,5 +48,6 @@ int main()
     	std::cout << ' ' << *it;
 	std::cout << '\n';
 
+	std::cout << "Maximum size of a 'list' is " << mylist.max_size() << "\n";
 }
 

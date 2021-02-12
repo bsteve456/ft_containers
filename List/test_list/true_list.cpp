@@ -43,8 +43,10 @@ int main()
 	typedef std::list<int>::iterator iter_type;
 	std::reverse_iterator<iter_type> rev_end (mylist.begin());
 	std::reverse_iterator<iter_type> rev_begin (mylist.end());
- 	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
+	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
     	std::cout << ' ' << *it;
- 	std::cout << '\n';
+	std::cout << '\n';
+
+	std::cout << "Maximum size of a 'list' is " << mylist.max_size() << "\n";
 }
 

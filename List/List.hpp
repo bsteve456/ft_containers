@@ -16,11 +16,11 @@
 # include "Node.hpp"
 # include "MyIterator.hpp"
 # include "MyReverseIterator.hpp"
-
+# include <limits>
 
 namespace ft
 {
-	template < class T, class Alloc = std::allocator<T> >
+	template < class T, class Alloc = std::allocator< T > >
 		class List
 		{
 			private:
@@ -31,7 +31,7 @@ namespace ft
 					Node<T> *tmp = this->p;
 					if(!tmp)
 						return (0);
-					while(tmp->next)
+					while(tmp->next && tmp->next != this->Helem)
 						tmp = tmp->next;
 					return tmp;
 				}
@@ -46,7 +46,8 @@ namespace ft
 				}
 			public:
 				typedef T													value_type;
-				typedef std::allocator<value_type>							allocator_type;
+				typedef std::allocator< T >									allocator_type;
+				typedef std::allocator< Node< T > >							node_allocator_type;
 				typedef	value_type&											reference;
 				typedef	const	value_type&									const_reference;
 				typedef	value_type *										pointer;
@@ -57,25 +58,39 @@ namespace ft
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
 				typedef	std::ptrdiff_t											difference_type;
-				List<value_type>(void)  : p(0), Helem(this->init_last())
+				List<value_type>(void)  : p(0)
 			{
+				this->Helem = 0;
+				this->Helem = (this->init_last());
 			}
-				List<value_type>(int n) : p(0), Helem(this->init_last())
+				List<value_type>(int n) : p(0)
 			{
+				this->Helem = 0;
+				this->Helem = (this->init_last());
+
 				for (int i = 0; i < n; i++)
 					this->push_back(0);
 			}
-				List<value_type>(int n, value_type elem) : p(0), Helem(this->init_last())
+				List<value_type>(int n, value_type elem) : p(0)
 			{
+				this->Helem = 0;
+				this->Helem = (this->init_last());
+
 				for (int i = 0; i < n; i++)
 					this->push_back(elem);
 			}
-				List<value_type>(List<value_type> const &l) : p(0), Helem(this->init_last())
+				List<value_type>(List<value_type> const &l) : p(0)
 			{
+				this->Helem = 0;
+				this->Helem = (this->init_last());
+
 				*this = l;
 			}
-				List<value_type>(iterator first, iterator last) : p(0), Helem(this->init_last())
+				List<value_type>(iterator first, iterator last) : p(0)
 			{
+				this->Helem = 0;
+				this->Helem = (this->init_last());
+
 				this->assign(first, last);
 			}
 				List<value_type> & operator = (List<value_type> const &l)
@@ -101,9 +116,21 @@ namespace ft
 				}
 				void push_back(const value_type &elem)
 				{
-					ft_lstadd_back<value_type>(&(this->p), ft_lstnew(elem));
-					this->Last()->past_the_end = this->Helem;
-					this->p->past_the_end = this->Helem;
+					Node<T> *lst;
+					Node<T> *new1 = ft_lstnew(elem);
+
+					lst = this->p;
+					if(!lst)
+						this->p = new1;
+					else
+					{
+						while(lst->next && this->Helem != lst->next)
+							lst = lst->next;
+						new1->prev = lst;
+						lst->next = new1;
+					}
+					this->Last()->next = this->Helem;
+					this->p->prev = this->Helem;
 					this->Helem->prev = this->Last();
 					this->Helem->next = this->p;
 				}
@@ -114,7 +141,7 @@ namespace ft
 
 					if(p == 0)
 						return (0);
-					while(tmp)
+					while(tmp && tmp != this->Helem)
 					{
 						count++;
 						tmp = tmp->next;
@@ -133,7 +160,7 @@ namespace ft
 					Node<value_type> *t = tmp;
 					if(!tmp)
 						return ;
-					while(tmp->next)
+					while(tmp->next && tmp->next != this->Helem)
 					{
 						t = tmp;
 						tmp = tmp->next;
@@ -143,7 +170,7 @@ namespace ft
 						this->p = 0;
 					if(this->p)
 					{
-						this->Last()->past_the_end = this->Helem;
+						this->Last()->next = this->Helem;
 						this->Helem->prev = this->Last();
 					}
 					delete(tmp);
@@ -222,6 +249,10 @@ namespace ft
 					while(tmp->next)
 						tmp = tmp->next;
 					return tmp->elem;
+				}
+				size_type max_size() const
+				{
+					return (node_allocator_type().max_size());
 				}
 		};
 };
