@@ -15,6 +15,7 @@ namespace ft
 				typedef T *				pointer;
 				typedef	T &				reference;
 				typedef Category		iterator_category;
+				MyIterator() : p(0) {}
 				MyIterator(struct Node<T> * x) : p(x)
 			{}
 				MyIterator(MyIterator const & mit) : p(mit.p)

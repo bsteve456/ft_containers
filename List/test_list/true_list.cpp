@@ -68,18 +68,32 @@ int main()
 	ite = mylist.begin();
 	++ite;
 	mylist.insert (ite,10);
-//	mylist.insert (ite, 10 , 50);
-	std::vector<int> myvector (2,30);
-	mylist.insert (ite,myvector.begin(),myvector.end());
+	mylist.insert (ite, 1 , 5);
+	mylist.insert (ite, 1 , 7);
+//	std::vector<int> myvector (2,30);
+//	mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
 
-	std::list<int>::iterator it1 = mylist.begin();
+	std::list<int>::iterator it1, it2;
+	it1 = mylist.begin();
+	it2 = mylist.end();
+	--it2;
+	it2 = mylist.erase (it2);
 	it1 = mylist.erase (it1);
-	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
+
+	++it1;
+	--it2;
+
+	for (ite=mylist.begin(); ite!=mylist.end(); ite++)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
 
+	 mylist.erase (it1,it2);
+
+	for (ite=mylist.begin(); ite!=mylist.end(); ite++)
+		std::cout << ' ' << *ite;
+	std::cout << '\n';
 }
 

@@ -318,12 +318,12 @@ namespace ft
 						for(size_type i = 0; i < n; i++)
 							insert(position, val);
 				}
-				template <class InputIterator>
+/*				template <class InputIterator>
 				void insert (iterator position, InputIterator first, InputIterator last)
 				{
 					for(InputIterator it = first; it != last; it++)
 						insert(position, *it);
-				}
+				}*/
 				iterator erase (iterator position)
 				{
 					Node<T> *tmp = this->p;
@@ -338,6 +338,11 @@ namespace ft
 					}
 					for(size_t j = 0; j < i; j++)
 						tmp = tmp->next;
+					if(tmp == this->Helem)
+					{
+						this->p = 0;
+						return position;
+					}
 					position++;
 					prev = tmp->prev;
 					next = tmp->next;
@@ -347,6 +352,14 @@ namespace ft
 						this->p = this->p->next;
 					delete(tmp);
 					return position;
+				}
+				iterator erase (iterator first, iterator last)
+				{
+					while(first != last)
+					{
+						first = erase(first);
+					}
+					return first;
 				}
 		};
 };
