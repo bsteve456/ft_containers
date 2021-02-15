@@ -74,5 +74,12 @@ int main()
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
+
+	ft::List<int>::iterator it1 = mylist.begin();
+	it1 = mylist.erase (it1);
+	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
+		std::cout << ' ' << *ite;
+	std::cout << '\n';
+
 }
 

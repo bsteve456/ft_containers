@@ -75,6 +75,11 @@ int main()
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
 
+	std::list<int>::iterator it1 = mylist.begin();
+	it1 = mylist.erase (it1);
+	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
+		std::cout << ' ' << *ite;
+	std::cout << '\n';
 
 }
 

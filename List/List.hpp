@@ -324,6 +324,30 @@ namespace ft
 					for(InputIterator it = first; it != last; it++)
 						insert(position, *it);
 				}
+				iterator erase (iterator position)
+				{
+					Node<T> *tmp = this->p;
+					Node<T> *next;
+					Node<T> *prev;
+					iterator it = this->begin();
+					size_t i = 0;
+					while(it != this->end() && it != position)
+					{
+						it++;
+						i++;
+					}
+					for(size_t j = 0; j < i; j++)
+						tmp = tmp->next;
+					position++;
+					prev = tmp->prev;
+					next = tmp->next;
+					prev->next = next;
+					next->prev = prev;
+					if (this->p == tmp)
+						this->p = this->p->next;
+					delete(tmp);
+					return position;
+				}
 		};
 };
 
