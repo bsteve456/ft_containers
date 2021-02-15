@@ -318,6 +318,12 @@ namespace ft
 						for(size_type i = 0; i < n; i++)
 							insert(position, val);
 				}
+				template <class InputIterator>
+				void insert (iterator position, InputIterator first, InputIterator last)
+				{
+					for(InputIterator it = first; it != last; it++)
+						insert(position, *it);
+				}
 		};
 };
 

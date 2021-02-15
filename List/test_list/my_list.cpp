@@ -1,6 +1,6 @@
 #include "../Node.hpp"
 #include "../List.hpp"
-
+#include <vector>
 
 int main()
 {
@@ -68,7 +68,9 @@ int main()
 	ite = mylist.begin();
 	++ite;
 	mylist.insert (ite,10);
-	mylist.insert (ite, 10 , 50);
+//	mylist.insert (ite, 10 , 50);
+	std::vector<int> myvector (2,30);
+	mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
