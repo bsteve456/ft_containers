@@ -290,6 +290,34 @@ namespace ft
 				{
 					return (node_allocator_type().max_size());
 				}
+				iterator insert(iterator position, const value_type& val)
+				{
+					Node<T> *tmp = this->p;
+					Node<T> *new1 = ft_lstnew(val);
+					Node<T> *prev;
+					iterator it = this->begin();
+					size_t i = 0;
+					while(it != this->end() && it != position)
+					{
+						it++;
+						i++;
+					}
+					if(it == this->end())
+						return position;
+					for(size_t j = 0; j < i; j++)
+						tmp = tmp->next;
+					prev = tmp->prev;
+					prev->next = new1;
+					new1->prev = prev;
+					new1->next = tmp;
+					tmp->prev = new1;
+					return position;
+				}
+				void insert (iterator position, size_type n, const value_type& val)
+				{
+						for(size_type i = 0; i < n; i++)
+							insert(position, val);
+				}
 		};
 };
 

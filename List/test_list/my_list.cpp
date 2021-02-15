@@ -62,5 +62,15 @@ int main()
 		mylist.pop_front();
 	}
 	std::cout << "\nFinal size of mylist is " << mylist.size() << '\n';
+
+	mylist.push_back(3500);
+	mylist.push_back(100);
+	ite = mylist.begin();
+	++ite;
+	mylist.insert (ite,10);
+	mylist.insert (ite, 10 , 50);
+	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
+		std::cout << ' ' << *ite;
+	std::cout << '\n';
 }
 
