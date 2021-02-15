@@ -110,5 +110,15 @@ int main()
 	for (ft::List<int>::iterator it=first.begin(); it!=first.end(); it++)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	mylist.resize(5);
+	mylist.resize(8,100);
+	mylist.resize(12);
+
+	std::cout << "mylist contains:";
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+
+	std::cout << '\n';
 }
 

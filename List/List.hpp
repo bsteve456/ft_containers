@@ -366,6 +366,13 @@ namespace ft
 				{
 					std::swap(*this, x);
 				}
+				void resize (size_type n, value_type val = value_type())
+				{
+					while (this->size() > n)
+						this->pop_back();
+					while (this->size() < n)
+						this->push_back(val);
+				}
 		};
 };
 
