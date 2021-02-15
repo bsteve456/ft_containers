@@ -95,5 +95,20 @@ int main()
 	for (ite=mylist.begin(); ite!=mylist.end(); ite++)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
+
+	std::list<int> first (5,200);  // five ints with a value of 200
+
+	mylist.swap(first);
+
+	std::cout << "mylist contains:";
+	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); it++)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
+	std::cout << "first contains:";
+	for (std::list<int>::iterator it=first.begin(); it!=first.end(); it++)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 }
 

@@ -17,6 +17,7 @@
 # include "MyIterator.hpp"
 # include "MyReverseIterator.hpp"
 # include <limits>
+# include <algorithm>
 
 namespace ft
 {
@@ -360,6 +361,10 @@ namespace ft
 						first = erase(first);
 					}
 					return first;
+				}
+				void swap (List& x)
+				{
+					std::swap(*this, x);
 				}
 		};
 };

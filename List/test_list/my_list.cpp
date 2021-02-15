@@ -71,8 +71,8 @@ int main()
 	mylist.insert (ite, 1 , 5);
 	mylist.insert (ite, 1 , 7);
 
-//	std::vector<int> myvector (2,30);
-//	mylist.insert (ite,myvector.begin(),myvector.end());
+	//	std::vector<int> myvector (2,30);
+	//	mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
@@ -97,5 +97,18 @@ int main()
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
 
+	ft::List<int> first (5,200);  // five ints with a value of 200
+
+	mylist.swap(first);
+
+	std::cout << "mylist contains:";
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); it++)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
+	std::cout << "first contains:";
+	for (ft::List<int>::iterator it=first.begin(); it!=first.end(); it++)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 }
 
