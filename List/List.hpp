@@ -307,6 +307,7 @@ namespace ft
 					size_t i = 0;
 					if(this->p == 0)
 					{
+						std::cerr << "ok" << std::endl;
 						this->p = new1;
 						this->Helem->prev = this->Last();
 						this->Helem->next = this->p;

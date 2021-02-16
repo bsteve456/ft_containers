@@ -126,7 +126,7 @@ int main()
 	ite = mylist.begin();
 	++ite;
 	mylist.splice(ite, first);
-//	first.splice(first.begin(), mylist, ite);
+	first.splice(first.begin(), mylist, ite);
 	ite = mylist.begin();
 	ite++;
 	++ite;
