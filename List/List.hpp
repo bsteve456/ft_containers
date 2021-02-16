@@ -79,7 +79,7 @@ namespace ft
 
 				for (int i = 0; i < n; i++)
 					this->push_back(elem);
-//				assign(n, elem);
+				//				assign(n, elem);
 			}
 				List<value_type>(List<value_type> const &l) : p(0)
 			{
@@ -209,11 +209,18 @@ namespace ft
 				}
 				iterator begin()
 				{
-					return iterator(this->p);
+					if(this->p != 0)
+						return iterator(this->p);
+					else
+						return iterator(this->Helem);
 				}
 				const_iterator begin() const
 				{
-					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->p);
+					Node<const T> *tmp;
+					if(this->p != 0)
+						tmp = reinterpret_cast<Node<const T> *>(this->p);
+					else
+						tmp = reinterpret_cast<Node<const T> *>(this->Helem);
 					return const_iterator(tmp);
 				}
 				iterator end()
@@ -250,11 +257,11 @@ namespace ft
 						for (InputIterator it = first; it != last; it++)
 							this->push_back(*it);
 					}
-/*				void assign(size_type n, const value_type &val)
-				{
-					for (size_type i = 0; i < n; i++)
-						this->push_back(val);
-				}*/
+				/*				void assign(size_type n, const value_type &val)
+								{
+								for (size_type i = 0; i < n; i++)
+								this->push_back(val);
+								}*/
 				void clear()
 				{
 					while(!this->empty())
@@ -298,33 +305,42 @@ namespace ft
 					Node<T> *prev;
 					iterator it = this->begin();
 					size_t i = 0;
-					while(it != this->end() && it != position)
+					if(this->p == 0)
 					{
-						it++;
-						i++;
+						this->p = new1;
+						this->Helem->prev = this->Last();
+						this->Helem->next = this->p;
 					}
-					if(it == this->end())
-						return position;
-					for(size_t j = 0; j < i; j++)
-						tmp = tmp->next;
-					prev = tmp->prev;
-					prev->next = new1;
-					new1->prev = prev;
-					new1->next = tmp;
-					tmp->prev = new1;
+					else
+					{
+						while(it != this->end() && it != position)
+						{
+							it++;
+							i++;
+						}
+						if(it == this->end())
+							return position;
+						for(size_t j = 0; j < i; j++)
+							tmp = tmp->next;
+						prev = tmp->prev;
+						prev->next = new1;
+						new1->prev = prev;
+						new1->next = tmp;
+						tmp->prev = new1;
+					}
 					return position;
 				}
 				void insert (iterator position, size_type n, const value_type& val)
 				{
-						for(size_type i = 0; i < n; i++)
-							insert(position, val);
+					for(size_type i = 0; i < n; i++)
+						insert(position, val);
 				}
-/*				template <class InputIterator>
-				void insert (iterator position, InputIterator first, InputIterator last)
-				{
-					for(InputIterator it = first; it != last; it++)
-						insert(position, *it);
-				}*/
+				/*				template <class InputIterator>
+								void insert (iterator position, InputIterator first, InputIterator last)
+								{
+								for(InputIterator it = first; it != last; it++)
+								insert(position, *it);
+								}*/
 				iterator erase (iterator position)
 				{
 					Node<T> *tmp = this->p;
@@ -357,9 +373,7 @@ namespace ft
 				iterator erase (iterator first, iterator last)
 				{
 					while(first != last)
-					{
 						first = erase(first);
-					}
 					return first;
 				}
 				void swap (List& x)
@@ -372,6 +386,23 @@ namespace ft
 						this->pop_back();
 					while (this->size() < n)
 						this->push_back(val);
+				}
+				void splice (iterator position, List& x)
+				{
+					for (iterator it = x.begin(); it != x.end(); ++it)
+						 this->insert(position, *it);
+					x.clear();
+				}
+				void splice (iterator position, List& x, iterator i)
+				{
+					this->insert(position, *i);
+					x.erase(i);
+				}
+				void splice (iterator position, List& x, iterator first, iterator last)
+				{
+					for(iterator it = first; it != last; ++it)
+						this->insert(position, *it);
+					x.erase(first, last);
 				}
 		};
 };

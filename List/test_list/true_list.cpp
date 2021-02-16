@@ -126,12 +126,12 @@ int main()
 	ite = mylist.begin();
 	++ite;
 	mylist.splice(ite, first);
-	first.splice(first.begin(), mylist, ite);
+//	first.splice(first.begin(), mylist, ite);
 	ite = mylist.begin();
 	ite++;
 	++ite;
 	ite++;
-	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
+//	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
 	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
