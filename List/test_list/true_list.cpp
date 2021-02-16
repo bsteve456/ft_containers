@@ -121,7 +121,22 @@ int main()
 	std::cout << "\nsize of first is " << first.size() << '\n';
 	first.clear();
 	std::cout << "\nsize of first is " << first.size() << '\n';
-
+	for (int i = 1; i <= 4; ++i)
+		first.push_back(i * 10);
+	ite = mylist.begin();
+	++ite;
+	mylist.splice(ite, first);
+	first.splice(first.begin(), mylist, ite);
+	ite = mylist.begin();
+	ite++;
+	++ite;
+	ite++;
+	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
+	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	for (std::list<int>::iterator it=first.begin(); it!=first.end(); ++it)
+		std::cout << ' ' << *it;
 	std::cout << '\n';
 }
 

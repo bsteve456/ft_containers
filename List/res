@@ -1,0 +1,49 @@
+--- my_result	2021-02-16 10:19:46.201813596 +0100
++++ true_result	2021-02-16 10:19:46.205813596 +0100
+@@ -0,0 +1,46 @@
++100
++100
++100
++100
++100
++100
++100
++100
++5
++5
++5
++5
++Size of first: 0
++Size of second: 3
++5
++5
++5
++6
++5
++4
++3
++2
++1
++ 1 2 3 4 5 6
++Maximum size of a 'list' is 768614336404564650
++200
++300
++1
++2
++3
++4
++5
++6
++Popping out the elements in mylist: 200 300 1 2 3 4 5 6
++Final size of mylist is 0
++ 3500 10 5 7 100
++ 10 5 7
++ 10 7
++mylist contains: 200 200 200 200 200
++first contains: 10 7
++mylist contains: 200 200 200 200 200 100 100 100 0 0 0 0
++size of first is 2
++
++size of first is 0
++ 30 40 200 200 200 100 100 100 0 0 0 0 200 10 20
++ 200
