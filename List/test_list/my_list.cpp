@@ -2,6 +2,13 @@
 #include "../List.hpp"
 #include <vector>
 
+bool single_digit (const int& value) { return (value<10); }
+
+struct is_odd {
+	bool operator() (const int& value) { return (value%2)==1; }
+};
+
+
 int main()
 {
 	ft::List<int> second (4,100);
@@ -145,6 +152,20 @@ int main()
 	std::cout << '\n';
 
 	mylist.remove(200);
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
+	mylist.push_front(2);
+	mylist.push_front(9);
+	mylist.push_front(29);
+	std::cout << "mylist contains:";
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	mylist.remove_if (single_digit);
+	mylist.remove_if (is_odd());
+	std::cout << "mylist contains:";
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';

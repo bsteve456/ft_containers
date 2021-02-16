@@ -424,6 +424,19 @@ namespace ft
 						}
 					}
 				}
+				template <class Predicate>
+				void remove_if (Predicate pred)
+				{
+					for (iterator it = this->begin(); it != this->end(); it++)
+					{
+						if (pred(*it) == true)
+						{
+							it = erase(it);
+							it--;
+						}
+					}
+
+				}
 		};
 };
 
