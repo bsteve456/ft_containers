@@ -413,6 +413,17 @@ namespace ft
 						x.erase(tmp);
 					}
 				}
+				void remove (const value_type& val)
+				{
+					for (iterator it = this->begin(); it != this->end(); it++)
+					{
+						if (*it == val)
+						{
+							it = erase(it);
+							it--;
+						}
+					}
+				}
 		};
 };
 

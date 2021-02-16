@@ -143,5 +143,10 @@ int main()
 	for (ft::List<int>::iterator it=first.begin(); it!=first.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	mylist.remove(200);
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 }
 
