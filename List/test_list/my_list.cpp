@@ -8,6 +8,13 @@ struct is_odd {
 	bool operator() (const int& value) { return (value%2)==1; }
 };
 
+bool same_integral_part (double first, double second)
+{ return ( int(first)==int(second) ); }
+
+struct is_near {
+  bool operator() (double first, double second)
+  { return (fabs(first-second)<5.0); }
+};
 
 int main()
 {
@@ -169,5 +176,19 @@ int main()
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	mylist.unique();
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	mylist.unique (same_integral_part);
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	mylist.unique (is_near());
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 }
 
