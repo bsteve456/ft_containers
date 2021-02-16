@@ -119,6 +119,11 @@ int main()
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 
+	std::cout << "\nsize of first is " << first.size() << '\n';
+	first.clear();
+	std::cout << "\nsize of first is " << first.size() << '\n';
+
+
 	std::cout << '\n';
 }
 

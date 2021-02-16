@@ -39,13 +39,13 @@ int main()
 	for (int i=1; i<=6; ++i)
 		mylist.push_back(i);
 	for (std::list<int>::reverse_iterator it=mylist.rbegin(); it!=mylist.rend(); ++it)
-    	std::cout << *it << std::endl;
+		std::cout << *it << std::endl;
 
 	typedef std::list<int>::iterator iter_type;
 	std::reverse_iterator<iter_type> rev_end (mylist.begin());
 	std::reverse_iterator<iter_type> rev_begin (mylist.end());
 	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
-    	std::cout << ' ' << *it;
+		std::cout << ' ' << *it;
 	std::cout << '\n';
 
 	std::cout << "Maximum size of a 'list' is " << mylist.max_size() << "\n";
@@ -53,7 +53,7 @@ int main()
 	mylist.push_front(300);
 	mylist.push_front(200);
 	for (std::list<int>::iterator it = mylist.begin(); it != mylist.end(); it++)
-			std::cout << *it << std::endl;
+		std::cout << *it << std::endl;
 
 	std::cout << "Popping out the elements in mylist:";
 	while (!mylist.empty())
@@ -70,8 +70,8 @@ int main()
 	mylist.insert (ite,10);
 	mylist.insert (ite, 1 , 5);
 	mylist.insert (ite, 1 , 7);
-//	std::vector<int> myvector (2,30);
-//	mylist.insert (ite,myvector.begin(),myvector.end());
+	//	std::vector<int> myvector (2,30);
+	//	mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
@@ -90,7 +90,7 @@ int main()
 		std::cout << ' ' << *ite;
 	std::cout << '\n';
 
-	 mylist.erase (it1,it2);
+	mylist.erase (it1,it2);
 
 	for (ite=mylist.begin(); ite!=mylist.end(); ite++)
 		std::cout << ' ' << *ite;
@@ -110,14 +110,18 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
- mylist.resize(5);
-  mylist.resize(8,100);
-  mylist.resize(12);
+	mylist.resize(5);
+	mylist.resize(8,100);
+	mylist.resize(12);
 
-  std::cout << "mylist contains:";
-  for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
-    std::cout << ' ' << *it;
+	std::cout << "mylist contains:";
+	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
 
-  std::cout << '\n';
+	std::cout << "\nsize of first is " << first.size() << '\n';
+	first.clear();
+	std::cout << "\nsize of first is " << first.size() << '\n';
+
+	std::cout << '\n';
 }
 
