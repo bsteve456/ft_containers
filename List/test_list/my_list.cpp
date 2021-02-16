@@ -129,12 +129,14 @@ int main()
 	++ite;
 	mylist.splice(ite, first);
 	first.splice(first.begin(), mylist, ite);
-//	std::cout << "three" << std::endl;
 	ite = mylist.begin();
 	ite++;
 	++ite;
 	ite++;
-//	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
+	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';

@@ -307,8 +307,9 @@ namespace ft
 					size_t i = 0;
 					if(this->p == 0)
 					{
-						std::cerr << "ok" << std::endl;
 						this->p = new1;
+						this->p->prev = this->Helem;
+						this->p->next = this->Helem;
 						this->Helem->prev = this->Last();
 						this->Helem->next = this->p;
 					}
@@ -328,8 +329,10 @@ namespace ft
 						new1->prev = prev;
 						new1->next = tmp;
 						tmp->prev = new1;
+						if(tmp == this->p)
+							this->p = new1;
 					}
-					return position;
+					return iterator(new1);
 				}
 				void insert (iterator position, size_type n, const value_type& val)
 				{
@@ -401,9 +404,14 @@ namespace ft
 				}
 				void splice (iterator position, List& x, iterator first, iterator last)
 				{
-					for(iterator it = first; it != last; ++it)
-						this->insert(position, *it);
-					x.erase(first, last);
+					iterator tmp;
+					while(first != last)
+					{
+						tmp = first;
+						this->insert(position, *first);
+						first++;
+						x.erase(tmp);
+					}
 				}
 		};
 };

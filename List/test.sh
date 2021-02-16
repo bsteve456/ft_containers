@@ -12,6 +12,5 @@ then
 	echo "KO, you can see the result in the res file"
 else
 	echo "OK pass all tests"
-	rm res my_list true_list
+	rm res my_list true_list my_result true_result
 fi
-rm my_result true_result

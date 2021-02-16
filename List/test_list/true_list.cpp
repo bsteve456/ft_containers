@@ -131,7 +131,10 @@ int main()
 	ite++;
 	++ite;
 	ite++;
-//	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
+	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	mylist.splice (mylist.begin(), mylist, ite, mylist.end());
 	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
