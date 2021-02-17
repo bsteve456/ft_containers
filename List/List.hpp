@@ -29,6 +29,8 @@ namespace ft
 				template <class Tp, class Allocs>
 					friend bool operator== (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
+					friend bool operator!= (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
 					friend bool operator<  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
 				Node<T>						*p;
 				Node<T>						*Helem;
@@ -596,6 +598,16 @@ namespace ft
 				return true;
 			return false;
 		}
+	template <class T, class Alloc>
+		bool operator!= (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		{
+			if(lhs.size() != rhs.size())
+				return true;
+			if(std::equal(lhs.begin(), lhs.end(), rhs.begin()) == false)
+				return true;
+			return false;
+		}
+
 	template <class T, class Alloc>
 		bool operator<  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
 		{
