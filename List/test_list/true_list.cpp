@@ -257,5 +257,12 @@ int main()
 	for (std::list<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	five.reverse();
+	std::cout << "five contains:";
+	for (std::list<double>::iterator it=five.begin(); it!=five.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 }
 

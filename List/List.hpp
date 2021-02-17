@@ -539,31 +539,45 @@ namespace ft
 					}
 				}
 				template <class Compare>
-				void merge (List& x, Compare comp)
-				{
-					if(this != &x)
+					void merge (List& x, Compare comp)
 					{
-						for(iterator it = x.begin(); it != x.end(); it++)
+						if(this != &x)
 						{
-							for (iterator it2 = this->begin(); it2 != this->end(); it2++)
+							for(iterator it = x.begin(); it != x.end(); it++)
 							{
-								if(comp(*it, *it2) == true)
+								for (iterator it2 = this->begin(); it2 != this->end(); it2++)
 								{
-									this->insert(it2, *it);
-									break;
-								}
-								else
-								{
-									it2++;
-									if(it2 == this->end())
+									if(comp(*it, *it2) == true)
+									{
 										this->insert(it2, *it);
-									it2--;
+										break;
+									}
+									else
+									{
+										it2++;
+										if(it2 == this->end())
+											this->insert(it2, *it);
+										it2--;
+									}
 								}
 							}
+							x.clear();
 						}
-						x.clear();
 					}
-
+				void reverse()
+				{
+					Node<T> *i;
+					Node<T> *j;
+					i = this->p;
+					j = i;
+					while(j->next != this->Helem)
+						j = j->next;
+					while(i != j)
+					{
+						std::swap(i->elem, j->elem);
+						i = i->next;
+						j = j->prev;
+					}
 				}
 		};
 };
