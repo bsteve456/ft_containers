@@ -497,6 +497,25 @@ namespace ft
 						i = i->next;
 					}
 				}
+				template <class Compare>
+				void sort (Compare comp)
+				{
+					Node<T> *i;
+					Node<T> *j;
+					T tmp;
+					i = this->p;
+					while(i != this->Helem)
+					{
+						j = this->p;
+						while(j != this->Helem)
+						{
+							if(comp(i->elem, j->elem) == true)
+								std::swap(i->elem, j->elem);
+							j = j->next;
+						}
+						i = i->next;
+					}
+				}
 		};
 };
 

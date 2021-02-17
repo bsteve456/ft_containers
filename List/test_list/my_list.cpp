@@ -231,10 +231,10 @@ int main()
 	for (it=tp.begin(); it!=tp.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-/*	tp.sort(compare_nocase);
+	tp.sort(compare_nocase);
 	std::cout << "tp contains:";
 	for (it=tp.begin(); it!=tp.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';*/
+	std::cout << '\n';
 }
 
