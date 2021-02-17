@@ -9,14 +9,14 @@
 
 bool compare_nocase (const std::string& first, const std::string& second)
 {
-  unsigned int i=0;
-  while ( (i<first.length()) && (i<second.length()) )
-  {
-    if (tolower(first[i])<tolower(second[i])) return true;
-    else if (tolower(first[i])>tolower(second[i])) return false;
-    ++i;
-  }
-  return ( first.length() < second.length() );
+	unsigned int i=0;
+	while ( (i<first.length()) && (i<second.length()) )
+	{
+		if (tolower(first[i])<tolower(second[i])) return true;
+		else if (tolower(first[i])>tolower(second[i])) return false;
+		++i;
+	}
+	return ( first.length() < second.length() );
 }
 
 bool single_digit (const int& value) { return (value<10); }
@@ -29,8 +29,8 @@ bool same_integral_part (double first, double second)
 { return ( int(first)==int(second) ); }
 
 struct is_near {
-  bool operator() (double first, double second)
-  { return (fabs(first-second)<5.0); }
+	bool operator() (double first, double second)
+	{ return (fabs(first-second)<5.0); }
 };
 
 bool mycomparison (double first, double second)
@@ -263,6 +263,21 @@ int main()
 	for (std::list<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	std::list<int> a, b, c;
+	a.push_back(10);
+	a.push_back(20);
+	a.push_back(30);
+	b = a;
+	c.push_front(10);
+	c.push_front(20);
+	c.push_front(30);
+	if (a==b) std::cout << "a and b are equal\n";
+//	if (b!=c) std::cout << "b and c are not equal\n";
+	if (b<c) std::cout << "b is less than c\n";
+//	if (c>b) std::cout << "c is greater than b\n";
+//	if (a<=b) std::cout << "a is less than or equal to b\n";
+//	if (a>=b) std::cout << "a is greater than or equal to b\n";
 
 }
 
