@@ -33,6 +33,9 @@ struct is_near {
   { return (fabs(first-second)<5.0); }
 };
 
+bool mycomparison (double first, double second)
+{ return ( int(first)<int(second) ); }
+
 int main()
 {
 	std::list<int> second (4,100);
@@ -248,11 +251,11 @@ int main()
 	for (std::list<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-/*	six.push_back (2.1);
+	six.push_back (2.1);
 	five.merge(six,mycomparison);
 	std::cout << "five contains:";
 	for (std::list<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';*/
+	std::cout << '\n';
 }
 

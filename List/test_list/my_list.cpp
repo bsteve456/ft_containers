@@ -254,12 +254,12 @@ int main()
 	for (ft::List<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-/*	six.push_back (2.1);
+	six.push_back (2.1);
 	five.merge(six,mycomparison);
 	std::cout << "five contains:";
 	for (ft::List<double>::iterator it=five.begin(); it!=five.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';*/
+	std::cout << '\n';
 
 	return 0;
 }

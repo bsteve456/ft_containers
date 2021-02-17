@@ -392,7 +392,7 @@ namespace ft
 				void splice (iterator position, List& x)
 				{
 					for (iterator it = x.begin(); it != x.end(); ++it)
-						 this->insert(position, *it);
+						this->insert(position, *it);
 					x.clear();
 				}
 				void splice (iterator position, List& x, iterator i)
@@ -423,17 +423,17 @@ namespace ft
 					}
 				}
 				template <class Predicate>
-				void remove_if (Predicate pred)
-				{
-					for (iterator it = this->begin(); it != this->end(); it++)
+					void remove_if (Predicate pred)
 					{
-						if (pred(*it) == true)
+						for (iterator it = this->begin(); it != this->end(); it++)
 						{
-							it = erase(it);
-							it--;
+							if (pred(*it) == true)
+							{
+								it = erase(it);
+								it--;
+							}
 						}
 					}
-				}
 				void unique()
 				{
 					iterator jt;
@@ -456,27 +456,27 @@ namespace ft
 					}
 				}
 				template <class BinaryPredicate>
-				void unique (BinaryPredicate binary_pred)
-				{
-					iterator jt;
-					iterator tmp;
-					for(iterator it = this->begin(); it != this->end(); it++)
+					void unique (BinaryPredicate binary_pred)
 					{
-						jt = it;
-						jt++;
-						while(jt != this->end())
+						iterator jt;
+						iterator tmp;
+						for(iterator it = this->begin(); it != this->end(); it++)
 						{
-							tmp = jt;
-							if(binary_pred(*it, *jt) == true)
+							jt = it;
+							jt++;
+							while(jt != this->end())
 							{
-								jt++;
-								this->erase(tmp);
+								tmp = jt;
+								if(binary_pred(*it, *jt) == true)
+								{
+									jt++;
+									this->erase(tmp);
+								}
+								else
+									jt++;
 							}
-							else
-								jt++;
 						}
 					}
-				}
 				void sort()
 				{
 					Node<T> *i;
@@ -495,24 +495,24 @@ namespace ft
 					}
 				}
 				template <class Compare>
-				void sort (Compare comp)
-				{
-					Node<T> *i;
-					Node<T> *j;
-					T tmp;
-					i = this->p;
-					while(i != this->Helem)
+					void sort (Compare comp)
 					{
-						j = this->p;
-						while(j != this->Helem)
+						Node<T> *i;
+						Node<T> *j;
+						T tmp;
+						i = this->p;
+						while(i != this->Helem)
 						{
-							if(comp(i->elem, j->elem) == true)
-								std::swap(i->elem, j->elem);
-							j = j->next;
+							j = this->p;
+							while(j != this->Helem)
+							{
+								if(comp(i->elem, j->elem) == true)
+									std::swap(i->elem, j->elem);
+								j = j->next;
+							}
+							i = i->next;
 						}
-						i = i->next;
 					}
-				}
 				void merge (List& x)
 				{
 					if(this != &x)
@@ -533,11 +533,37 @@ namespace ft
 										this->insert(it2, *it);
 									it2--;
 								}
-								
 							}
 						}
 						x.clear();
 					}
+				}
+				template <class Compare>
+				void merge (List& x, Compare comp)
+				{
+					if(this != &x)
+					{
+						for(iterator it = x.begin(); it != x.end(); it++)
+						{
+							for (iterator it2 = this->begin(); it2 != this->end(); it2++)
+							{
+								if(comp(*it, *it2) == true)
+								{
+									this->insert(it2, *it);
+									break;
+								}
+								else
+								{
+									it2++;
+									if(it2 == this->end())
+										this->insert(it2, *it);
+									it2--;
+								}
+							}
+						}
+						x.clear();
+					}
+
 				}
 		};
 };
