@@ -18,6 +18,7 @@
 # include "MyReverseIterator.hpp"
 # include <limits>
 # include <algorithm>
+# include <typeinfo>
 
 namespace ft
 {
@@ -39,7 +40,7 @@ namespace ft
 				Node<T>					*init_last()
 				{
 					Node<T> *hollow_elem;
-					value_type random = 0;
+					value_type random = T();
 					hollow_elem = ft_lstnew(random);
 					hollow_elem->prev = this->Last();
 					hollow_elem->next = this->p;
@@ -57,7 +58,7 @@ namespace ft
 				typedef MyReverseIterator<iterator>							reverse_iterator;
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
-				typedef	std::ptrdiff_t											difference_type;
+				typedef	std::ptrdiff_t										difference_type;
 				List<value_type>(void)  : p(0)
 			{
 				this->Helem = 0;
@@ -477,7 +478,24 @@ namespace ft
 								jt++;
 						}
 					}
-				
+				}
+				void sort()
+				{
+					Node<T> *i;
+					Node<T> *j;
+					T tmp;
+					i = this->p;
+					while(i != this->Helem)
+					{
+						j = this->p;
+						while(j != this->Helem)
+						{
+							if(i->elem < j->elem)
+								std::swap(i->elem, j->elem);
+							j = j->next;
+						}
+						i = i->next;
+					}
 				}
 		};
 };

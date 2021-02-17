@@ -2,7 +2,21 @@
 #include "../List.hpp"
 #include <vector>
 #include <cmath>
+#include <string>
+#include <cctype>
 
+
+bool compare_nocase (const std::string& first, const std::string& second)
+{
+	unsigned int i=0;
+	while ( (i<first.length()) && (i<second.length()) )
+	{
+		if (tolower(first[i])<tolower(second[i])) return true;
+		else if (tolower(first[i])>tolower(second[i])) return false;
+		++i;
+	}
+	return ( first.length() < second.length() );
+}
 
 bool single_digit (const int& value) { return (value<10); }
 
@@ -14,8 +28,8 @@ bool same_integral_part (double first, double second)
 { return ( int(first)==int(second) ); }
 
 struct is_near {
-  bool operator() (double first, double second)
-  { return (fabs(first-second)<5.0); }
+	bool operator() (double first, double second)
+	{ return (fabs(first-second)<5.0); }
 };
 
 int main()
@@ -206,5 +220,21 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
+
+	ft::List<std::string> tp;
+	ft::List<std::string>::iterator it;
+	tp.push_back ("one");
+	tp.push_back ("two");
+	tp.push_back ("Three");
+	tp.sort();
+	std::cout << "tp contains:";
+	for (it=tp.begin(); it!=tp.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+/*	tp.sort(compare_nocase);
+	std::cout << "tp contains:";
+	for (it=tp.begin(); it!=tp.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';*/
 }
 
