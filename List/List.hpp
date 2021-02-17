@@ -434,7 +434,27 @@ namespace ft
 							it--;
 						}
 					}
-
+				}
+				void unique()
+				{
+					iterator jt;
+					iterator tmp;
+					for(iterator it = this->begin(); it != this->end(); it++)
+					{
+						jt = it;
+						jt++;
+						while(jt != this->end())
+						{
+							tmp = jt;
+							if(*jt == *it)
+							{
+								jt++;
+								this->erase(tmp);
+							}
+							else
+								jt++;
+						}
+					}
 				}
 		};
 };

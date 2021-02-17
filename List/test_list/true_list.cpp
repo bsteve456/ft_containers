@@ -176,8 +176,29 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-/*	mylist.unique();
-	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+	std::list<double> doubles;
+
+	doubles.push_back(15.6);
+	doubles.push_back(15.6);
+	doubles.push_back(15.455);
+	doubles.push_back(17.2);
+	doubles.push_back(25.6);
+	doubles.push_back(25.6);
+	doubles.push_back(200.34);
+	doubles.push_back(201.5);
+	for (std::list<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	doubles.unique();
+	for (std::list<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+/*	doubles.unique (same_integral_part);
+	for (std::list<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	doubles.unique (is_near());
+	for (std::list<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';*/
 

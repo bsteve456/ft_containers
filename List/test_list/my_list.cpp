@@ -179,16 +179,30 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-/*	mylist.unique();
-	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+
+	ft::List<double> doubles;
+
+	doubles.push_back(15.6);
+	doubles.push_back(15.6);
+	doubles.push_back(15.455);
+	doubles.push_back(17.2);
+	doubles.push_back(25.6);
+	doubles.push_back(25.6);
+	doubles.push_back(200.34);
+	doubles.push_back(201.5);
+	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-	mylist.unique (same_integral_part);
-	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+	doubles.unique();
+	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-	mylist.unique (is_near());
-	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
+/*	doubles.unique (same_integral_part);
+	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	doubles.unique (is_near());
+	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';*/
 
