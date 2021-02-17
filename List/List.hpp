@@ -127,8 +127,8 @@ namespace ft
 				}
 				~List()
 				{
-					delete Helem;
 					this->clear();
+					delete Helem;
 				}
 				void push_back(const value_type &elem)
 				{
