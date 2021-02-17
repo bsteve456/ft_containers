@@ -48,7 +48,6 @@ namespace ft
 			public:
 				typedef T													value_type;
 				typedef std::allocator< T >									allocator_type;
-				typedef std::allocator< Node< T > >							node_allocator_type;
 				typedef	value_type&											reference;
 				typedef	const	value_type&									const_reference;
 				typedef	value_type *										pointer;
@@ -296,7 +295,7 @@ namespace ft
 				}
 				size_type max_size() const
 				{
-					return (node_allocator_type().max_size());
+					return (std::allocator< Node< T > >().max_size());
 				}
 				iterator insert(iterator position, const value_type& val)
 				{

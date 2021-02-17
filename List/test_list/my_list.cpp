@@ -1,6 +1,8 @@
 #include "../Node.hpp"
 #include "../List.hpp"
 #include <vector>
+#include <cmath>
+
 
 bool single_digit (const int& value) { return (value<10); }
 
@@ -177,7 +179,7 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-	mylist.unique();
+/*	mylist.unique();
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
@@ -188,7 +190,7 @@ int main()
 	mylist.unique (is_near());
 	for (ft::List<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';
+	std::cout << '\n';*/
 
 }
 

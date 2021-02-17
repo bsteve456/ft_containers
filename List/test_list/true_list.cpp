@@ -2,6 +2,7 @@
 #include <list>
 #include <iterator>
 #include <vector>
+#include <cmath>
 
 bool single_digit (const int& value) { return (value<10); }
 
@@ -175,10 +176,10 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-	mylist.unique();
+/*	mylist.unique();
 	for (std::list<int>::iterator it=mylist.begin(); it!=mylist.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';
+	std::cout << '\n';*/
 
 }
 
