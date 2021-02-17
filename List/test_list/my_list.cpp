@@ -197,14 +197,14 @@ int main()
 	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-/*	doubles.unique (same_integral_part);
+	doubles.unique (same_integral_part);
 	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 	doubles.unique (is_near());
 	for (ft::List<double>::iterator it=doubles.begin(); it!=doubles.end(); ++it)
 		std::cout << ' ' << *it;
-	std::cout << '\n';*/
+	std::cout << '\n';
 
 }
 

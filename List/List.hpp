@@ -456,6 +456,29 @@ namespace ft
 						}
 					}
 				}
+				template <class BinaryPredicate>
+				void unique (BinaryPredicate binary_pred)
+				{
+					iterator jt;
+					iterator tmp;
+					for(iterator it = this->begin(); it != this->end(); it++)
+					{
+						jt = it;
+						jt++;
+						while(jt != this->end())
+						{
+							tmp = jt;
+							if(binary_pred(*it, *jt) == true)
+							{
+								jt++;
+								this->erase(tmp);
+							}
+							else
+								jt++;
+						}
+					}
+				
+				}
 		};
 };
 
