@@ -320,8 +320,6 @@ namespace ft
 							it++;
 							i++;
 						}
-						if(it == this->end())
-							return position;
 						for(size_t j = 0; j < i; j++)
 							tmp = tmp->next;
 						prev = tmp->prev;
@@ -483,7 +481,6 @@ namespace ft
 				{
 					Node<T> *i;
 					Node<T> *j;
-					T tmp;
 					i = this->p;
 					while(i != this->Helem)
 					{
@@ -514,6 +511,32 @@ namespace ft
 							j = j->next;
 						}
 						i = i->next;
+					}
+				}
+				void merge (List& x)
+				{
+					if(this != &x)
+					{
+						for(iterator it = x.begin(); it != x.end(); it++)
+						{
+							for (iterator it2 = this->begin(); it2 != this->end(); it2++)
+							{
+								if(*it < *it2)
+								{
+									this->insert(it2, *it);
+									break;
+								}
+								else
+								{
+									it2++;
+									if(it2 == this->end())
+										this->insert(it2, *it);
+									it2--;
+								}
+								
+							}
+						}
+						x.clear();
 					}
 				}
 		};
