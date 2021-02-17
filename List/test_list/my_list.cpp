@@ -281,6 +281,18 @@ int main()
 	if (c>b) std::cout << "c is greater than b\n";
 	if (a<=b) std::cout << "a is less than or equal to b\n";
 	if (a>=b) std::cout << "a is greater than or equal to b\n";
+
+	ft::List<int> foo (3,100);   // three ints with a value of 100
+	ft::List<int> bar (5,200);   // five ints with a value of 200
+	std::swap(foo,bar);
+	std::cout << "foo contains:";
+	for (ft::List<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	std::cout << "bar contains:";
+	for (ft::List<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 	return 0;
 }
 

@@ -38,6 +38,8 @@ namespace ft
 					friend bool operator<=  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
 					friend bool operator>=  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					void swap (List<Tp,Allocs>& x, List<Tp,Allocs>& y);
 				Node<T>						*p;
 				Node<T>						*Helem;
 				Node<T>						*Last() const
@@ -640,6 +642,11 @@ namespace ft
 			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == false)
 				return true;
 			return false;
+		}
+	template <class T, class Alloc>
+		void swap (List<T,Alloc>& x, List<T,Alloc>& y)
+		{
+			x.swap(y);
 		}
 };
 
