@@ -619,7 +619,7 @@ namespace ft
 	template <class T, class Alloc>
 		bool operator>  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
 		{
-			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == false)
+			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == true)
 				return true;
 			return false;
 		}
