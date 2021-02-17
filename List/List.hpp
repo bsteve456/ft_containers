@@ -34,6 +34,8 @@ namespace ft
 					friend bool operator<  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
 					friend bool operator>  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator<=  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
 				Node<T>						*p;
 				Node<T>						*Helem;
 				Node<T>						*Last() const
@@ -623,6 +625,15 @@ namespace ft
 				return true;
 			return false;
 		}
+	template <class T, class Alloc>
+		bool operator<=  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		{
+			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == false)
+				return true;
+			return false;
+		}
+
+
 
 };
 
