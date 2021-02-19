@@ -11,12 +11,12 @@ namespace ft
 	template < class Key,                                  // map::key_type
            class T,                                       // map::mapped_type
            class Compare = std::less<Key>,                    // map::key_compare
-           class Alloc = allocator<pair<const Key,T> >  // map::allocator_type
+           class Alloc = allocator<std::pair<const Key,T> >  // map::allocator_type
            >
 	class Map
 	{
 		private:
-			Node<Key, T> *p;
+			Node<Key, T> > *p;
 		public:
 			typedef Key															key_type;
 			typedef	T															mapped_type;
@@ -29,7 +29,21 @@ namespace ft
 			typedef const value_type *											const_pointer;
 			typedef	MyIterator<bidirectional_iterator_tag, value_type>			iterator;
 			typedef	MyIterator<bidirectional_iterator_tag, const value_type>	const_iterator;
+			typedef	size_t														size_type;
+			typedef	std::ptrdiff_t												difference_type;
+			mapped_type& operator[] (const key_type& k)
+			{
+				Node<Key, T> *tmp = this->p;
 
+				while(tmp)
+				{
+					if(tmp->key == k)
+						return tmp->value;
+					tmp = tmp->next;
+				}
+				
+
+			}
 
 
 	};
