@@ -33,10 +33,12 @@ namespace ft
 			typedef	std::ptrdiff_t												difference_type;
 			Map () : p(0)
 			{}
-/*			Map (const map &x)
+			Map (const Map &x) : p(0)
 			{
-				
-			}*/
+				this->clear();
+				for(const_iterator it = x.begin(); it != x.end(); it++)
+					(*this)[it->first] = it->second;
+			}
 			template <class InputIterator>
 			Map (InputIterator first, InputIterator last) : p(0)
 			{
@@ -75,9 +77,18 @@ namespace ft
 			{
 				return iterator(this->p);
 			}
+			const_iterator begin() const
+			{
+				Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->p);
+				return const_iterator(tmp);
+			}
 			iterator end()
 			{
 				return iterator();
+			}
+			const_iterator end() const
+			{
+				return const_iterator();
 			}
 			size_type max_size() const
 			{
