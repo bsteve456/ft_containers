@@ -39,5 +39,16 @@ int main ()
 
 	std::cout << "Size of first: " << first.size() << '\n';
 	std::cout << "Size of second: " << five.size() << '\n';
-		return 0;
+
+	for (ft::Map<char, int>::reverse_iterator it=second.rbegin(); it!=second.rend(); ++it)
+		std::cout << it->first << " => " << it->second << std::endl;
+
+	typedef ft::Map<char, int>::iterator iter_type;
+	ft::MyReverseIterator<iter_type> rev_end (second.begin());
+	ft::MyReverseIterator<iter_type> rev_begin (second.end());
+
+	for (iter_type it = rev_end.base(); it != rev_begin.base(); ++it)
+		std::cout << it->first << " => " << it->second << std::endl;
+
+	return 0;
 }

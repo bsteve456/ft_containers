@@ -5,6 +5,8 @@
 # include <functional>
 # include <utility>
 # include "MyIterator.hpp"
+# include "MyReverseIterator.hpp"
+
 
 namespace ft
 {
@@ -18,19 +20,21 @@ namespace ft
 		private:
 			Node<std::pair<const Key, T> > *p;
 		public:
-			typedef Key															key_type;
-			typedef	T															mapped_type;
-			typedef std::pair<const key_type, mapped_type>						value_type;
-			typedef	Compare														key_compare;
-			typedef	Alloc														allocator_type;
-			typedef value_type&													reference;
-			typedef	const value_type&											const_reference;
-			typedef value_type *												pointer;
-			typedef const value_type *											const_pointer;
-			typedef	MyIterator<bidirectional_iterator_tag, value_type>			iterator;
-			typedef	MyIterator<bidirectional_iterator_tag, const value_type>	const_iterator;
-			typedef	size_t														size_type;
-			typedef	std::ptrdiff_t												difference_type;
+			typedef Key																	key_type;
+			typedef	T																	mapped_type;
+			typedef std::pair<const key_type, mapped_type>								value_type;
+			typedef	Compare																key_compare;
+			typedef	Alloc																allocator_type;
+			typedef value_type&															reference;
+			typedef	const value_type&													const_reference;
+			typedef value_type *														pointer;
+			typedef const value_type *													const_pointer;
+			typedef	MyIterator<bidirectional_iterator_tag, value_type>					iterator;
+			typedef	MyIterator<bidirectional_iterator_tag, const value_type>			const_iterator;
+			typedef	MyReverseIterator<iterator>											reverse_iterator;
+			typedef	MyReverseIterator<const iterator>									const_reverse_iterator;
+			typedef	size_t																size_type;
+			typedef	std::ptrdiff_t														difference_type;
 			Map () : p(0)
 			{}
 			Map (const Map &x) : p(0)
@@ -93,6 +97,22 @@ namespace ft
 				Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->p);
 				return const_iterator(tmp);
 			}
+			reverse_iterator rbegin()
+			{
+				Node<value_type> *tmp = this->p;
+
+				while(tmp->next)
+					tmp = tmp->next;
+				return reverse_iterator(tmp);
+			}
+			const_reverse_iterator rbegin() const
+			{
+				Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->p);
+
+				while(tmp->next)
+					tmp = tmp->next;
+				return const_reverse_iterator(tmp);
+			}
 			iterator end()
 			{
 				return iterator();
@@ -101,6 +121,15 @@ namespace ft
 			{
 				return const_iterator();
 			}
+			reverse_iterator rend()
+			{
+				return reverse_iterator();
+			}
+			const_reverse_iterator rend() const
+			{
+				return const_reverse_iterator();
+			}
+
 			size_type max_size() const
 			{
 				return std::allocator< Node< value_type > >().max_size();
