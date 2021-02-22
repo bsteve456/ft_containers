@@ -4,24 +4,24 @@
 
 # include <iostream>
 # include "../iterator_tag.hpp"
+# include <utility>
+# include <functional>
 namespace ft
 {
-	template < typename Key, typename T >
+	template < typename Pair>
 		struct Node
 		{
-			Key key;
-			T value;
-			struct Node<Key, T> *next;
-			struct Node<Key, T> *prev;
+			Pair *value;
+			struct Node<Pair> *next;
+			struct Node<Pair> *prev;
 		};
 
-	template < typename Key, typename T >
-		Node<Key, T> *ft_lstnew(Key key, T value)
+	template < typename Pair >
+		Node<Pair> *ft_lstnew(Pair * value)
 		{
-			Node<Key, T> *new1;
+			Node<Pair> *new1;
 
-			new1 = new Node<Key, T>();
-			new1->key = key;
+			new1 = new Node<Pair>();
 			new1->value = value;
 			new1->prev = 0;
 			new1->next = 0;

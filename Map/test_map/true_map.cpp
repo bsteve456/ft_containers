@@ -16,6 +16,7 @@ int main ()
 	first['b']=30;
 	first['c']=50;
 	first['d']=70;
+
 	for (std::map<char,int>::iterator it=first.begin(); it!=first.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
