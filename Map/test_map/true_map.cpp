@@ -11,7 +11,7 @@ struct classcomp {
 int main ()
 {
 	std::map<char,int> first;
-
+	std::map<char,int> five;
 	first['a']=10;
 	first['b']=30;
 	first['c']=50;
@@ -32,14 +32,12 @@ int main ()
 	first['d']=70;
 	for (std::map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
-/*	std::map<char,int,classcomp> fourth;                 // class as Compare
-	for (std::map<char,int>::iterator it=fourth.begin(); it!=fourth.end(); ++it)
-		std::cout << it->first << " => " << it->second << '\n';
-
-	bool(*fn_pt)(char,char) = fncomp;
-	std::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
-	for (std::map<char,int>::iterator it=fifth.begin(); it!=fifth.end(); ++it)
-		std::cout << it->first << " => " << it->second << '\n';*/
 	std::cout << first.max_size() << std::endl;
-	return 0;
+
+	five=first;                // second now contains 3 ints
+	first=std::map<char,int>();  // and first is now empty
+
+	std::cout << "Size of first: " << first.size() << '\n';
+	std::cout << "Size of second: " << five.size() << '\n';
+		return 0;
 }

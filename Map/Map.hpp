@@ -45,6 +45,17 @@ namespace ft
 					for(iterator it = first; it != last; it++)
 							(*this)[it->first] = it->second;
 			}
+			Map& operator= (const Map& x)
+			{
+				this->clear();
+				for(const_iterator it = x.begin(); it != x.end(); it++)
+					(*this)[it->first] = it->second;
+				return *this;
+			}
+			~Map()
+			{
+				this->clear();
+			}
 			mapped_type& operator[] (const key_type& k)
 			{
 				Node<value_type> *tmp;
@@ -130,6 +141,7 @@ namespace ft
 					prev = t->prev;
 					if (this->p)
 						prev->next = 0;
+					delete(tmp->value);
 					delete(tmp);
 				}
 			}
