@@ -33,6 +33,10 @@ namespace ft
 			typedef	std::ptrdiff_t												difference_type;
 			Map () : p(0)
 			{}
+/*			Map (const map &x)
+			{
+				
+			}*/
 			template <class InputIterator>
 			Map (InputIterator first, InputIterator last) : p(0)
 			{
@@ -78,6 +82,45 @@ namespace ft
 			size_type max_size() const
 			{
 				return std::allocator< Node< value_type > >().max_size();
+			}
+			size_t empty() const
+			{
+				if(!this->size())
+					return true;
+				return false;
+			}
+			size_type size() const
+			{
+				Node<value_type> *tmp = this->p;
+				size_type count = 0;
+				while(tmp)
+				{
+					count++;
+					tmp = tmp->next;
+				}
+				return count;
+			}
+			void clear()
+			{
+				Node<value_type> *tmp = 0;
+				Node<value_type> *t = 0;
+				Node<value_type> *prev = 0;
+				while(!this->empty())
+				{
+					tmp = this->p;
+					t = tmp;
+					if(!tmp)
+						return;
+					while(tmp->next)
+						tmp = tmp->next;
+					if(t == this->p)
+						this->p = 0;
+					t->next = 0;
+					prev = t->prev;
+					if (this->p)
+						prev->next = 0;
+					delete(tmp);
+				}
 			}
 	};
 };

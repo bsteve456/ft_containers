@@ -23,11 +23,15 @@ int main ()
 	for (ft::Map<char,int>::iterator it=second.begin(); it!=second.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
-/*	ft::Map<char,int> third (second);
+	ft::Map<char,int> third (second);
 	for (ft::Map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
-
-	ft::Map<char,int,classcomp> fourth;                 // class as Compare
+	first.clear();
+	first['c']=50;
+	first['d']=70;
+	for (ft::Map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
+		std::cout << it->first << " => " << it->second << '\n';
+/*	ft::Map<char,int,classcomp> fourth;                 // class as Compare
 	for (ft::Map<char,int>::iterator it=fourth.begin(); it!=fourth.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
