@@ -11,9 +11,11 @@ namespace ft
 	template < typename Pair>
 		struct Node
 		{
+			Pair v;
 			Pair *value;
 			struct Node<Pair> *next;
 			struct Node<Pair> *prev;
+			struct Node<Pair> *root;
 		};
 
 	template < typename Pair >

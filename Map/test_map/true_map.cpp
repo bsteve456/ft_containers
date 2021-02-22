@@ -20,11 +20,11 @@ int main ()
 	for (std::map<char,int>::iterator it=first.begin(); it!=first.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
-/*	std::map<char,int> second (first.begin(),first.end());
+	std::map<char,int> second (first.begin(),first.end());
 	for (std::map<char,int>::iterator it=second.begin(); it!=second.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
-	std::map<char,int> third (second);
+/*	std::map<char,int> third (second);
 	for (std::map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
@@ -36,6 +36,6 @@ int main ()
 	std::map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
 	for (std::map<char,int>::iterator it=fifth.begin(); it!=fifth.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';*/
-
+	std::cout << first.max_size() << std::endl;
 	return 0;
 }

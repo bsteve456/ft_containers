@@ -16,15 +16,14 @@ int main ()
 	first['b']=30;
 	first['c']=50;
 	first['d']=70;
-//	ft::Map<char,int>::iterator it=first.end();
 	for (ft::Map<char,int>::iterator it=first.begin(); it!=first.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
-
-/*	ft::Map<char,int> second (first.begin(),first.end());
+	
+	ft::Map<char,int> second (first.begin(),first.end());
 	for (ft::Map<char,int>::iterator it=second.begin(); it!=second.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
-	ft::Map<char,int> third (second);
+/*	ft::Map<char,int> third (second);
 	for (ft::Map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
@@ -36,6 +35,6 @@ int main ()
 	ft::Map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
 	for (ft::Map<char,int>::iterator it=fifth.begin(); it!=fifth.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';*/
-
+	std::cout << first.max_size() << std::endl;
 	return 0;
 }
