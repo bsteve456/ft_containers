@@ -90,14 +90,32 @@ int main ()
 	it=mymap.find('b');
 	mymap.erase (it);                   // erasing by iterator
 
-		mymap.erase ('c');                  // erasing by key
+	mymap.erase ('c');                  // erasing by key
 
-		it=mymap.find ('e');
-		mymap.erase ( it, mymap.end() );    // erasing by range
+	it=mymap.find ('e');
+	mymap.erase ( it, mymap.end() );    // erasing by range
 
 	// show content:
 	for (it=mymap.begin(); it!=mymap.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
+	ft::Map<char,int> foo,bar;
+
+	foo['x']=100;
+	foo['y']=200;
+
+	bar['a']=11;
+	bar['b']=22;
+	bar['c']=33;
+
+	foo.swap(bar);
+
+	std::cout << "foo contains:\n";
+	for (ft::Map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
+		std::cout << it->first << " => " << it->second << '\n';
+
+	std::cout << "bar contains:\n";
+	for (ft::Map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
+		std::cout << it->first << " => " << it->second << '\n';
 	return 0;
 }

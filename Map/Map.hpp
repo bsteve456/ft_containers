@@ -327,6 +327,10 @@ namespace ft
 							for (iterator it = first; it != last; ++it)
 								erase(it);
 						}
+						void swap (Map& x)
+						{
+							std::swap(*this, x);
+						}
 				 };
 };
 
