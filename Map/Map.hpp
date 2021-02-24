@@ -322,6 +322,11 @@ namespace ft
 							}
 							return 0;
 						}
+						void erase (iterator first, iterator last)
+						{
+							for (iterator it = first; it != last; ++it)
+								erase(it);
+						}
 				 };
 };
 
