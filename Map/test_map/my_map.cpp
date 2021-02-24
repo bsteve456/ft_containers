@@ -117,5 +117,14 @@ int main ()
 	std::cout << "bar contains:\n";
 	for (ft::Map<char,int>::iterator it=bar.begin(); it!=bar.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
+	ft::Map<char,int>::key_compare mycomp = mymap.key_comp();
+	char highest = mymap.rbegin()->first;
+
+	std::cout << "key comp" << std::endl;
+	it = mymap.begin();
+  do {
+    std::cout << it->first << " => " << it->second << '\n';
+  } while ( mycomp((*it++).first, highest) );
+  std::cout << '\n';
 	return 0;
 }

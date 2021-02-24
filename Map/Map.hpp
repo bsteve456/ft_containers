@@ -331,6 +331,11 @@ namespace ft
 						{
 							std::swap(*this, x);
 						}
+
+						key_compare key_comp() const
+						{
+							return key_compare();
+						}
 				 };
 };
 
