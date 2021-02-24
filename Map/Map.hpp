@@ -19,6 +19,37 @@ namespace ft
 	{
 		private:
 			Node<std::pair<const Key, T> > *p;
+			void	sort_by_key()
+			{
+				Node<std::pair<const Key, T> > *tmp = this->p;
+				Node<std::pair<const Key, T> > *tmp1 = 0;
+				Node<std::pair<const Key, T> > *prev = 0;
+				Node<std::pair<const Key, T> > *next = 0;
+
+				while(tmp)
+				{
+					tmp1 = this->p;
+					while(tmp1 && tmp1->next)
+					{
+						if(tmp1->value->first > tmp1->next->value->first)
+						{
+							prev = tmp1->prev;
+							next = tmp1->next;
+							if(prev)
+								prev->next = next;
+							next->prev = prev;
+							tmp1->prev = next;
+							if(next->next)
+								tmp1->next = next->next;
+							else
+								tmp1->next = 0;
+							next->next = tmp1;
+						}
+						tmp1 = tmp1->next;
+					}
+					tmp = tmp->next;
+				}
+			}
 		public:
 			typedef Key																	key_type;
 			typedef	T																	mapped_type;
@@ -86,6 +117,7 @@ namespace ft
 					new1->prev = tmp1;
 					new1->next = 0;
 				}
+				this->sort_by_key();
 				return new1->value->second;
 			}
 			iterator begin()
@@ -204,6 +236,17 @@ namespace ft
 					}
 				}
 				return ret;
+			}
+			iterator insert (iterator position, const value_type& val)
+			{
+				(void)position;
+				(*this)[val.first] = val.second;
+				iterator ret;
+
+				for(iterator it = this->begin(); it != this->end(); ++it)
+					ret = it;
+				this->sort_by_key();
+				return iterator(ret);
 			}
 	};
 };
