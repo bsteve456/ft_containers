@@ -174,6 +174,37 @@ namespace ft
 					delete(tmp);
 				}
 			}
+			std::pair<iterator,bool> insert (const value_type& val)
+			{
+				Node<value_type> *tmp = this->p;
+				std::pair<iterator, bool> ret;
+				int n = 0;
+
+				while(tmp)
+				{
+					if(tmp->value->first == val.first)
+					{
+						n = 1;
+						break;
+					}
+					tmp = tmp->next;
+				}
+				if (n == 0)
+					(*this)[val.first] = val.second;
+				for(iterator it = this->begin(); it != this->end(); ++it)
+				{
+					if (it->first == val.first)
+					{
+						ret.first = it;
+						if(n == 1)
+							ret.second = false;
+						else
+							ret.second = true;
+						break;
+					}
+				}
+				return ret;
+			}
 	};
 };
 
