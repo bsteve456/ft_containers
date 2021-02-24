@@ -255,6 +255,73 @@ namespace ft
 									(*this)[it->first] = it->second;
 								this->sort_by_key();
 							}
+						iterator find (const key_type& k)
+						{
+							iterator it;
+							for (it = this->begin(); it != this->end(); ++it)
+							{
+								if(it->first == k)
+									return it;
+							}
+							return it;
+						}
+						const_iterator find (const key_type& k) const
+						{
+							const_iterator it;
+							for (it = this->begin(); it != this->end(); ++it)
+							{
+								if(it->first == k)
+									return it;
+							}
+							return it;
+						}
+						void erase (iterator position)
+						{
+							Node<value_type> *tmp = this->p;
+							Node<value_type> *prev = 0;
+							Node<value_type> *next = 0;
+
+							while(tmp)
+							{
+								if(tmp->value->first == position->first)
+								{
+									prev = tmp->prev;
+									next = tmp->next;
+									if(prev)
+										prev->next = next;
+									if(next)
+										next->prev = prev;
+									delete(tmp->value);
+									delete(tmp);
+									return ;
+								}
+								tmp = tmp->next;
+							}
+						}
+						size_type erase (const key_type& k)
+						{
+							Node<value_type> *tmp = this->p;
+							Node<value_type> *prev = 0;
+							Node<value_type> *next = 0;
+
+							while(tmp)
+							{
+								if(tmp->value->first == k)
+								{
+									prev = tmp->prev;
+									next = tmp->next;
+									if(prev)
+										prev->next = next;
+									if(next)
+										next->prev = prev;
+									delete(tmp->value);
+									delete(tmp);
+									return 1;
+								}
+								tmp = tmp->next;
+							}
+							return 0;
+						}
 				 };
 };
 
