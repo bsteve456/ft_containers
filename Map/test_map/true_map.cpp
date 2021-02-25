@@ -170,6 +170,14 @@ int main ()
 	// print content:
 	for (std::map<char,int>::iterator it=mymap.begin(); it!=mymap.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
+	std::pair<std::map<char,int>::iterator,std::map<char,int>::iterator> ret1;
+	ret1 = mymap.equal_range('a');
+
+	std::cout << "lower bound points to: ";
+	std::cout << ret1.first->first << " => " << ret1.first->second << '\n';
+
+	std::cout << "upper bound points to: ";
+	std::cout << ret1.second->first << " => " << ret1.second->second << '\n';
 
 	return 0;
 }

@@ -21,13 +21,13 @@ namespace ft
 						 Node<std::pair<const Key, T> > *p;
 						 void print()
 						 {
-							std::cerr << "--------------" << std::endl;
-							Node<std::pair<const Key, T> > *tmp = this->p;
-							while(tmp)
-							{
-								std::cerr << tmp->value->first << std::endl;
-								tmp = tmp->next;
-							}
+							 std::cerr << "--------------" << std::endl;
+							 Node<std::pair<const Key, T> > *tmp = this->p;
+							 while(tmp)
+							 {
+								 std::cerr << tmp->value->first << std::endl;
+								 tmp = tmp->next;
+							 }
 						 }
 						 void	sort_by_key()
 						 {
@@ -51,8 +51,8 @@ namespace ft
 										 tmp1->prev = next;
 										 if(next->next)
 										 {
-											tmp1->next = next->next;
-											next->next->prev = tmp1;
+											 tmp1->next = next->next;
+											 next->next->prev = tmp1;
 										 }
 										 else
 											 tmp1->next = 0;
@@ -69,11 +69,11 @@ namespace ft
 						 typedef std::pair<const key_type, mapped_type>								value_type;
 						 typedef	Compare																key_compare;
 						 class value_compare : public std::binary_function<value_type,value_type,bool>
-						 {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
-//							 friend class Map;
-							 protected:
+					 {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+						 //							 friend class Map;
+						 protected:
 							 Compare comp;
-							 public:
+						 public:
 							 value_compare (Compare c = Compare()) : comp(c) {}  // constructed with map's comparison object
 							 typedef bool result_type;
 							 typedef value_type first_argument_type;
@@ -82,7 +82,7 @@ namespace ft
 							 {
 								 return comp(x.first, y.first);
 							 }
-						 };
+					 };
 						 typedef	Alloc																allocator_type;
 						 typedef value_type&															reference;
 						 typedef	const value_type&													const_reference;
@@ -358,7 +358,7 @@ namespace ft
 							 {
 								 tmp = it;
 								 it++;
-								erase(tmp);
+								 erase(tmp);
 							 }
 						 }
 						 void swap (Map& x)
@@ -388,7 +388,18 @@ namespace ft
 							 for (it = this->begin(); it != this->end(); ++it)
 							 {
 								 if (this->key_comp()(it->first, k) == false)
-									return it;
+									 return it;
+							 }
+							 return it;
+						 }
+
+						 const_iterator lower_bound (const key_type& k) const
+						 {
+							 const_iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								 if (this->key_comp()(it->first, k) == false)
+									 return it;
 							 }
 							 return it;
 						 }
@@ -397,10 +408,28 @@ namespace ft
 							 iterator it;
 							 for (it = this->begin(); it != this->end(); ++it)
 							 {
-								if (this->key_comp()(k, it->first) == true)
-									return it;
+								 if (this->key_comp()(k, it->first) == true)
+									 return it;
 							 }
 							 return it;
+						 }
+						 const_iterator upper_bound (const key_type& k) const
+						 {
+							 const_iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								 if (this->key_comp()(k, it->first) == true)
+									 return it;
+							 }
+							 return it;
+						 }
+						 std::pair<iterator,iterator> equal_range (const key_type& k)
+						 {
+							 std::pair<iterator, iterator> ret;
+								ret.first = lower_bound(k);
+								ret.second = upper_bound(k);
+								return ret;
+
 						 }
 
 				 };
