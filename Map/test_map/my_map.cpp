@@ -142,5 +142,14 @@ int main ()
 		std::cout << it1->first << " => " << it1->second << '\n';
 	} while ( mymap.value_comp()(*it1++, highest1) );
 
+	char c;
+	for (c='a'; c<'z'; c++)
+	{
+		std::cout << c;
+		if (mymap.count(c)>0)
+			std::cout << " is an element of mymap.\n";
+		else
+			std::cout << " is not an element of mymap.\n";
+	}
 	return 0;
 }

@@ -346,7 +346,6 @@ namespace ft
 						 {
 							 std::swap(*this, x);
 						 }
-
 						 key_compare key_comp() const
 						 {
 							 return key_compare();
@@ -354,6 +353,15 @@ namespace ft
 						 value_compare value_comp() const
 						 {
 							 return value_compare();
+						 }
+						 size_type count (const key_type& k) const
+						 {
+							 for(const_iterator it = this->begin(); it != this->end(); ++it)
+							 {
+								 if (it->first == k)
+									 return (1);
+							 }
+							 return (0);
 						 }
 				 };
 };
