@@ -55,6 +55,21 @@ namespace ft
 						 typedef	T																	mapped_type;
 						 typedef std::pair<const key_type, mapped_type>								value_type;
 						 typedef	Compare																key_compare;
+						 class value_compare : public std::binary_function<value_type,value_type,bool>
+						 {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+//							 friend class Map;
+							 protected:
+							 Compare comp;
+							 public:
+							 value_compare (Compare c = Compare()) : comp(c) {}  // constructed with map's comparison object
+							 typedef bool result_type;
+							 typedef value_type first_argument_type;
+							 typedef value_type second_argument_type;
+							 bool operator() (const value_type& x, const value_type& y) const
+							 {
+								 return comp(x.first, y.first);
+							 }
+						 };
 						 typedef	Alloc																allocator_type;
 						 typedef value_type&															reference;
 						 typedef	const value_type&													const_reference;
@@ -237,105 +252,109 @@ namespace ft
 							 }
 							 return ret;
 						 }
-/*						 iterator insert (iterator position, const value_type& val)
-						 {
-							 (void)position;
-							 (*this)[val.first] = val.second;
-							 iterator ret;
+						 /*						 iterator insert (iterator position, const value_type& val)
+												 {
+												 (void)position;
+												 (*this)[val.first] = val.second;
+												 iterator ret;
 
-							 for(iterator it = this->begin(); it != this->end(); ++it)
-								 ret = it;
-							 this->sort_by_key();
-							 return iterator(ret);
-						 }*/
+												 for(iterator it = this->begin(); it != this->end(); ++it)
+												 ret = it;
+												 this->sort_by_key();
+												 return iterator(ret);
+												 }*/
 						 template <class InputIterator>
-							void insert (InputIterator first, InputIterator last)
-							{
-								for(iterator it = first; it != last; ++it)
-									(*this)[it->first] = it->second;
-								this->sort_by_key();
-							}
-						iterator find (const key_type& k)
-						{
-							iterator it;
-							for (it = this->begin(); it != this->end(); ++it)
-							{
-								if(it->first == k)
-									return it;
-							}
-							return it;
-						}
-						const_iterator find (const key_type& k) const
-						{
-							const_iterator it;
-							for (it = this->begin(); it != this->end(); ++it)
-							{
-								if(it->first == k)
-									return it;
-							}
-							return it;
-						}
-						void erase (iterator position)
-						{
-							Node<value_type> *tmp = this->p;
-							Node<value_type> *prev = 0;
-							Node<value_type> *next = 0;
+							 void insert (InputIterator first, InputIterator last)
+							 {
+								 for(iterator it = first; it != last; ++it)
+									 (*this)[it->first] = it->second;
+								 this->sort_by_key();
+							 }
+						 iterator find (const key_type& k)
+						 {
+							 iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								 if(it->first == k)
+									 return it;
+							 }
+							 return it;
+						 }
+						 const_iterator find (const key_type& k) const
+						 {
+							 const_iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								 if(it->first == k)
+									 return it;
+							 }
+							 return it;
+						 }
+						 void erase (iterator position)
+						 {
+							 Node<value_type> *tmp = this->p;
+							 Node<value_type> *prev = 0;
+							 Node<value_type> *next = 0;
 
-							while(tmp)
-							{
-								if(tmp->value->first == position->first)
-								{
-									prev = tmp->prev;
-									next = tmp->next;
-									if(prev)
-										prev->next = next;
-									if(next)
-										next->prev = prev;
-									delete(tmp->value);
-									delete(tmp);
-									return ;
-								}
-								tmp = tmp->next;
-							}
-						}
-						size_type erase (const key_type& k)
-						{
-							Node<value_type> *tmp = this->p;
-							Node<value_type> *prev = 0;
-							Node<value_type> *next = 0;
+							 while(tmp)
+							 {
+								 if(tmp->value->first == position->first)
+								 {
+									 prev = tmp->prev;
+									 next = tmp->next;
+									 if(prev)
+										 prev->next = next;
+									 if(next)
+										 next->prev = prev;
+									 delete(tmp->value);
+									 delete(tmp);
+									 return ;
+								 }
+								 tmp = tmp->next;
+							 }
+						 }
+						 size_type erase (const key_type& k)
+						 {
+							 Node<value_type> *tmp = this->p;
+							 Node<value_type> *prev = 0;
+							 Node<value_type> *next = 0;
 
-							while(tmp)
-							{
-								if(tmp->value->first == k)
-								{
-									prev = tmp->prev;
-									next = tmp->next;
-									if(prev)
-										prev->next = next;
-									if(next)
-										next->prev = prev;
-									delete(tmp->value);
-									delete(tmp);
-									return 1;
-								}
-								tmp = tmp->next;
-							}
-							return 0;
-						}
-						void erase (iterator first, iterator last)
-						{
-							for (iterator it = first; it != last; ++it)
-								erase(it);
-						}
-						void swap (Map& x)
-						{
-							std::swap(*this, x);
-						}
+							 while(tmp)
+							 {
+								 if(tmp->value->first == k)
+								 {
+									 prev = tmp->prev;
+									 next = tmp->next;
+									 if(prev)
+										 prev->next = next;
+									 if(next)
+										 next->prev = prev;
+									 delete(tmp->value);
+									 delete(tmp);
+									 return 1;
+								 }
+								 tmp = tmp->next;
+							 }
+							 return 0;
+						 }
+						 void erase (iterator first, iterator last)
+						 {
+							 for (iterator it = first; it != last; ++it)
+								 erase(it);
+						 }
+						 void swap (Map& x)
+						 {
+							 std::swap(*this, x);
+						 }
 
-						key_compare key_comp() const
-						{
-							return key_compare();
-						}
+						 key_compare key_comp() const
+						 {
+							 return key_compare();
+						 }
+						 value_compare value_comp() const
+						 {
+							 return value_compare();
+						 }
 				 };
 };
 

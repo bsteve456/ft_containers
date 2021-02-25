@@ -120,13 +120,28 @@ int main ()
 		std::cout << it->first << " => " << it->second << '\n';
 	std::map<char,int>::key_compare mycomp = mymap.key_comp();
 	char highest = mymap.rbegin()->first;
-	
+
 	std::cout << "key comp" << std::endl;
 	it = mymap.begin();
-  do {
-    std::cout << it->first << " => " << it->second << '\n';
-  } while ( mycomp((*it++).first, highest) );
-  std::cout << '\n';
+	do {
+		std::cout << it->first << " => " << it->second << '\n';
+	} while ( mycomp((*it++).first, highest) );
+	std::cout << '\n';
+
+	std::cout << "value comp" << std::endl;
+
+	mymap['x']=1001;
+	mymap['y']=2002;
+	mymap['z']=3003;
+
+	std::cout << "vc : mymap contains:\n";
+
+	std::pair<char,int> highest1 = *mymap.rbegin();          // last element
+
+	std::map<char,int>::iterator it1 = mymap.begin();
+	do {
+		std::cout << it1->first << " => " << it1->second << '\n';
+	} while ( mymap.value_comp()(*it1++, highest1) );
 
 	return 0;
 }
