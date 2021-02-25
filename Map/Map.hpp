@@ -19,6 +19,16 @@ namespace ft
 				 {
 					 private:
 						 Node<std::pair<const Key, T> > *p;
+						 void print()
+						 {
+							std::cerr << "--------------" << std::endl;
+							Node<std::pair<const Key, T> > *tmp = this->p;
+							while(tmp)
+							{
+								std::cerr << tmp->value->first << std::endl;
+								tmp = tmp->next;
+							}
+						 }
 						 void	sort_by_key()
 						 {
 							 Node<std::pair<const Key, T> > *tmp = this->p;
@@ -40,7 +50,10 @@ namespace ft
 										 next->prev = prev;
 										 tmp1->prev = next;
 										 if(next->next)
-											 tmp1->next = next->next;
+										 {
+											tmp1->next = next->next;
+											next->next->prev = tmp1;
+										 }
 										 else
 											 tmp1->next = 0;
 										 next->next = tmp1;
@@ -339,11 +352,12 @@ namespace ft
 						 }
 						 void erase (iterator first, iterator last)
 						 {
-							 iteration tmp;
-							 for (iterator it = first; it != last; ++it)
+							 iterator tmp;
+							 iterator it = first;
+							 while(it != last)
 							 {
 								 tmp = it;
-								 it--;
+								 it++;
 								erase(tmp);
 							 }
 						 }
