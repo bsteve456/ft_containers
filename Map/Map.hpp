@@ -339,8 +339,13 @@ namespace ft
 						 }
 						 void erase (iterator first, iterator last)
 						 {
+							 iteration tmp;
 							 for (iterator it = first; it != last; ++it)
-								 erase(it);
+							 {
+								 tmp = it;
+								 it--;
+								erase(tmp);
+							 }
 						 }
 						 void swap (Map& x)
 						 {
@@ -363,6 +368,27 @@ namespace ft
 							 }
 							 return (0);
 						 }
+						 iterator lower_bound (const key_type& k)
+						 {
+							 iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								 if (this->key_comp()(it->first, k) == false)
+									return it;
+							 }
+							 return it;
+						 }
+						 iterator upper_bound (const key_type& k)
+						 {
+							 iterator it;
+							 for (it = this->begin(); it != this->end(); ++it)
+							 {
+								if (this->key_comp()(k, it->first) == true)
+									return it;
+							 }
+							 return it;
+						 }
+
 				 };
 };
 
