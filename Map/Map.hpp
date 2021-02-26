@@ -19,6 +19,25 @@ namespace ft
 				 {
 					 private:
 						 Node<std::pair<const Key, T> > *p;
+						 Node<std::pair<const Key, T> > *Helem;
+						 Node<std::pair<const Key, T> >	*Last() const
+						 {
+							 Node<std::pair<const Key, T> > *tmp = this->p;
+							 if(!tmp)
+								 return (0);
+							 while(tmp->next && tmp->next != this->Helem)
+								 tmp = tmp->next;
+							 return tmp;
+						 }
+						 Node<std::pair<const Key,T> >	*init_last()
+						 {
+							 Node<std::pair<const Key, T> > *hollow_elem;
+							 std::pair<const key_type, mapped_type> *c = new std::pair<const Key, T>(std::make_pair(Key(), T()));
+							 hollow_elem = ft_lstnew(c);
+							 hollow_elem->prev = this->Last();
+							 hollow_elem->next = this->p;
+							 return hollow_elem;
+						 }
 						 void print()
 						 {
 							 std::cerr << "--------------" << std::endl;
@@ -36,10 +55,10 @@ namespace ft
 							 Node<std::pair<const Key, T> > *prev = 0;
 							 Node<std::pair<const Key, T> > *next = 0;
 
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 tmp1 = this->p;
-								 while(tmp1 && tmp1->next)
+								 while(tmp1 && tmp1->next != this->Helem)
 								 {
 									 if(tmp1->value->first > tmp1->next->value->first)
 									 {
@@ -62,6 +81,10 @@ namespace ft
 								 }
 								 tmp = tmp->next;
 							 }
+							 this->Last()->next = this->Helem;
+							 this->p->prev = this->Helem;
+							 this->Helem->prev = this->Last();
+							 this->Helem->next = this->p;
 						 }
 					 public:
 						 typedef Key																	key_type;
@@ -95,22 +118,34 @@ namespace ft
 						 typedef	size_t																size_type;
 						 typedef	std::ptrdiff_t														difference_type;
 						 Map () : p(0)
-					 {}
+					 {
+						 this->Helem = 0;
+						 this->Helem = (this->init_last());
+
+					 }
 						 Map (const Map &x) : p(0)
 					 {
-						 this->clear();
+//						 this->clear();
+						 this->Helem = 0;
+						 this->Helem = (this->init_last());
+
 						 for(const_iterator it = x.begin(); it != x.end(); it++)
 							 (*this)[it->first] = it->second;
 					 }
 						 template <class InputIterator>
 							 Map (InputIterator first, InputIterator last) : p(0)
 						 {
+							 this->Helem = 0;
+							 this->Helem = (this->init_last());
+
 							 for(iterator it = first; it != last; it++)
 								 (*this)[it->first] = it->second;
 						 }
 						 Map& operator= (const Map& x)
 						 {
 							 this->clear();
+							 delete Helem;
+							 this->Helem = (this->init_last());
 							 for(const_iterator it = x.begin(); it != x.end(); it++)
 								 (*this)[it->first] = it->second;
 							 return *this;
@@ -118,6 +153,7 @@ namespace ft
 						 ~Map()
 						 {
 							 this->clear();
+							 delete Helem;
 						 }
 						 mapped_type& operator[] (const key_type& k)
 						 {
@@ -127,7 +163,7 @@ namespace ft
 
 							 tmp = this->p;
 							 tmp1 = tmp;
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 if(tmp->value->first == k)
 									 return tmp->value->second;
@@ -139,55 +175,61 @@ namespace ft
 								 this->p = new1;
 							 else
 							 {
-								 while(tmp1->next)
+								 while(tmp1->next && this->Helem != tmp1->next)
 									 tmp1 = tmp1->next;
 								 tmp1->next = new1;
 								 new1->prev = tmp1;
-								 new1->next = 0;
 							 }
+							 this->Last()->next = this->Helem;
+							 this->p->prev = this->Helem;
+							 this->Helem->prev = this->Last();
+							 this->Helem->next = this->p;
 							 this->sort_by_key();
 							 return new1->value->second;
 						 }
 						 iterator begin()
 						 {
-							 return iterator(this->p);
+							 if (this->p != 0)
+								 return iterator(this->p);
+							 else
+								 return iterator(this->Helem);
 						 }
 						 const_iterator begin() const
 						 {
-							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->p);
+							 Node<const value_type> *tmp;
+							 if(this->p != 0)
+								 tmp = reinterpret_cast<Node<const value_type> *>(this->p);
+							 else
+								 tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
 							 return const_iterator(tmp);
 						 }
 						 reverse_iterator rbegin()
 						 {
-							 Node<value_type> *tmp = this->p;
-
-							 while(tmp->next)
-								 tmp = tmp->next;
-							 return reverse_iterator(tmp);
+							 return reverse_iterator(iterator(this->Last()));
 						 }
 						 const_reverse_iterator rbegin() const
 						 {
-							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->p);
-
-							 while(tmp->next)
-								 tmp = tmp->next;
-							 return const_reverse_iterator(tmp);
+							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Last());
+							 return const_reverse_iterator(const_reverse_iterator(tmp));
 						 }
 						 iterator end()
 						 {
-							 return iterator();
+							 return iterator(this->Helem);
 						 }
 						 const_iterator end() const
 						 {
-							 return const_iterator();
+							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
+
+							 return const_iterator(tmp);
 						 }
 						 reverse_iterator rend()
 						 {
-							 return reverse_iterator();
+							 return reverse_iterator(iterator(this->Helem));
 						 }
 						 const_reverse_iterator rend() const
 						 {
-							 return const_reverse_iterator();
+							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
+							 return const_reverse_iterator(const_iterator(tmp));
 						 }
 
 						 size_type max_size() const
@@ -204,7 +246,7 @@ namespace ft
 						 {
 							 Node<value_type> *tmp = this->p;
 							 size_type count = 0;
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 count++;
 								 tmp = tmp->next;
@@ -215,21 +257,26 @@ namespace ft
 						 {
 							 Node<value_type> *tmp = 0;
 							 Node<value_type> *t = 0;
-							 Node<value_type> *prev = 0;
 							 while(!this->empty())
 							 {
 								 tmp = this->p;
 								 t = tmp;
 								 if(!tmp)
-									 return;
-								 while(tmp->next)
-									 tmp = tmp->next;
+									 return ;
+								 while(tmp->next != this->Helem)
+								 {
+									t = tmp;
+									tmp = tmp->next;
+								 }
 								 if(t == this->p)
 									 this->p = 0;
-								 t->next = 0;
-								 prev = t->prev;
-								 if (this->p)
-									 prev->next = 0;
+								 if(t)
+								 	t->next = 0;
+								 if(this->p)
+								 {
+									 this->Last()->next = this->Helem;
+									 this->Helem->prev = this->Last();
+								 }
 								 delete(tmp->value);
 								 delete(tmp);
 							 }
@@ -240,7 +287,7 @@ namespace ft
 							 std::pair<iterator, bool> ret;
 							 int n = 0;
 
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 if(tmp->value->first == val.first)
 								 {
@@ -309,7 +356,7 @@ namespace ft
 							 Node<value_type> *prev = 0;
 							 Node<value_type> *next = 0;
 
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 if(tmp->value->first == position->first)
 								 {
@@ -332,7 +379,7 @@ namespace ft
 							 Node<value_type> *prev = 0;
 							 Node<value_type> *next = 0;
 
-							 while(tmp)
+							 while(tmp && tmp != this->Helem)
 							 {
 								 if(tmp->value->first == k)
 								 {
@@ -392,7 +439,6 @@ namespace ft
 							 }
 							 return it;
 						 }
-
 						 const_iterator lower_bound (const key_type& k) const
 						 {
 							 const_iterator it;
@@ -426,10 +472,9 @@ namespace ft
 						 std::pair<iterator,iterator> equal_range (const key_type& k)
 						 {
 							 std::pair<iterator, iterator> ret;
-								ret.first = lower_bound(k);
-								ret.second = upper_bound(k);
-								return ret;
-
+							 ret.first = lower_bound(k);
+							 ret.second = upper_bound(k);
+							 return ret;
 						 }
 
 				 };

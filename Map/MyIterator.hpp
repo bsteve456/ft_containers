@@ -29,12 +29,14 @@ namespace ft
 				~MyIterator(){}
 				MyIterator & operator++()
 				{
-					p = p->next;
+					if(p && p->next)
+						p = p->next;
 					return *this;
 				}
 				MyIterator & operator--()
 				{
-					p = p->prev;
+					if(p && p->prev)
+						p = p->prev;
 					return *this;
 				}
 				MyIterator operator++(int n)
