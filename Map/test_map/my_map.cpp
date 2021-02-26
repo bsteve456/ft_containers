@@ -173,6 +173,8 @@ int main ()
 
 	std::cout << "upper bound points to: ";
 	std::cout << ret1.second->first << " => " << ret1.second->second << '\n';
+	for (ft::Map<char,int>::const_iterator it=mymap.begin(); it!=mymap.end(); ++it)
+		std::cout << it->first << " => " << it->second << '\n';
 
 	return 0;
 }

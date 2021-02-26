@@ -1,0 +1,91 @@
+--- my_result	2021-02-26 15:37:35.014303109 +0100
++++ true_result	2021-02-26 15:37:35.018303109 +0100
+@@ -0,0 +1,88 @@
++a => 10
++b => 30
++c => 50
++d => 70
++a => 10
++b => 30
++c => 50
++d => 70
++a => 10
++b => 30
++c => 50
++d => 70
++a => 10
++b => 30
++c => 50
++d => 70
++461168601842738790
++Size of first: 0
++Size of second: 2
++d => 70
++c => 50
++b => 30
++a => 10
++a => 10
++b => 30
++c => 50
++d => 70
++element 'z' already existed with a value of 200
++anothermap contains:
++a => 100
++z => 200
++a => 10
++d => 40
++foo contains:
++a => 11
++b => 22
++c => 33
++bar contains:
++x => 100
++y => 200
++key comp
++a => 10
++d => 40
++
++value comp
++vc : mymap contains:
++a => 10
++d => 40
++x => 1001
++y => 2002
++z => 3003
++a is an element of mymap.
++b is not an element of mymap.
++c is not an element of mymap.
++d is an element of mymap.
++e is not an element of mymap.
++f is not an element of mymap.
++g is not an element of mymap.
++h is not an element of mymap.
++i is not an element of mymap.
++j is not an element of mymap.
++k is not an element of mymap.
++l is not an element of mymap.
++m is not an element of mymap.
++n is not an element of mymap.
++o is not an element of mymap.
++p is not an element of mymap.
++q is not an element of mymap.
++r is not an element of mymap.
++s is not an element of mymap.
++t is not an element of mymap.
++u is not an element of mymap.
++v is not an element of mymap.
++w is not an element of mymap.
++x is an element of mymap.
++y is an element of mymap.
++a => 20
++e => 100
++x => 1001
++y => 2002
++z => 3003
++lower bound points to: a => 20
++upper bound points to: e => 100
++a => 20
++e => 100
++x => 1001
++y => 2002
++z => 3003

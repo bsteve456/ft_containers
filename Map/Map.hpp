@@ -112,7 +112,7 @@ namespace ft
 						 typedef value_type *														pointer;
 						 typedef const value_type *													const_pointer;
 						 typedef	MyIterator<bidirectional_iterator_tag, value_type>					iterator;
-						 typedef	MyIterator<bidirectional_iterator_tag, const value_type>			const_iterator;
+						 typedef	MyIterator<bidirectional_iterator_tag, const value_type>		const_iterator;
 						 typedef	MyReverseIterator<iterator>											reverse_iterator;
 						 typedef	MyReverseIterator<const iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;

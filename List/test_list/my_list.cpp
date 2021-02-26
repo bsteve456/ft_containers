@@ -293,6 +293,10 @@ int main()
 	for (ft::List<int>::iterator it = bar.begin(); it!=bar.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+	for (ft::List<int>::const_iterator it = bar.begin(); it!=bar.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 	return 0;
 }
 
