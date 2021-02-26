@@ -109,9 +109,11 @@ int main ()
 	bar['c']=33;
 
 	foo.swap(bar);
-
+	ft::Map<char,int>::iterator ite = foo.end();
+	ite--;
+	ite++;
 	std::cout << "foo contains:\n";
-	for (ft::Map<char,int>::iterator it=foo.begin(); it!=foo.end(); ++it)
+	for (ft::Map<char,int>::iterator it=foo.begin(); it!=ite; ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 
 	std::cout << "bar contains:\n";
