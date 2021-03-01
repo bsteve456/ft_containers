@@ -1,11 +1,11 @@
-#ifndef MYITERATOR_HPP
-# define MYITERATOR_HPP
+#ifndef MYCONSTITERATOR_HPP
+# define MYCONSTITERATOR_HPP
 
 #include "Node.hpp"
 namespace ft
 {
 	template< class Category, class T>
-		class MyIterator
+		class MyConstIterator
 		{
 			private:
 				Node<T>				*p;
@@ -15,45 +15,41 @@ namespace ft
 				typedef T *				pointer;
 				typedef	T &				reference;
 				typedef Category		iterator_category;
-				MyIterator() : p(0)
+				MyConstIterator() : p(0)
 				{}
-				MyIterator(struct Node<T> * x) : p(x)
+				MyConstIterator(struct Node<T> * x) : p(x)
 			{}
-				MyIterator(MyIterator const & mit) : p(mit.p)
+				MyConstIterator(MyConstIterator const & mit) : p(mit.p)
 			{}
-				operator MyIterator<Category, const T> const ()
-				{
-					return MyIterator<Category, const T>(p);
-				}
-				MyIterator & operator = (MyIterator const & mit)
+				MyConstIterator & operator = (MyConstIterator const & mit)
 				{
 					p = mit.p;
 					return *this;
 				}
-				~MyIterator(){}
-				MyIterator & operator++()
+				~MyConstIterator(){}
+				MyConstIterator & operator++()
 				{
 					if(p && p->next)
 						p = p->next;
 					return *this;
 				}
-				MyIterator & operator--()
+				MyConstIterator & operator--()
 				{
 					if(p && p->prev)
 						p = p->prev;
 					return *this;
 				}
-				MyIterator operator++(int n)
+				MyConstIterator operator++(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyConstIterator tmp(*this);
 					operator++();
 					return tmp;
 				}
-				MyIterator operator--(int n)
+				MyConstIterator operator--(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyConstIterator tmp(*this);
 					operator--();
 					return tmp;
 				}
@@ -61,11 +57,11 @@ namespace ft
 				{
 					return &(operator *());
 				}
-				bool operator==(const MyIterator &rhs) const
+				bool operator==(const MyConstIterator &rhs) const
 				{
 					return p==rhs.p;
 				}
-				bool operator!=(const MyIterator &rhs) const
+				bool operator!=(const MyConstIterator &rhs) const
 				{
 					return p!=rhs.p;
 				}
