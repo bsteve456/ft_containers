@@ -23,10 +23,6 @@ namespace ft
 			{
 			
 			}
-/*				operator MyIterator<Category, const T> const ()
-				{
-					return MyIterator<Category, const T>(p);
-				}*/
 				MyIterator & operator = (MyIterator const & mit)
 				{
 					p = mit.getn();
