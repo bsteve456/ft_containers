@@ -113,7 +113,7 @@ namespace ft
 						 typedef	MyIterator<bidirectional_iterator_tag, value_type>					iterator;
 						 typedef	MyIterator<bidirectional_iterator_tag, value_type, true>		const_iterator;
 						 typedef	MyReverseIterator<iterator>											reverse_iterator;
-						 typedef	MyReverseIterator<const iterator>									const_reverse_iterator;
+						 typedef	MyReverseIterator<const_iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;
 						 typedef	std::ptrdiff_t														difference_type;
 						 Map () : p(0)
