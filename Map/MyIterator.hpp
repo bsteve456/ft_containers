@@ -8,7 +8,7 @@ namespace ft
 		class MyIterator
 		{
 			public:
-				typedef T				value_type;
+				typedef typename choose<isconst, const T, T>::type				value_type;
 				typedef std::ptrdiff_t	difference_type;
 				typedef typename choose<isconst, const T *, T *>::type	pointer;
 				typedef	typename choose<isconst, const T &, T &>::type	reference;
