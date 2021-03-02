@@ -112,7 +112,7 @@ namespace ft
 						 typedef value_type *														pointer;
 						 typedef const value_type *													const_pointer;
 						 typedef	MyIterator<bidirectional_iterator_tag, value_type>					iterator;
-						 typedef	MyIterator<bidirectional_iterator_tag, const value_type>		const_iterator;
+						 typedef	MyIterator<bidirectional_iterator_tag, value_type, true>		const_iterator;
 						 typedef	MyReverseIterator<iterator>											reverse_iterator;
 						 typedef	MyReverseIterator<const iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;
@@ -196,12 +196,11 @@ namespace ft
 						 }
 						 const_iterator begin() const
 						 {
-							 Node<const value_type> *tmp;
-							 if(this->p != 0)
-								 tmp = reinterpret_cast<Node<const value_type> *>(this->p);
+							 if (this->p != 0)
+								 return iterator(this->p);
 							 else
-								 tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
-							 return const_iterator(tmp);
+								 return iterator(this->Helem);
+
 						 }
 						 reverse_iterator rbegin()
 						 {
@@ -209,8 +208,7 @@ namespace ft
 						 }
 						 const_reverse_iterator rbegin() const
 						 {
-							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Last());
-							 return const_reverse_iterator(const_reverse_iterator(tmp));
+							 return const_reverse_iterator(const_reverse_iterator(this->Last()));
 						 }
 						 iterator end()
 						 {
@@ -218,9 +216,7 @@ namespace ft
 						 }
 						 const_iterator end() const
 						 {
-							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
-
-							 return const_iterator(tmp);
+							 return iterator(this->Helem);
 						 }
 						 reverse_iterator rend()
 						 {
@@ -228,8 +224,7 @@ namespace ft
 						 }
 						 const_reverse_iterator rend() const
 						 {
-							 Node<const value_type> *tmp = reinterpret_cast<Node<const value_type> *>(this->Helem);
-							 return const_reverse_iterator(const_iterator(tmp));
+							 return const_reverse_iterator(const_iterator(this->Helem));
 						 }
 
 						 size_type max_size() const

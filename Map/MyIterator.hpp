@@ -4,31 +4,37 @@
 #include "Node.hpp"
 namespace ft
 {
-	template< class Category, class T>
+	template< class Category, class T, bool isconst = false>
 		class MyIterator
 		{
-			private:
-				Node<T>				*p;
 			public:
 				typedef T				value_type;
 				typedef std::ptrdiff_t	difference_type;
-				typedef T *				pointer;
-				typedef	T &				reference;
+				typedef typename choose<isconst, const T *, T *>::type	pointer;
+				typedef	typename choose<isconst, const T &, T &>::type	reference;
+				typedef typename choose<isconst, const Node<T> *, Node<T> * >::type nodeptr;
 				typedef Category		iterator_category;
+
 				MyIterator() : p(0)
 				{}
 				MyIterator(struct Node<T> * x) : p(x)
 			{}
-				MyIterator(MyIterator const & mit) : p(mit.p)
-			{}
-				operator MyIterator<Category, const T> const ()
+				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.getn())
+			{
+			
+			}
+/*				operator MyIterator<Category, const T> const ()
 				{
 					return MyIterator<Category, const T>(p);
-				}
+				}*/
 				MyIterator & operator = (MyIterator const & mit)
 				{
-					p = mit.p;
+					p = mit.getn();
 					return *this;
+				}
+				nodeptr		getn() const
+				{
+					return p;
 				}
 				~MyIterator(){}
 				MyIterator & operator++()
@@ -69,15 +75,18 @@ namespace ft
 				{
 					return p!=rhs.p;
 				}
-				T	& operator *() const
+				reference operator *() const
 				{
 					return *(p->value);
 				}
-				T	& operator *(T & elem)
+				pointer operator *(T & elem)
 				{
 					p->value = elem;
 					return *(p->value);
 				}
+			protected:
+				nodeptr				p;
+
 		};
 };
 
