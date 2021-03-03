@@ -21,4 +21,11 @@ int main()
 	for (std::vector<int>::iterator it = fourth.begin(); it != fourth.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	std::vector<int> myvector;
+	myvector = fourth;
+	for (std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 }

@@ -19,4 +19,11 @@ int main()
 	for (ft::vector<int>::iterator it = fourth.begin(); it != fourth.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+
+	ft::vector<int> myvector;
+	myvector = fourth;
+	for (ft::vector<int>::iterator it = myvector.begin(); it != myvector.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
 }
