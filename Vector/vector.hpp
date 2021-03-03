@@ -1,11 +1,13 @@
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 
+# include <iostream>
+# include "MyIterator.hpp"
 # include "../iterator_tag.hpp"
 
 namespace ft
 {
-		template < class T, class Alloc = allocator<T> >
+		template < class T, class Alloc = std::allocator<T> >
 		class vector
 		{
 			private:
@@ -19,9 +21,9 @@ namespace ft
 				typedef	const	value_type&									const_reference;
 				typedef	value_type *										pointer;
 				typedef	const value_type *									const_pointer;
-/*				typedef	MyIterator<bidirectional_iterator_tag, T>			iterator;
+				typedef	MyIterator<random_access_iterator_tag, T>			iterator;
 				typedef	MyIterator<bidirectional_iterator_tag, T, true>		const_iterator;
-				typedef MyReverseIterator<iterator>							reverse_iterator;
+/*				typedef MyReverseIterator<iterator>							reverse_iterator;
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator; */
 				typedef	size_t												size_type;
 				typedef	std::ptrdiff_t										difference_type;
@@ -30,7 +32,7 @@ namespace ft
 				vector<value_type>(size_type n, const value_type &val) : p(0), s(0)
 				{
 					this->p = new T[n + 20];
-					this->s = n;
+					this->s = 0;
 					this->cap = n + 20;
 					for (size_t i = 0; i < this->cap; i++)
 					{
@@ -43,11 +45,11 @@ namespace ft
 				vector<value_type> (const vector &x) : p(0), s(0)
 				{
 	//				*this = x;
-					this->p = new T[v.size()];
-					this->s = v.size();
-					this->cap = v.capacity();
-					for(size_type i = 0; i < v.size(); i++)
-						(*this)[i] = v[i];
+					this->p = new T[x.size()];
+					this->s = x.size();
+					this->cap = x.capacity();
+					for(size_type i = 0; i < x.size(); i++)
+						(*this)[i] = x[i];
 				}
 /*				vector<value_type> & operator = (vector<value_type> const &v)
 				{
@@ -70,7 +72,11 @@ namespace ft
 				{
 					return this->p[n];
 				}
-				size_value		size() const
+				const_reference operator[] (size_type n) const
+				{
+					return this->p[n];
+				}
+				size_type		size() const
 				{
 					return (this->s);
 				}
@@ -81,24 +87,47 @@ namespace ft
 				void push_back (const value_type& val)
 				{
 					T *tmp;
-					if (this->n < this->cap)
+					if (this->s < this->cap)
 					{
-						(*this)[this->n] = val;
-						this->n += 1;
+						(*this)[this->s] = val;
+						this->s += 1;
 					}
 					else
 					{
-						tmp = new T[this->n * 2];
-						for (size_value i = 0; i < n; i++)
+						tmp = new T[this->s * 2];
+						for (size_type i = 0; i < this->s; i++)
 							tmp[i] = this->p[i];
-						tmp[this->n] = val;
-						this->cap = this->n * 2;
-						this->n += 1;
+						tmp[this->s] = val;
+						this->cap = this->s * 2;
+						this->s += 1;
 						this->clear();
 						this->p = tmp;
 					}
 				}
-		}
+				iterator begin()
+				{
+					return iterator(this->p);
+				}
+				iterator end()
+				{
+					return iterator(this->p + this->s);
+				}
+				const_iterator begin() const
+				{
+					return const_iterator(this->p);
+				}
+				const_iterator end() const
+				{
+					return const_iterator(this->p + this->s);
+				}
+				void clear()
+				{
+					delete [] this->p;
+					this->p = 0;
+					this->s = 0;
+					this->cap = 0;
+				}
+		};
 };
 
 
