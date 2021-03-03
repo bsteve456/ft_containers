@@ -44,14 +44,7 @@ namespace ft
 			}
 				vector<value_type> (const vector &x) : p(0), s(0)
 			{
-								*this = x;
-		/*		this->p = new T[x.size()];
-				this->s = x.size();
-				this->cap = x.capacity();
-				if(!x.empty())
-
-				for(size_type i = 0; i < x.size(); i++)
-					(*this)[i] = x[i];*/
+					*this = x;
 			}
 				vector<value_type> & operator = (vector<value_type> const &x)
 				{
