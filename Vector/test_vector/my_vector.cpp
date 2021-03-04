@@ -73,4 +73,13 @@ int main()
 			std::cout << "capacity changed: " << sz << '\n';
 		}
 	}
+
+	for (unsigned i=0; i<myvector.size(); i++)
+		myvector.at(i)=i;
+
+	std::cout << "myvector contains:";
+	for (unsigned i=0; i<myvector.size(); i++)
+		std::cout << ' ' << myvector.at(i);
+	std::cout << '\n';
+
 }

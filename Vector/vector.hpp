@@ -75,6 +75,14 @@ namespace ft
 				{
 					return this->p[n];
 				}
+				reference at (size_type n)
+				{
+					return this->p[n];
+				}
+				const_reference at (size_type n) const
+				{
+					return this->p[n];
+				}
 				size_type		size() const
 				{
 					return (this->s);
