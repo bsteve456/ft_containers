@@ -48,4 +48,29 @@ int main()
 	for (size_t i=0;i<myvector.size();i++)
 		std::cout << ' ' << myvector[i];
 	std::cout << '\n';
+
+	ft::vector<int>::size_type sz;
+
+	ft::vector<int> foo;
+	sz = foo.capacity();
+	std::cout << "making foo grow:\n";
+	for (size_t i=0; i<100; ++i) {
+		foo.push_back(i);
+		if (sz!=foo.capacity()) {
+			sz = foo.capacity();
+			std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
+
+	ft::vector<int> bar;
+	sz = bar.capacity();
+	bar.reserve(100);   // this is the only difference with foo above
+	std::cout << "making bar grow:\n";
+	for (size_t i=0; i<100; ++i) {
+		bar.push_back(i);
+		if (sz!=bar.capacity()) {
+			sz = bar.capacity();
+			std::cout << "capacity changed: " << sz << '\n';
+		}
+	}
 }

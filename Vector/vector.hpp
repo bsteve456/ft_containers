@@ -45,7 +45,7 @@ namespace ft
 			}
 				vector<value_type> (const vector &x) : p(0), s(0)
 			{
-					*this = x;
+				*this = x;
 			}
 				vector<value_type> & operator = (vector<value_type> const &x)
 				{
@@ -97,7 +97,8 @@ namespace ft
 					{
 						if(this->cap == 0)
 							this->cap = 1;
-						this->cap *= 2;
+						else
+							this->cap *= 2;
 						tmp = new T[this->cap];
 						for (size_type i = 0; i < this->s; i++)
 							tmp[i] = this->p[i];
@@ -167,6 +168,20 @@ namespace ft
 						this->pop_back();
 					while (this->size() < n)
 						this->push_back(val);
+				}
+				void reserve (size_type n)
+				{
+					T *tmp;
+					size_type tp = 0;
+
+					tmp = new T[n];
+					for (size_type i = 0; i < this->s; i++)
+						tmp[i] = this->p[i];
+					tp = this->s;
+					this->clear();
+					this->p = tmp;
+					this->s = tp;
+					this->cap = n;
 				}
 				void clear()
 				{
