@@ -82,4 +82,13 @@ int main()
 		std::cout << ' ' << myvector.at(i);
 	std::cout << '\n';
 
+	ft::vector<int> f;
+
+	f.push_back(78);
+	f.push_back(16);
+
+	// now front equals 78, and back 16
+
+	f.front() -= f.back();
+	std::cout << "f.front() is now " << f.front() << '\n';
 }

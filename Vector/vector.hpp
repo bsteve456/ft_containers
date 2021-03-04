@@ -191,6 +191,30 @@ namespace ft
 					this->s = tp;
 					this->cap = n;
 				}
+				reference front()
+				{
+						return *(this->p);
+				}
+				const_reference front() const
+				{
+						return *(this->p);
+				}
+				reference back()
+				{
+					if(this->size() <= 1)
+						return *(this->p);
+					else
+						return *(this->p + this->s - 1);
+				}
+				const_reference back() const
+				{
+					if(this->size() <= 1)
+						return *(this->p);
+					else
+						return *(this->p + this->s - 1);
+
+				}
+
 				void clear()
 				{
 					delete [] this->p;
