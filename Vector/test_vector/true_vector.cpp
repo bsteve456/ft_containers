@@ -94,4 +94,8 @@ int main()
 	f.front() -= f.back();
 	std::cout << "f.front() is now " << f.front() << '\n';
 
+	std::cout << "Size of first: " << int (first.size()) << '\n';
+	first.assign (7,100);
+	std::cout << "Size of first: " << int (first.size()) << '\n';
+
 }

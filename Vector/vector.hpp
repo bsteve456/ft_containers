@@ -28,7 +28,7 @@ namespace ft
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
 				typedef	std::ptrdiff_t										difference_type;
-				vector<value_type>(void) : p(0), s(0)
+				vector<value_type>(void) : p(0), s(0), cap(0)
 			{}
 				vector<value_type>(size_type n, const value_type &val) : p(0), s(0)
 			{
@@ -96,6 +96,7 @@ namespace ft
 					T *tmp;
 					size_type tp;
 					size_type tv;
+
 					if (this->s < this->cap)
 					{
 						(*this)[this->s] = val;
@@ -193,11 +194,11 @@ namespace ft
 				}
 				reference front()
 				{
-						return *(this->p);
+					return *(this->p);
 				}
 				const_reference front() const
 				{
-						return *(this->p);
+					return *(this->p);
 				}
 				reference back()
 				{
@@ -212,15 +213,20 @@ namespace ft
 						return *(this->p);
 					else
 						return *(this->p + this->s - 1);
-
 				}
-
 				void clear()
 				{
 					delete [] this->p;
 					this->p = 0;
 					this->s = 0;
 					this->cap = 0;
+				}
+				void assign(size_type n, const value_type &val)
+				{
+					for (size_type i = 0; i < n; i++)
+					{
+						this->push_back(val);
+					}
 				}
 		};
 };
