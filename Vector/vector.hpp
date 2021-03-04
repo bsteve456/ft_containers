@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include "MyIterator.hpp"
+# include "MyReverseIterator.hpp"
 # include "../iterator_tag.hpp"
 
 namespace ft
@@ -23,8 +24,8 @@ namespace ft
 				typedef	const value_type *									const_pointer;
 				typedef	MyIterator<random_access_iterator_tag, T>			iterator;
 				typedef	MyIterator<bidirectional_iterator_tag, T, true>		const_iterator;
-				/*				typedef MyReverseIterator<iterator>							reverse_iterator;
-								typedef MyReverseIterator<const_iterator>					const_reverse_iterator; */
+				typedef MyReverseIterator<iterator>							reverse_iterator;
+				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
 				typedef	std::ptrdiff_t										difference_type;
 				vector<value_type>(void) : p(0), s(0)
@@ -85,6 +86,8 @@ namespace ft
 				void push_back (const value_type& val)
 				{
 					T *tmp;
+					size_type tp;
+					size_type tv;
 					if (this->s < this->cap)
 					{
 						(*this)[this->s] = val;
@@ -92,14 +95,20 @@ namespace ft
 					}
 					else
 					{
-						tmp = new T[this->s * 2];
+						if(this->cap == 0)
+							this->cap = 1;
+						this->cap *= 2;
+						tmp = new T[this->cap];
 						for (size_type i = 0; i < this->s; i++)
 							tmp[i] = this->p[i];
 						tmp[this->s] = val;
-						this->cap = this->s * 2;
 						this->s += 1;
+						tp = this->s;
+						tv = this->cap;
 						this->clear();
 						this->p = tmp;
+						this->s = tp;
+						this->cap = tv;
 					}
 				}
 				bool empty() const
@@ -123,6 +132,22 @@ namespace ft
 				const_iterator end() const
 				{
 					return const_iterator(this->p + this->s);
+				}
+				reverse_iterator rbegin()
+				{
+					return reverse_iterator(iterator(this->p + this->s - 1));
+				}
+				reverse_iterator rend()
+				{
+					return reverse_iterator(iterator(this->p - 1));
+				}
+				const_reverse_iterator rbegin() const
+				{
+					return reverse_const_iterator(const_iterator(this->p + this->s - 1));
+				}
+				const_reverse_iterator rend() const
+				{
+					return reverse_const_iterator(const_iterator(this->p - 1));
 				}
 				void clear()
 				{

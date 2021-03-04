@@ -26,4 +26,11 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
+	myvector.clear();
+	for (int i=1; i<=6; ++i)
+		myvector.push_back(i);
+	for (ft::vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
+		std::cout << *it << std::endl;
+	for (ft::vector<int>::reverse_iterator it=myvector.rbegin(); it!=myvector.rend(); ++it)
+		std::cout << *it << std::endl;
 }
