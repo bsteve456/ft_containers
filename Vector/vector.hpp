@@ -228,6 +228,34 @@ namespace ft
 						this->push_back(val);
 					}
 				}
+				iterator insert (iterator position, const value_type& val)
+				{
+					T *tmp;
+					size_type i = 0;
+					size_type tp = 0;
+					size_type tv = 0;
+					iterator it = this->begin();
+					if(this->size() == this->capacity())
+						this->resize(this->s + 1);
+					tmp = new T[this->capacity()];
+					while(it != this->end() && it != position)
+					{
+						it++;
+						i++;
+					}
+					for (size_type j = 0; j < i; j++)
+						tmp[j] = this->p[j];
+					 tmp[i] = val;
+					 for (size_type j = i + 1; j < this->capacity(); j++)
+						 tmp[j] = this->p[j - 1];
+					tp = this->size();
+					tv = this->capacity();
+					this->clear();
+					this->p = tmp;
+					this->s = tp + 1;
+					this->cap = tv;
+					return (iterator(this->p + i));
+				}
 		};
 };
 
