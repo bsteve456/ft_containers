@@ -256,6 +256,11 @@ namespace ft
 					this->cap = tv;
 					return (iterator(this->p + i));
 				}
+				void insert (iterator position, size_type n, const value_type& val)
+				{
+					for(size_type i = 0; i < n; i++)
+						position = insert(position, val);
+				}
 		};
 };
 

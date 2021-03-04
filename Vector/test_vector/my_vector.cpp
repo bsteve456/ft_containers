@@ -102,10 +102,10 @@ int main()
 	ita = myvec.begin();
 	ita = myvec.insert ( ita , 200 );
 
-//	myvec.insert (ita,2,300);
+	myvec.insert (ita,2,300);
 
 	// "it" no longer valid, get a new one:
-//	ita = myvec.begin();
+	ita = myvec.begin();
 
 	std::cout << "myvector contains:";
 	for (ita=myvec.begin(); ita!=myvec.end(); ita++)
