@@ -178,7 +178,7 @@ int main()
 
 	std::reverse_iterator<iter_type> rev_it;
 
-	rev_it = myvector.rbegin() +3;
+	rev_it = 3 + myvector.rbegin();
 
 	std::cout << "The fourth element from the end is: " << *rev_it << '\n';
 
@@ -207,5 +207,11 @@ int main()
 
 	std::cout << "The fourth element from the end is: " << rev_iterator[5] << '\n';
 
+	std::reverse_iterator<std::vector<int>::iterator> from,until;
+
+	from = myvector.rbegin();
+	until = myvector.rend();
+
+	std::cout << "myvector has " << (until-from) << " elements.\n";
 
 }
