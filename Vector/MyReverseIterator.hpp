@@ -90,6 +90,10 @@ namespace ft
 			{
 				return *(this->it);
 			}
+			reference operator[] (difference_type n) const
+			{
+				return this->base()[-n];
+			}
 			iterator_type base() const
 			{
 				return this->it;

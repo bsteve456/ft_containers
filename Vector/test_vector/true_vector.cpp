@@ -200,4 +200,12 @@ int main()
 
 	std::cout << "rev_iterator now points to: " << *rev_iterator << '\n';
 
+	rev_iterator = myvector.rbegin();
+	for(std::reverse_iterator<iter_type> it = rev_iterator; it != myvector.rend(); it++)
+		std::cout << ' ' << *it;
+	std::cout << std::endl;
+
+	std::cout << "The fourth element from the end is: " << rev_iterator[5] << '\n';
+
+
 }
