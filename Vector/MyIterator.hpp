@@ -118,7 +118,6 @@ namespace ft
 				}
 			private:
 				nodeptr				p;
-
 		};
 };
 
