@@ -168,4 +168,10 @@ int main()
 	for(std::vector<int>::iterator it = myvector.begin(); it != ita; it++)
 		std::cout << ' ' << *it;
 	std::cout << std::endl;
+	ita = myvector.begin();
+	ita[2] = 30;
+	for(std::vector<int>::iterator it = myvector.begin(); it != myvector.end(); it++)
+		std::cout << ' ' << *it;
+	std::cout << std::endl;
+
 }

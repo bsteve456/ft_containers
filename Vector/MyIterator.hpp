@@ -103,13 +103,17 @@ namespace ft
 					operator-(n);
 					return *this;
 				}
-
 				int			operator-(MyIterator mit)
 				{
 					return this->p - mit.p;
 				}
 				reference operator *() const
 				{
+					return *p;
+				}
+				reference operator[] (int n)
+				{
+					operator+(n);
 					return *p;
 				}
 /*				reference operator *(T & elem)
