@@ -116,24 +116,16 @@ int main()
 	for (int i=1; i<=10; i++) myvector.push_back(i);
 
 	ita = myvector.begin();
-	ita++;
-	ita++;
-	ita++;
-	ita++;
-	ita++;
 
 	// erase the 6th element
-	myvector.erase (ita);
+	myvector.erase (ita + 5);
 	ita = myvector.begin();
-	ita++;
-	ita++;
-	ita++;
 	std::cout << "myvector contains:";
 	for (unsigned i=0; i < myvector.size(); ++i)
 		std::cout << ' ' << myvector[i];
 	std::cout << '\n';
 	// erase the first 3 elements:
-	myvector.erase (myvector.begin(), ita);
+	myvector.erase (myvector.begin(), ita + 3);
 
 	std::cout << "myvector contains:";
 	for (unsigned i=0; i < myvector.size(); ++i)
@@ -144,7 +136,6 @@ int main()
 	ft::vector<int> ba (5,200);   // five ints with a value of 200
 
 	fo.swap(ba);
-
 	std::cout << "fo contains:";
 	for (unsigned i=0; i<fo.size(); i++)
 		std::cout << ' ' << fo[i];

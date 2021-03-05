@@ -67,6 +67,16 @@ namespace ft
 				{
 					return p!=rhs.p;
 				}
+				MyIterator	operator+(int n)
+				{
+					this->p = this->p + n;
+					return *this;
+				}
+				MyIterator	operator-(int n)
+				{
+					this->p = this->p - n;
+					return *this;
+				}
 				reference operator *() const
 				{
 					return *p;
