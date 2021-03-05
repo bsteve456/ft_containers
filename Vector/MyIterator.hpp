@@ -77,6 +77,10 @@ namespace ft
 					this->p = this->p - n;
 					return *this;
 				}
+				int			operator-(MyIterator mit)
+				{
+					return this->p - mit.p;
+				}
 				reference operator *() const
 				{
 					return *p;

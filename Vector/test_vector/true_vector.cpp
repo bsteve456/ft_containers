@@ -160,4 +160,7 @@ int main()
 	if (faa<=bur) std::cout << "faa is less than or equal to bur\n";
 	if (faa>=bur) std::cout << "faa is greater than or equal to bur\n";
 
+	int n = faa.begin() - faa.end();
+	std::cout << "n : " << n << std::endl;
+
 }
