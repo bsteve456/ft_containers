@@ -261,6 +261,42 @@ namespace ft
 					for(size_type i = 0; i < n; i++)
 						position = insert(position, val);
 				}
+				iterator erase (iterator position)
+				{
+					T *tmp;
+					size_type i = 0;
+					size_type tp = 0;
+					size_type tv = 0;
+
+					iterator it = this->begin();
+					tmp = new T[this->capacity()];
+					while(it != this->end() && it != position)
+					{
+						it++;
+						i++;
+					}
+					for (size_type j = 0; j < i; j++)
+						tmp[j] = this->p[j];
+					 for (size_type j = i; j < this->capacity(); j++)
+						 tmp[j] = this->p[j + 1];
+					tp = this->size();
+					tv = this->capacity();
+					position++;
+					this->clear();
+					this->p = tmp;
+					this->s = tp - 1;
+					this->cap = tv;
+					return (iterator(tmp + i));
+				}
+				iterator erase (iterator first, iterator last)
+				{
+					size_type i = 0;
+					for(iterator it = first; it != last; ++it)
+						i++;
+					for(size_type j = 0; j < i; ++j)
+						first = erase(first);
+					return first;
+				}
 		};
 };
 
