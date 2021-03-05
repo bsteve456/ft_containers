@@ -6,6 +6,7 @@
 
 namespace ft
 {
+	template <class T, class Alloc> class vector;
 	template< class Category, class T, bool isconst = false >
 		class MyIterator
 		{
@@ -19,16 +20,12 @@ namespace ft
 				MyIterator() : p(0) {}
 				MyIterator(T *x) : p(x)
 			{}
-				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.getn())
+				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.p)
 			{}
 				MyIterator & operator = (MyIterator const & mit)
 				{
-					p = mit.getn();
+					p = mit.p;
 					return *this;
-				}
-				nodeptr getn() const
-				{
-					return p;
 				}
 				~MyIterator(){}
 				MyIterator & operator++()
@@ -118,6 +115,7 @@ namespace ft
 				}
 			private:
 				nodeptr				p;
+				template <class, class> friend class vector;
 		};
 };
 
