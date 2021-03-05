@@ -158,5 +158,10 @@ int main()
 
 	int n = faa.begin() - faa.end();
 	std::cout << "n : " << n << std::endl;
-
+	
+	ita = myvector.begin();
+	ita += 4;
+	for(ft::vector<int>::iterator it = myvector.begin(); it != ita; it++)
+		std::cout << ' ' << *it;
+	std::cout << std::endl;
 }
