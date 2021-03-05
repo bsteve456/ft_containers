@@ -24,6 +24,8 @@ namespace ft
 					friend bool operator<=  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
 					friend bool operator>=  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					void swap (vector<Tp,Allocs>& x, vector<Tp,Allocs>& y);
 				T *p;
 				size_t s;
 				size_t cap;
@@ -359,6 +361,11 @@ namespace ft
 			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == false)
 				return true;
 			return false;
+		}
+	template <class T, class Alloc>
+		void swap (vector<T,Alloc>& x, vector<T,Alloc>& y)
+		{
+			x.swap(y);
 		}
 };
 
