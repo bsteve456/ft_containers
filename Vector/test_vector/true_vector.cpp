@@ -158,4 +158,14 @@ int main()
 		std::cout << ' ' << ba[i];
 	std::cout << '\n';
 
+	std::vector<int> faa (3,100);   // three ints with a value of 100
+	std::vector<int> bur (2,200);   // two ints with a value of 200
+
+	if (faa==bur) std::cout << "faa and bur are equal\n";
+	if (faa!=bur) std::cout << "faa and bur are not equal\n";
+	if (faa< bur) std::cout << "faa is less than bur\n";
+	if (faa> bur) std::cout << "faa is greater than bur\n";
+	if (faa<=bur) std::cout << "faa is less than or equal to bur\n";
+	if (faa>=bur) std::cout << "faa is greater than or equal to bur\n";
+
 }

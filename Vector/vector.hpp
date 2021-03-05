@@ -12,6 +12,18 @@ namespace ft
 		class vector
 		{
 			private:
+				template <class Tp, class Allocs>
+					friend bool operator== (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator!= (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator<  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator>  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator<=  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
+				template <class Tp, class Allocs>
+					friend bool operator>=  (const vector<Tp,Allocs>& lhs, const vector<Tp,Allocs>& rhs);
 				T *p;
 				size_t s;
 				size_t cap;
@@ -245,9 +257,9 @@ namespace ft
 					}
 					for (size_type j = 0; j < i; j++)
 						tmp[j] = this->p[j];
-					 tmp[i] = val;
-					 for (size_type j = i + 1; j < this->capacity(); j++)
-						 tmp[j] = this->p[j - 1];
+					tmp[i] = val;
+					for (size_type j = i + 1; j < this->capacity(); j++)
+						tmp[j] = this->p[j - 1];
 					tp = this->size();
 					tv = this->capacity();
 					this->clear();
@@ -277,8 +289,8 @@ namespace ft
 					}
 					for (size_type j = 0; j < i; j++)
 						tmp[j] = this->p[j];
-					 for (size_type j = i; j < this->capacity(); j++)
-						 tmp[j] = this->p[j + 1];
+					for (size_type j = i; j < this->capacity(); j++)
+						tmp[j] = this->p[j + 1];
 					tp = this->size();
 					tv = this->capacity();
 					position++;
@@ -302,6 +314,52 @@ namespace ft
 					std::swap(*this, x);
 				}
 		};
+	template <class T, class Alloc>
+		bool operator== (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(lhs.size() != rhs.size())
+				return false;
+			if(std::equal(lhs.begin(), lhs.end(), rhs.begin()) == true)
+				return true;
+			return false;
+		}
+	template <class T, class Alloc>
+		bool operator!= (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(lhs.size() != rhs.size())
+				return true;
+			if(std::equal(lhs.begin(), lhs.end(), rhs.begin()) == false)
+				return true;
+			return false;
+		}
+	template <class T, class Alloc>
+		bool operator<  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == true)
+				return true;
+			return false;
+		}
+	template <class T, class Alloc>
+		bool operator>  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == true)
+				return true;
+			return false;
+		}
+	template <class T, class Alloc>
+		bool operator<=  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == false)
+				return true;
+			return false;
+		}
+	template <class T, class Alloc>
+		bool operator>=  (const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)
+		{
+			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == false)
+				return true;
+			return false;
+		}
 };
 
 
