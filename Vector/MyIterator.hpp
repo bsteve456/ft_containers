@@ -67,6 +67,22 @@ namespace ft
 				{
 					return p!=rhs.p;
 				}
+				bool operator<(const MyIterator &rhs) const
+				{
+					return p<rhs.p;
+				}
+				bool operator>(const MyIterator &rhs) const
+				{
+					return p>rhs.p;
+				}
+				bool operator<=(const MyIterator &rhs) const
+				{
+					return p<=rhs.p;
+				}
+				bool operator>=(const MyIterator &rhs) const
+				{
+					return p>=rhs.p;
+				}
 				MyIterator	operator+(int n)
 				{
 					this->p = this->p + n;

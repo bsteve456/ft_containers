@@ -108,7 +108,7 @@ int main()
 	ita = myvec.begin();
 
 	std::cout << "myvector contains:";
-	for (ita=myvec.begin(); ita!=myvec.end(); ita++)
+	for (ita=myvec.begin(); ita<myvec.end(); ita++)
 		std::cout << ' ' << *ita;
 	std::cout << '\n';
 
