@@ -158,7 +158,7 @@ int main()
 
 	int n = faa.begin() - faa.end();
 	std::cout << "n : " << n << std::endl;
-	
+
 	ita = myvector.begin();
 	ita += 4;
 	for(ft::vector<int>::iterator it = myvector.begin(); it != ita; it++)
@@ -170,5 +170,18 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << std::endl;
 
+	typedef ft::vector<int>::iterator iter_type;
+
+	ft::MyReverseIterator<iter_type> rev_it;
+
+	rev_it = myvector.rbegin() +3;
+
+	std::cout << "The fourth element from the end is: " << *rev_it << '\n';
+
+	ft::MyReverseIterator<iter_type> rev_iterator;
+
+	rev_iterator = myvector.rend() - 3;
+
+	std::cout << "myvector.rend()-3 points to: " << *rev_iterator << '\n';
 
 }

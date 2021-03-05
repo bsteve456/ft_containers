@@ -116,11 +116,6 @@ namespace ft
 					operator+(n);
 					return *p;
 				}
-/*				reference operator *(T & elem)
-				{
-					p->elem = elem;
-					return p->elem;
-				}*/
 			private:
 				nodeptr				p;
 

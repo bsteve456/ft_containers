@@ -174,4 +174,17 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << std::endl;
 
+	typedef std::vector<int>::iterator iter_type;
+
+	std::reverse_iterator<iter_type> rev_it;
+
+	rev_it = myvector.rbegin() +3;
+
+	std::cout << "The fourth element from the end is: " << *rev_it << '\n';
+
+	std::reverse_iterator<iter_type> rev_iterator;
+
+	rev_iterator = myvector.rend() - 3;
+
+	std::cout << "myvector.rend()-3 points to: " << *rev_iterator << '\n';
 }

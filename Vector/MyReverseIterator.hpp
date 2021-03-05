@@ -60,6 +60,21 @@ namespace ft
 			{
 				return &(operator *());
 			}
+			MyReverseIterator operator+ (difference_type n) const
+			{
+				iterator_type tmp = this->base();
+				for (difference_type i = 0; i < n; ++i)
+					tmp--;
+				return (MyReverseIterator(tmp));
+			}
+			MyReverseIterator operator- (difference_type n) const
+			{
+				iterator_type tmp = this->base();
+				for (difference_type i = 0; i < n; ++i)
+					tmp++;
+				return (MyReverseIterator(tmp));
+			}
+
 			value_type	& operator *() const
 			{
 				return *(this->it);
