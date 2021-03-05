@@ -297,6 +297,10 @@ namespace ft
 						first = erase(first);
 					return first;
 				}
+				void swap (vector& x)
+				{
+					std::swap(*this, x);
+				}
 		};
 };
 

@@ -139,4 +139,19 @@ int main()
 	for (unsigned i=0; i < myvector.size(); ++i)
 		std::cout << ' ' << myvector[i];
 	std::cout << '\n';
+
+	ft::vector<int> fo (3,100);   // three ints with a value of 100
+	ft::vector<int> ba (5,200);   // five ints with a value of 200
+
+	fo.swap(ba);
+
+	std::cout << "fo contains:";
+	for (unsigned i=0; i<fo.size(); i++)
+		std::cout << ' ' << fo[i];
+	std::cout << '\n';
+
+	std::cout << "ba contains:";
+	for (unsigned i=0; i<ba.size(); i++)
+		std::cout << ' ' << ba[i];
+	std::cout << '\n';
 }
