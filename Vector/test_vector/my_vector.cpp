@@ -184,4 +184,16 @@ int main()
 
 	std::cout << "myvector.rend()-3 points to: " << *rev_iterator << '\n';
 
+	rev_it = myvector.rbegin();
+
+	rev_it += 2;
+
+	std::cout << "The third element from the end is: " << *rev_it << '\n';
+
+	rev_iterator = myvector.rend();
+
+	rev_iterator -= 4;
+
+	std::cout << "rev_iterator now points to: " << *rev_iterator << '\n';
+
 }

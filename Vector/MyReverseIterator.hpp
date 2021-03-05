@@ -74,7 +74,18 @@ namespace ft
 					tmp++;
 				return (MyReverseIterator(tmp));
 			}
-
+			MyReverseIterator& operator+= (difference_type n)
+			{
+				for (difference_type i = 0; i < n; ++i)
+					this->it--;
+				return (*this);
+			}
+			MyReverseIterator& operator-= (difference_type n)
+			{
+				for (difference_type i = 0; i < n; ++i)
+					this->it++;
+				return (*this);
+			}
 			value_type	& operator *() const
 			{
 				return *(this->it);
