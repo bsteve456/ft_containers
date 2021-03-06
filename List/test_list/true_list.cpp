@@ -293,6 +293,14 @@ int main()
 	for (std::list<int>::const_iterator it = bar.begin(); it!=bar.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+	foo.assign(4, 45);
+	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	foo.assign(bar.begin(), bar.end());
+	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 
 }
 

@@ -265,14 +265,16 @@ namespace ft
 				template < class InputIterator >
 					void assign(InputIterator first, InputIterator last)
 					{
+						this->clear();
 						for (InputIterator it = first; it != last; it++)
 							this->push_back(*it);
 					}
-				/*				void assign(size_type n, const value_type &val)
-								{
-								for (size_type i = 0; i < n; i++)
-								this->push_back(val);
-								}*/
+				void assign(size_type n, const value_type &val)
+				{
+					this->clear();
+					for (size_type i = 0; i < n; i++)
+						this->push_back(val);
+				}
 				void clear()
 				{
 					while(!this->empty())

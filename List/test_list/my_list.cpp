@@ -297,6 +297,18 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
+	foo.clear();
+	foo.assign(4, 45);
+	for (ft::List<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+	foo.assign(bar.begin(), bar.end());
+	for (ft::List<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
+
+
+
 	return 0;
 }
 
