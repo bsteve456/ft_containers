@@ -118,7 +118,7 @@ int main()
 	ita = myvector.begin();
 
 	// erase the 6th element
-	myvector.erase (ita + 5);
+	myvector.erase (5 + ita);
 	ita = myvector.begin();
 	std::cout << "myvector contains:";
 	for (unsigned i=0; i < myvector.size(); ++i)

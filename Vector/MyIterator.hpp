@@ -113,10 +113,18 @@ namespace ft
 					operator+(n);
 					return *p;
 				}
+				template <class Categ, class Tp, bool isconsta>
+					friend MyIterator<Categ, Tp, isconsta> operator+ (typename MyIterator<Categ, Tp, isconsta>::difference_type n, const MyIterator<Categ, Tp, isconsta>& it);
 			private:
 				nodeptr				p;
 				template <class, class> friend class vector;
 		};
+		template <class Category, class T, bool isconst>
+			MyIterator<Category, T, isconst> operator+ (typename MyIterator<Category, T, isconst>::difference_type n, const MyIterator<Category, T, isconst>& it)
+			{
+				return it.p + n;
+			}
+
 };
 
 #endif
