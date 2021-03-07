@@ -102,17 +102,6 @@ struct is_same<U, U>
 	static const bool value = true;
 };
 
-/*template <class U>
-struct is_input_iterator<U>
-{
-	static const bool value = is_same<U::iterator_category,input_iterator_tag>::value;
-};
-template <class U>
-struct is_forward_iterator<U>
-{
-	static const bool value = is_same<U::iterator_category,forward_iterator_tag>;
-};*/
-
 template <bool, class U>
 struct is_input_iterator
 {
@@ -127,11 +116,5 @@ struct is_input_iterator<false, U>
 		is_same<typename U::iterator_category,forward_iterator_tag>::value |
 	is_same<typename U::iterator_category,random_access_iterator_tag>::value;
 };
-/*template <class U>
-struct is_random_access_iterator<U>
-{
-	static const bool value = is_same<U::iterator_category,random_access_iterator_tag>;
-};*/
-
 
 #endif
