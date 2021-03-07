@@ -307,7 +307,11 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-
+	int myints[]={1776,7,4};
+	foo.assign (myints,myints+3);
+	for (ft::List<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 
 	return 0;
 }

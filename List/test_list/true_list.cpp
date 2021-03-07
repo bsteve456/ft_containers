@@ -301,6 +301,11 @@ int main()
 	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
+	int myints[]={1776,7,4};
+	foo.assign (myints,myints+3);
+	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 
 }
 

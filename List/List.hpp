@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/07 16:53:00 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:42:03 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ namespace ft
 					return const_reverse_iterator(const_iterator(this->Helem));
 				}
 				template < class InputIterator >
-					void assign(InputIterator first, /*InputIterator*/typename enable_if<is_bidirectional_iterator<is_integral_float<InputIterator>::value ,InputIterator>::value, InputIterator>::type last)
+					void assign(InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_bidirectional_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last)
 					{
 						this->clear();
 						for (InputIterator it = first; it != last; it++)
