@@ -80,13 +80,13 @@ struct enable_if<true, T> {
 };
 
 template <typename T, typename = void>
-struct is_iterator
+struct is_pointer
 {
 	static const bool value = false;
 };
 
 template<typename T>
-struct is_iterator<T *>
+struct is_pointer<T *>
 {
 	static const bool value = true;
 };
@@ -114,15 +114,18 @@ struct is_forward_iterator<U>
 };*/
 
 template <bool, class U>
-struct is_bidirectional_iterator
+struct is_input_iterator
 {
 	static const bool value = false;
 };
 
 template <class U>
-struct is_bidirectional_iterator<false, U>
+struct is_input_iterator<false, U>
 {
-	static const bool value = is_same<typename U::iterator_category,bidirectional_iterator_tag>::value;
+	static const bool value = is_same<typename U::iterator_category,bidirectional_iterator_tag>::value |
+		is_same<typename U::iterator_category,input_iterator_tag>::value |
+		is_same<typename U::iterator_category,forward_iterator_tag>::value |
+	is_same<typename U::iterator_category,random_access_iterator_tag>::value;
 };
 /*template <class U>
 struct is_random_access_iterator<U>
