@@ -21,6 +21,55 @@ struct choose<false, IsTrue, IsFalse>
 	typedef IsFalse type;
 };
 
+template <typename T>
+struct is_integral_float
+{
+	static const bool value = false;
+};
+
+template<>
+struct is_integral_float<int>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<char>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<long>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<short>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<double>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<float>
+{
+	static const bool value = true;
+};
+
+template<>
+struct is_integral_float<bool>
+{
+	static const bool value = true;
+};
+
+
 template <bool, typename T = void>
 struct enable_if
 {};
@@ -52,6 +101,34 @@ struct is_same<U, U>
 {
 	static const bool value = true;
 };
+
+/*template <class U>
+struct is_input_iterator<U>
+{
+	static const bool value = is_same<U::iterator_category,input_iterator_tag>::value;
+};
+template <class U>
+struct is_forward_iterator<U>
+{
+	static const bool value = is_same<U::iterator_category,forward_iterator_tag>;
+};*/
+
+template <bool, class U>
+struct is_bidirectional_iterator
+{
+	static const bool value = false;
+};
+
+template <class U>
+struct is_bidirectional_iterator<false, U>
+{
+	static const bool value = is_same<typename U::iterator_category,bidirectional_iterator_tag>::value;
+};
+/*template <class U>
+struct is_random_access_iterator<U>
+{
+	static const bool value = is_same<U::iterator_category,random_access_iterator_tag>;
+};*/
 
 
 #endif
