@@ -47,10 +47,10 @@ int main()
 	for (ft::List<int>::iterator it = third.begin(); it != ite; ++it)
 		std::cout << *it << std::endl;
 	ft::List<int> fourth (third);
-	ite = fourth.end();
-	for (ft::List<int>::iterator it = fourth.begin(); it != ite; it++)
-		*it = 5;
-	for (ft::List<int>::iterator it = fourth.begin(); it != ite; it++)
+	int myints[] = {16,2,77,29};
+	ft::List<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+	std::cout << "The contents of fifth are: ";
+	for (ft::List<int>::iterator it = fifth.begin(); it != fifth.end(); it++)
 		std::cout << *it << std::endl;
 
 	ft::List<int> f (3);      // list of 3 zero-initialized ints
@@ -308,8 +308,8 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << '\n';
 
-	int myints[]={1776,7,4};
-	foo.assign (myints,myints+3);
+	int myint[]={1776,7,4};
+	foo.assign (myint,myint+3);
 	for (ft::List<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';

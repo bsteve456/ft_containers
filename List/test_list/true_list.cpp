@@ -48,11 +48,12 @@ int main()
 	for (std::list<int>::iterator it = third.begin(); it != ite; ++it)
 		std::cout << *it << std::endl;
 	std::list<int> fourth (third);
-	ite = fourth.end();
-	for (std::list<int>::iterator it = fourth.begin(); it != ite; it++)
-		*it = 5;
-	for (std::list<int>::iterator it = fourth.begin(); it != ite; it++)
+	int myints[] = {16,2,77,29};
+	std::list<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
+	std::cout << "The contents of fifth are: ";
+	for (std::list<int>::iterator it = fifth.begin(); it != fifth.end(); it++)
 		std::cout << *it << std::endl;
+
 	std::list<int> f (3);      // list of 3 zero-initialized ints
 	std::list<int> s (5);     // list of 5 zero-initialized ints
 
@@ -301,8 +302,8 @@ int main()
 	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
-	int myints[]={1776,7,4};
-	foo.assign (myints,myints+3);
+	int myint[]={1776,7,4};
+	foo.assign (myint,myint+3);
 	for (std::list<int>::iterator it = foo.begin(); it!=foo.end(); ++it)
 		std::cout << ' ' << *it;
 	std::cout << '\n';
