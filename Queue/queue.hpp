@@ -27,11 +27,19 @@ namespace ft
 				{
 					return c.empty();
 				}
-				value_type& top()
+				value_type& front()
+				{
+					return c.front();
+				}
+				const value_type& front() const
+				{
+					return c.front();
+				}
+				value_type& back()
 				{
 					return c.back();
 				}
-				const value_type& top() const
+				const value_type& back() const
 				{
 					return c.back();
 				}
@@ -41,7 +49,7 @@ namespace ft
 				}
 				void pop()
 				{
-					c.pop_back();
+					c.pop_front();
 				}
 		};
 };

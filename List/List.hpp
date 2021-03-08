@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/08 11:44:34 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/08 19:52:48 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ namespace ft
 					Node<T> *tmp;
 
 					tmp = this->p;
-					while(tmp->next)
+					while(tmp->next != this->Helem)
 						tmp = tmp->next;
 					return tmp->elem;
 				}
@@ -304,7 +304,7 @@ namespace ft
 					Node<const T> *tmp = reinterpret_cast<Node<const T> *>(this->p);
 
 					tmp = this->p;
-					while(tmp->next)
+					while(tmp->next != this->Helem)
 						tmp = tmp->next;
 					return tmp->elem;
 				}
