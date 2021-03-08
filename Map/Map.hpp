@@ -4,7 +4,7 @@
 # include "Node.hpp"
 # include <functional>
 # include <utility>
-# include "MyIterator.hpp"
+# include "MyMapIterator.hpp"
 # include "MyReverseIterator.hpp"
 
 namespace ft
@@ -110,8 +110,8 @@ namespace ft
 						 typedef	const value_type&													const_reference;
 						 typedef value_type *														pointer;
 						 typedef const value_type *													const_pointer;
-						 typedef	MyIterator<bidirectional_iterator_tag, value_type>					iterator;
-						 typedef	MyIterator<bidirectional_iterator_tag, value_type, true>		const_iterator;
+						 typedef	MyMapIterator<bidirectional_iterator_tag, value_type>					iterator;
+						 typedef	MyMapIterator<bidirectional_iterator_tag, value_type, true>		const_iterator;
 						 typedef	MyReverseIterator<iterator>											reverse_iterator;
 						 typedef	MyReverseIterator<const_iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;

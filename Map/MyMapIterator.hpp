@@ -1,11 +1,11 @@
-#ifndef MYITERATOR_HPP
-# define MYITERATOR_HPP
+#ifndef MYMAPITERATOR_HPP
+# define MYMAPITERATOR_HPP
 
 #include "Node.hpp"
 namespace ft
 {
 	template< class Category, class T, bool isconst = false>
-		class MyIterator
+		class MyMapIterator
 		{
 			public:
 				typedef typename choose<isconst, const T, T>::type				value_type;
@@ -15,15 +15,15 @@ namespace ft
 				typedef typename choose<isconst, const Node<T> *, Node<T> * >::type nodeptr;
 				typedef Category		iterator_category;
 
-				MyIterator() : p(0)
+				MyMapIterator() : p(0)
 				{}
-				MyIterator(struct Node<T> * x) : p(x)
+				MyMapIterator(struct Node<T> * x) : p(x)
 			{}
-				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.getn())
+				MyMapIterator(MyMapIterator<Category, T, false> const & mit) : p(mit.getn())
 			{
 			
 			}
-				MyIterator & operator = (MyIterator const & mit)
+				MyMapIterator & operator = (MyMapIterator const & mit)
 				{
 					p = mit.getn();
 					return *this;
@@ -32,30 +32,30 @@ namespace ft
 				{
 					return p;
 				}
-				~MyIterator(){}
-				MyIterator & operator++()
+				~MyMapIterator(){}
+				MyMapIterator & operator++()
 				{
 					if(p && p->next)
 						p = p->next;
 					return *this;
 				}
-				MyIterator & operator--()
+				MyMapIterator & operator--()
 				{
 					if(p && p->prev)
 						p = p->prev;
 					return *this;
 				}
-				MyIterator operator++(int n)
+				MyMapIterator operator++(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyMapIterator tmp(*this);
 					operator++();
 					return tmp;
 				}
-				MyIterator operator--(int n)
+				MyMapIterator operator--(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyMapIterator tmp(*this);
 					operator--();
 					return tmp;
 				}
@@ -63,11 +63,11 @@ namespace ft
 				{
 					return &(operator *());
 				}
-				bool operator==(const MyIterator &rhs) const
+				bool operator==(const MyMapIterator &rhs) const
 				{
 					return p==rhs.p;
 				}
-				bool operator!=(const MyIterator &rhs) const
+				bool operator!=(const MyMapIterator &rhs) const
 				{
 					return p!=rhs.p;
 				}
