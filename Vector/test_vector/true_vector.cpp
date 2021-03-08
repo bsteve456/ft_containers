@@ -118,6 +118,11 @@ int main()
 	ita = myvec.insert ( ita , 200 );
 
 	myvec.insert (ita,2,300);
+	std::vector<int> anothervector (2,400);
+	myvec.insert (ita+2,anothervector.begin(),anothervector.end());
+
+	int myarray [] = { 501,502,503 };
+	myvec.insert (myvec.begin(), myarray, myarray+3);
 
 	// "it" no longer valid, get a new one:
 	ita = myvec.begin();

@@ -286,39 +286,50 @@ namespace ft
 					this->s = tp + 1;
 					this->cap = tv;
 					return (iterator(this->p + i));
+
 				}
 				void insert (iterator position, size_type n, const value_type& val)
 				{
 					for(size_type i = 0; i < n; i++)
 						position = insert(position, val);
 				}
-				iterator erase (iterator position)
-				{
-					T *tmp;
-					size_type i = 0;
-					size_type tp = 0;
-					size_type tv = 0;
-
-					iterator it = this->begin();
-					tmp = new T[this->capacity()];
-					while(it != this->end() && it != position)
+				template <class InputIterator>
+					void insert (iterator position, InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last)
 					{
-						it++;
-						i++;
+						while(first != last)
+						{
+							position = insert(position, *first);
+							position++;
+							first++;
+						}
 					}
-					for (size_type j = 0; j < i; j++)
-						tmp[j] = this->p[j];
-					for (size_type j = i; j < this->capacity(); j++)
-						tmp[j] = this->p[j + 1];
-					tp = this->size();
-					tv = this->capacity();
-					position++;
-					this->clear();
-					this->p = tmp;
-					this->s = tp - 1;
-					this->cap = tv;
-					return (iterator(tmp + i));
-				}
+					iterator erase (iterator position)
+					{
+						T *tmp;
+						size_type i = 0;
+						size_type tp = 0;
+						size_type tv = 0;
+
+						iterator it = this->begin();
+						tmp = new T[this->capacity()];
+						while(it != this->end() && it != position)
+						{
+							it++;
+							i++;
+						}
+						for (size_type j = 0; j < i; j++)
+							tmp[j] = this->p[j];
+						for (size_type j = i; j < this->capacity(); j++)
+							tmp[j] = this->p[j + 1];
+						tp = this->size();
+						tv = this->capacity();
+						position++;
+						this->clear();
+						this->p = tmp;
+						this->s = tp - 1;
+						this->cap = tv;
+						return (iterator(tmp + i));
+					}
 				iterator erase (iterator first, iterator last)
 				{
 					size_type i = 0;
