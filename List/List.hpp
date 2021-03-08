@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/07 17:50:21 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/08 11:12:19 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,12 +350,12 @@ namespace ft
 					for(size_type i = 0; i < n; i++)
 						insert(position, val);
 				}
-				/*				template <class InputIterator>
-								void insert (iterator position, InputIterator first, InputIterator last)
-								{
-								for(InputIterator it = first; it != last; it++)
-								insert(position, *it);
-								}*/
+				template <class InputIterator>
+					void insert (iterator position, InputIterator first, /*InputIterator*/ typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last)
+					{
+						for(InputIterator it = first; it != last; it++)
+							insert(position, *it);
+					}
 				iterator erase (iterator position)
 				{
 					Node<T> *tmp = this->p;

@@ -103,8 +103,8 @@ int main()
 	mylist.insert (ite,10);
 	mylist.insert (ite, 1 , 5);
 	mylist.insert (ite, 1 , 7);
-	//	std::vector<int> myvector (2,30);
-	//	mylist.insert (ite,myvector.begin(),myvector.end());
+		std::vector<int> myvector (2,30);
+		mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';

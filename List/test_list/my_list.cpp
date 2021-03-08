@@ -1,5 +1,6 @@
 #include "../Node.hpp"
 #include "../List.hpp"
+#include "../../Vector/vector.hpp"
 #include <vector>
 #include <cmath>
 #include <string>
@@ -104,8 +105,8 @@ int main()
 	mylist.insert (ite, 1 , 5);
 	mylist.insert (ite, 1 , 7);
 
-	//	std::vector<int> myvector (2,30);
-	//	mylist.insert (ite,myvector.begin(),myvector.end());
+	ft::vector<int> myvector (2,30);
+	mylist.insert (ite,myvector.begin(),myvector.end());
 	for (ite=mylist.begin(); ite!=mylist.end(); ++ite)
 		std::cout << ' ' << *ite;
 	std::cout << '\n';

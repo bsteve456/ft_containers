@@ -1,5 +1,5 @@
-#ifndef MYITERATOR_HPP
-# define MYITERATOR_HPP
+#ifndef MYVECTORITERATOR_HPP
+# define MYVECTORITERATOR_HPP
 
 #include "vector.hpp"
 # include "../iterator_tag.hpp"
@@ -8,7 +8,7 @@ namespace ft
 {
 	template <class T, class Alloc> class vector;
 	template< class Category, class T, bool isconst = false >
-		class MyIterator
+		class MyVectorIterator
 		{
 			public:
 				typedef typename choose<isconst, const T, T>::type				value_type;
@@ -17,38 +17,38 @@ namespace ft
 				typedef	typename choose<isconst, const T &, T&>::type				reference;
 				typedef Category		iterator_category;
 				typedef typename choose<isconst, const T * , T *>::type nodeptr;
-				MyIterator() : p(0) {}
-				MyIterator(T *x) : p(x)
+				MyVectorIterator() : p(0) {}
+				MyVectorIterator(T *x) : p(x)
 			{}
-				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.p)
+				MyVectorIterator(MyVectorIterator<Category, T, false> const & mit) : p(mit.p)
 			{}
-				MyIterator & operator = (MyIterator const & mit)
+				MyVectorIterator & operator = (MyVectorIterator const & mit)
 				{
 					p = mit.p;
 					return *this;
 				}
-				~MyIterator(){}
-				MyIterator & operator++()
+				~MyVectorIterator(){}
+				MyVectorIterator & operator++()
 				{
 					p++;
 					return *this;
 				}
-				MyIterator & operator--()
+				MyVectorIterator & operator--()
 				{
 					p--;
 					return *this;
 				}
-				MyIterator operator++(int n)
+				MyVectorIterator operator++(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyVectorIterator tmp(*this);
 					operator++();
 					return tmp;
 				}
-				MyIterator operator--(int n)
+				MyVectorIterator operator--(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyVectorIterator tmp(*this);
 					operator--();
 					return tmp;
 				}
@@ -56,51 +56,51 @@ namespace ft
 				{
 					return &(operator *());
 				}
-				bool operator==(const MyIterator &rhs) const
+				bool operator==(const MyVectorIterator &rhs) const
 				{
 					return p==rhs.p;
 				}
-				bool operator!=(const MyIterator &rhs) const
+				bool operator!=(const MyVectorIterator &rhs) const
 				{
 					return p!=rhs.p;
 				}
-				bool operator<(const MyIterator &rhs) const
+				bool operator<(const MyVectorIterator &rhs) const
 				{
 					return p<rhs.p;
 				}
-				bool operator>(const MyIterator &rhs) const
+				bool operator>(const MyVectorIterator &rhs) const
 				{
 					return p>rhs.p;
 				}
-				bool operator<=(const MyIterator &rhs) const
+				bool operator<=(const MyVectorIterator &rhs) const
 				{
 					return p<=rhs.p;
 				}
-				bool operator>=(const MyIterator &rhs) const
+				bool operator>=(const MyVectorIterator &rhs) const
 				{
 					return p>=rhs.p;
 				}
-				MyIterator	operator+(int n)
+				MyVectorIterator	operator+(int n)
 				{
 					this->p = this->p + n;
 					return *this;
 				}
-				MyIterator	operator-(int n)
+				MyVectorIterator	operator-(int n)
 				{
 					this->p = this->p - n;
 					return *this;
 				}
-				MyIterator	operator+=(int n)
+				MyVectorIterator	operator+=(int n)
 				{
 					operator+(n);
 					return *this;
 				}
-				MyIterator	operator-=(int n)
+				MyVectorIterator	operator-=(int n)
 				{
 					operator-(n);
 					return *this;
 				}
-				int			operator-(MyIterator mit)
+				int			operator-(MyVectorIterator mit)
 				{
 					return this->p - mit.p;
 				}
@@ -114,13 +114,13 @@ namespace ft
 					return *p;
 				}
 				template <class Categ, class Tp, bool isconsta>
-					friend MyIterator<Categ, Tp, isconsta> operator+ (typename MyIterator<Categ, Tp, isconsta>::difference_type n, const MyIterator<Categ, Tp, isconsta>& it);
+					friend MyVectorIterator<Categ, Tp, isconsta> operator+ (typename MyVectorIterator<Categ, Tp, isconsta>::difference_type n, const MyVectorIterator<Categ, Tp, isconsta>& it);
 			private:
 				nodeptr				p;
 				template <class, class> friend class vector;
 		};
 		template <class Category, class T, bool isconst>
-			MyIterator<Category, T, isconst> operator+ (typename MyIterator<Category, T, isconst>::difference_type n, const MyIterator<Category, T, isconst>& it)
+			MyVectorIterator<Category, T, isconst> operator+ (typename MyVectorIterator<Category, T, isconst>::difference_type n, const MyVectorIterator<Category, T, isconst>& it)
 			{
 				return it.p + n;
 			}
