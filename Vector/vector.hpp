@@ -59,14 +59,14 @@ namespace ft
 			}
 				template <class InputIterator>
 					vector (InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last) : p(0), s(0), cap(0)
+				{
+					while(first != last)
 					{
-						while(first != last)
-						{
-							this->push_back(*first);
-							first++;
-						}
-
+						this->push_back(*first);
+						first++;
 					}
+
+				}
 				vector<value_type> (const vector &x) : p(0), s(0)
 			{
 				*this = x;
@@ -248,10 +248,17 @@ namespace ft
 				void assign(size_type n, const value_type &val)
 				{
 					for (size_type i = 0; i < n; i++)
-					{
 						this->push_back(val);
-					}
 				}
+				template <class InputIterator>
+					void assign (InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last)
+					{
+						while(first != last)
+						{
+							this->push_back(*first);
+							first++;
+						}
+					}
 				iterator insert (iterator position, const value_type& val)
 				{
 					T *tmp;
