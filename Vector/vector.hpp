@@ -57,6 +57,16 @@ namespace ft
 						(*this)[i] = 0;
 				}
 			}
+				template <class InputIterator>
+					vector (InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last) : p(0), s(0), cap(0)
+					{
+						while(first != last)
+						{
+							this->push_back(*first);
+							first++;
+						}
+
+					}
 				vector<value_type> (const vector &x) : p(0), s(0)
 			{
 				*this = x;
