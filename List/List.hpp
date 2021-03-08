@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/08 11:12:19 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/08 11:39:10 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIST_HPP
 
 # include "Node.hpp"
-# include "MyIterator.hpp"
+# include "MyListIterator.hpp"
 # include "MyReverseIterator.hpp"
 # include <limits>
 # include <algorithm>
@@ -67,8 +67,8 @@ namespace ft
 				typedef	const	value_type&									const_reference;
 				typedef	value_type *										pointer;
 				typedef	const value_type *									const_pointer;
-				typedef	MyIterator<bidirectional_iterator_tag, T>			iterator;
-				typedef	MyIterator<bidirectional_iterator_tag, T, true>		const_iterator;
+				typedef	MyListIterator<bidirectional_iterator_tag, T>			iterator;
+				typedef	MyListIterator<bidirectional_iterator_tag, T, true>		const_iterator;
 				typedef MyReverseIterator<iterator>							reverse_iterator;
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;

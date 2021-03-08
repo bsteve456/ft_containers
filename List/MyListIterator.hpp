@@ -1,11 +1,11 @@
-#ifndef MYITERATOR_HPP
-# define MYITERATOR_HPP
+#ifndef MYLISTITERATOR_HPP
+# define MYLISTITERATOR_HPP
 
 #include "Node.hpp"
 namespace ft
 {
 	template< class Category, class T, bool isconst = false >
-		class MyIterator
+		class MyListIterator
 		{
 			public:
 				typedef typename choose<isconst, const T, T>::type				value_type;
@@ -14,12 +14,12 @@ namespace ft
 				typedef	typename choose<isconst, const T &, T&>::type				reference;
 				typedef Category		iterator_category;
 				typedef typename choose<isconst, const Node<T> *, Node<T> *>::type nodeptr;
-				MyIterator() : p(0) {}
-				MyIterator(struct Node<T> * x) : p(x)
+				MyListIterator() : p(0) {}
+				MyListIterator(struct Node<T> * x) : p(x)
 			{}
-				MyIterator(MyIterator<Category, T, false> const & mit) : p(mit.getn())
+				MyListIterator(MyListIterator<Category, T, false> const & mit) : p(mit.getn())
 			{}
-				MyIterator & operator = (MyIterator const & mit)
+				MyListIterator & operator = (MyListIterator const & mit)
 				{
 					p = mit.getn();
 					return *this;
@@ -28,30 +28,30 @@ namespace ft
 				{
 					return p;
 				}
-				~MyIterator(){}
-				MyIterator & operator++()
+				~MyListIterator(){}
+				MyListIterator & operator++()
 				{
 					if(p && p->next)
 						p = p->next;
 					return *this;
 				}
-				MyIterator & operator--()
+				MyListIterator & operator--()
 				{
 					if (p && p->prev)
 						p = p->prev;
 					return *this;
 				}
-				MyIterator operator++(int n)
+				MyListIterator operator++(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyListIterator tmp(*this);
 					operator++();
 					return tmp;
 				}
-				MyIterator operator--(int n)
+				MyListIterator operator--(int n)
 				{
 					(void)n;
-					MyIterator tmp(*this);
+					MyListIterator tmp(*this);
 					operator--();
 					return tmp;
 				}
@@ -59,11 +59,11 @@ namespace ft
 				{
 					return &(operator *());
 				}
-				bool operator==(const MyIterator &rhs) const
+				bool operator==(const MyListIterator &rhs) const
 				{
 					return p==rhs.p;
 				}
-				bool operator!=(const MyIterator &rhs) const
+				bool operator!=(const MyListIterator &rhs) const
 				{
 					return p!=rhs.p;
 				}
