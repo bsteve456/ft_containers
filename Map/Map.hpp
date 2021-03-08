@@ -116,15 +116,14 @@ namespace ft
 						 typedef	MyReverseIterator<const_iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;
 						 typedef	std::ptrdiff_t														difference_type;
-						 Map () : p(0)
+						 Map (const key_compare& comp = key_compare()) : p(0)
 					 {
+						 (void)comp;
 						 this->Helem = 0;
 						 this->Helem = (this->init_last());
-
 					 }
 						 Map (const Map &x) : p(0)
 					 {
-//						 this->clear();
 						 this->Helem = 0;
 						 this->Helem = (this->init_last());
 
@@ -259,13 +258,13 @@ namespace ft
 									 return ;
 								 while(tmp->next != this->Helem)
 								 {
-									t = tmp;
-									tmp = tmp->next;
+									 t = tmp;
+									 tmp = tmp->next;
 								 }
 								 if(t == this->p)
 									 this->p = 0;
 								 if(t)
-								 	t->next = 0;
+									 t->next = 0;
 								 if(this->p)
 								 {
 									 this->Last()->next = this->Helem;
@@ -306,17 +305,17 @@ namespace ft
 							 }
 							 return ret;
 						 }
-						 /*						 iterator insert (iterator position, const value_type& val)
-												 {
-												 (void)position;
-												 (*this)[val.first] = val.second;
-												 iterator ret;
+						 iterator insert (iterator position, const value_type& val)
+						 {
+							 (void)position;
+							 (*this)[val.first] = val.second;
+							 iterator ret;
 
-												 for(iterator it = this->begin(); it != this->end(); ++it)
-												 ret = it;
-												 this->sort_by_key();
-												 return iterator(ret);
-												 }*/
+							 for(iterator it = this->begin(); it != this->end(); ++it)
+								 ret = it;
+							 this->sort_by_key();
+							 return iterator(ret);
+						 }
 						 template <class InputIterator>
 							 void insert (InputIterator first, InputIterator last)
 							 {

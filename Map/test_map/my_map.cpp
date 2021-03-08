@@ -33,7 +33,8 @@ int main ()
 	for (ft::Map<char,int>::iterator it=third.begin(); it!=third.end(); ++it)
 		std::cout << it->first << " => " << it->second << '\n';
 	std::cout << first.max_size() << std::endl;
-
+	bool(*fn_pt)(char,char) = fncomp;
+	ft::Map<char,int,bool(*)(char,char)> fifth (fn_pt); // function pointer as Compare
 	five=first;                // second now contains 3 ints
 	first=ft::Map<char,int>();  // and first is now empty
 
@@ -65,17 +66,17 @@ int main ()
 
 	// second insert function version (with hint position):
 	ft::Map<char,int>::iterator it = mymap.begin();
-/*		mymap.insert (it, std::pair<char,int>('b',300));  // max efficiency inserting
-		mymap.insert (it, std::pair<char,int>('c',400));  // no max efficiency inserting*/
-	 
+	mymap.insert (it, std::pair<char,int>('b',300));  // max efficiency inserting
+	mymap.insert (it, std::pair<char,int>('c',400));  // no max efficiency inserting
+
 	// third insert function version (range insertion):
 	ft::Map<char,int> anothermap;
 	anothermap.insert(mymap.begin(),mymap.find('c'));
 
 	// showing contents:
-/*		std::cout << "mymap contains:\n";
-		for (it=mymap.begin(); it!=mymap.end(); ++it)
-		std::cout << it->first << " => " << it->second << '\n';*/
+	std::cout << "mymap contains:\n";
+	for (it=mymap.begin(); it!=mymap.end(); ++it)
+		std::cout << it->first << " => " << it->second << '\n';
 
 	std::cout << "anothermap contains:\n";
 	for (it=anothermap.begin(); it!=anothermap.end(); ++it)
