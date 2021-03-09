@@ -2,11 +2,11 @@
 # define QUEUE_HPP
 
 # include <iostream>
-# include "../List/List.hpp"
+# include "../List/list.hpp"
 
 namespace ft
 {
-	template <class T, class Container = List<T> > 
+	template <class T, class Container = list<T> > 
 		class queue
 		{
 			private:

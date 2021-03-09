@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   List.hpp                                           :+:      :+:    :+:   */
+/*   list.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/08 19:52:48 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:00:12 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,23 @@
 namespace ft
 {
 	template < class T, class Alloc = std::allocator< T > >
-		class List
+		class list
 		{
 			private:
 				template <class Tp, class Allocs>
-					friend bool operator== (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator== (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					friend bool operator!= (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator!= (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					friend bool operator<  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator<  (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					friend bool operator>  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator>  (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					friend bool operator<=  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator<=  (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					friend bool operator>=  (const List<Tp,Allocs>& lhs, const List<Tp,Allocs>& rhs);
+					friend bool operator>=  (const list<Tp,Allocs>& lhs, const list<Tp,Allocs>& rhs);
 				template <class Tp, class Allocs>
-					void swap (List<Tp,Allocs>& x, List<Tp,Allocs>& y);
+					void swap (list<Tp,Allocs>& x, list<Tp,Allocs>& y);
 				Node<T>						*p;
 				Node<T>						*Helem;
 				Node<T>						*Last() const
@@ -73,12 +73,12 @@ namespace ft
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;
 				typedef	size_t												size_type;
 				typedef	std::ptrdiff_t										difference_type;
-				List<value_type>(void)  : p(0)
+				list<value_type>(void)  : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
 			}
-				List<value_type>(int n) : p(0)
+				list<value_type>(int n) : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
@@ -86,7 +86,7 @@ namespace ft
 				for (int i = 0; i < n; i++)
 					this->push_back(0);
 			}
-				List<value_type>(int n, value_type elem) : p(0)
+				list<value_type>(int n, value_type elem) : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
@@ -95,7 +95,7 @@ namespace ft
 					this->push_back(elem);
 				//				assign(n, elem);
 			}
-				List<value_type>(List<value_type> const &l) : p(0)
+				list<value_type>(list<value_type> const &l) : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
@@ -103,14 +103,14 @@ namespace ft
 				*this = l;
 			}
 				template <class InputIterator>
-				List<value_type>(InputIterator first, InputIterator last) : p(0)
+				list<value_type>(InputIterator first, InputIterator last) : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
 
 				this->assign(first, last);
 			}
-				List<value_type> & operator = (List<value_type> const &l)
+				list<value_type> & operator = (list<value_type> const &l)
 				{
 					if (this != &l)
 					{
@@ -126,7 +126,7 @@ namespace ft
 					}
 					return (*this);
 				}
-				~List()
+				~list()
 				{
 					this->clear();
 					delete Helem;
@@ -392,7 +392,7 @@ namespace ft
 						first = erase(first);
 					return first;
 				}
-				void swap (List& x)
+				void swap (list& x)
 				{
 					std::swap(*this, x);
 				}
@@ -403,18 +403,18 @@ namespace ft
 					while (this->size() < n)
 						this->push_back(val);
 				}
-				void splice (iterator position, List& x)
+				void splice (iterator position, list& x)
 				{
 					for (iterator it = x.begin(); it != x.end(); ++it)
 						this->insert(position, *it);
 					x.clear();
 				}
-				void splice (iterator position, List& x, iterator i)
+				void splice (iterator position, list& x, iterator i)
 				{
 					this->insert(position, *i);
 					x.erase(i);
 				}
-				void splice (iterator position, List& x, iterator first, iterator last)
+				void splice (iterator position, list& x, iterator first, iterator last)
 				{
 					iterator tmp;
 					while(first != last)
@@ -527,7 +527,7 @@ namespace ft
 							i = i->next;
 						}
 					}
-				void merge (List& x)
+				void merge (list& x)
 				{
 					if(this != &x)
 					{
@@ -553,7 +553,7 @@ namespace ft
 					}
 				}
 				template <class Compare>
-					void merge (List& x, Compare comp)
+					void merge (list& x, Compare comp)
 					{
 						if(this != &x)
 						{
@@ -595,7 +595,7 @@ namespace ft
 				}
 		};
 	template <class T, class Alloc>
-		bool operator== (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator== (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(lhs.size() != rhs.size())
 				return false;
@@ -604,7 +604,7 @@ namespace ft
 			return false;
 		}
 	template <class T, class Alloc>
-		bool operator!= (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator!= (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(lhs.size() != rhs.size())
 				return true;
@@ -613,35 +613,35 @@ namespace ft
 			return false;
 		}
 	template <class T, class Alloc>
-		bool operator<  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator<  (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == true)
 				return true;
 			return false;
 		}
 	template <class T, class Alloc>
-		bool operator>  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator>  (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == true)
 				return true;
 			return false;
 		}
 	template <class T, class Alloc>
-		bool operator<=  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator<=  (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(std::lexicographical_compare(rhs.begin(), rhs.end(), lhs.begin(), lhs.end()) == false)
 				return true;
 			return false;
 		}
 	template <class T, class Alloc>
-		bool operator>=  (const List<T,Alloc>& lhs, const List<T,Alloc>& rhs)
+		bool operator>=  (const list<T,Alloc>& lhs, const list<T,Alloc>& rhs)
 		{
 			if(std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()) == false)
 				return true;
 			return false;
 		}
 	template <class T, class Alloc>
-		void swap (List<T,Alloc>& x, List<T,Alloc>& y)
+		void swap (list<T,Alloc>& x, list<T,Alloc>& y)
 		{
 			x.swap(y);
 		}
