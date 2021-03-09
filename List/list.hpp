@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/09 16:34:44 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/09 17:04:38 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ namespace ft
 						t = tmp;
 						tmp = tmp->next;
 					}
-					if(t == this->p)
+					if(tmp == this->p)
 						this->p = 0;
 					t->next = 0;
 					if(this->p)
