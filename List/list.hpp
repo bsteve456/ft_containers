@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/09 17:04:38 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/09 17:57:25 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ namespace ft
 				typedef	const	value_type&									const_reference;
 				typedef	value_type *										pointer;
 				typedef	const value_type *									const_pointer;
-				typedef	MyListIterator<bidirectional_iterator_tag, T>			iterator;
+				typedef	MyListIterator<bidirectional_iterator_tag, T, false>			iterator;
 				typedef	MyListIterator<bidirectional_iterator_tag, T, true>		const_iterator;
 				typedef MyReverseIterator<iterator>							reverse_iterator;
 				typedef MyReverseIterator<const_iterator>					const_reverse_iterator;

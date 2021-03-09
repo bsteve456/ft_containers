@@ -109,6 +109,12 @@ int main()
 		std::cout << ' ' << *it;
 	std::cout << std::endl;
 
+	const std::list<int> test = mylist;
+	std::cout << "The const reverse contents of const mylist(test) are: ";
+	for (std::list<int>::const_reverse_iterator it=test.rbegin(); it!=test.rend(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << std::endl;
+
 	typedef std::list<int>::iterator iter_type;
 	std::reverse_iterator<iter_type> rev_end (mylist.begin());
 	std::reverse_iterator<iter_type> rev_begin (mylist.end());
