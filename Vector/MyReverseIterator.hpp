@@ -76,14 +76,14 @@ namespace ft
 				}
 				MyReverseIterator operator+ (difference_type n) const
 				{
-					iterator_type tmp = this->base();
+					iterator_type tmp = this->base() - 1;
 					for (difference_type i = 0; i < n; ++i)
 						tmp--;
 					return (MyReverseIterator(tmp));
 				}
 				MyReverseIterator operator- (difference_type n) const
 				{
-					iterator_type tmp = this->base();
+					iterator_type tmp = this->base() - 1;
 					for (difference_type i = 0; i < n; ++i)
 						tmp++;
 					return (MyReverseIterator(tmp));
@@ -106,11 +106,13 @@ namespace ft
 				}
 				reference operator[] (difference_type n) const
 				{
-					return this->base()[-n];
+					return this->base()[-n -1];
 				}
 				iterator_type base() const
 				{
-					return this->it;
+					iterator_type t = this->it;
+					t++;
+					return t;
 				}
 		};
 	template < class Iterator >

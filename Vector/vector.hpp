@@ -189,11 +189,11 @@ namespace ft
 				}
 				const_reverse_iterator rbegin() const
 				{
-					return reverse_const_iterator(const_iterator(this->p + this->s - 1));
+					return const_reverse_iterator(const_iterator(this->p + this->s - 1));
 				}
 				const_reverse_iterator rend() const
 				{
-					return reverse_const_iterator(const_iterator(this->p - 1));
+					return const_reverse_iterator(const_iterator(this->p - 1));
 				}
 				void resize (size_type n, value_type val = value_type())
 				{

@@ -6,7 +6,6 @@
 
 namespace ft
 {
-	template <class T, class Alloc> class vector;
 	template< class Category, class T, bool isconst = false >
 		class MyVectorIterator
 		{
@@ -20,12 +19,16 @@ namespace ft
 				MyVectorIterator() : p(0) {}
 				MyVectorIterator(T *x) : p(x)
 			{}
-				MyVectorIterator(MyVectorIterator<Category, T, false> const & mit) : p(mit.p)
+				MyVectorIterator(MyVectorIterator<Category, T, false> const & mit) : p(mit.getn())
 			{}
 				MyVectorIterator & operator = (MyVectorIterator const & mit)
 				{
-					p = mit.p;
+					p = mit.getn();
 					return *this;
+				}
+				nodeptr getn() const
+				{
+					return p;
 				}
 				~MyVectorIterator(){}
 				MyVectorIterator & operator++()
@@ -115,15 +118,14 @@ namespace ft
 				}
 				template <class Categ, class Tp, bool isconsta>
 					friend MyVectorIterator<Categ, Tp, isconsta> operator+ (typename MyVectorIterator<Categ, Tp, isconsta>::difference_type n, const MyVectorIterator<Categ, Tp, isconsta>& it);
-			private:
+			protected:
 				nodeptr				p;
-				template <class, class> friend class vector;
 		};
-		template <class Category, class T, bool isconst>
-			MyVectorIterator<Category, T, isconst> operator+ (typename MyVectorIterator<Category, T, isconst>::difference_type n, const MyVectorIterator<Category, T, isconst>& it)
-			{
-				return it.p + n;
-			}
+	template <class Category, class T, bool isconst>
+		MyVectorIterator<Category, T, isconst> operator+ (typename MyVectorIterator<Category, T, isconst>::difference_type n, const MyVectorIterator<Category, T, isconst>& it)
+		{
+			return it.p + n;
+		}
 
 };
 
