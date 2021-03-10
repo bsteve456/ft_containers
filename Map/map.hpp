@@ -14,7 +14,7 @@ namespace ft
 			 class Compare = std::less<Key>,                    // map::key_compare
 			 class Alloc = std::allocator<std::pair<const Key,T> >  // map::allocator_type
 				 >
-				 class Map
+				 class map
 				 {
 					 private:
 						 Node<std::pair<const Key, T> > *p;
@@ -92,7 +92,7 @@ namespace ft
 						 typedef	Compare																key_compare;
 						 class value_compare : public std::binary_function<value_type,value_type,bool>
 					 {   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
-						 //							 friend class Map;
+						 //							 friend class map;
 						 protected:
 							 Compare comp;
 						 public:
@@ -116,13 +116,13 @@ namespace ft
 						 typedef	MyReverseIterator<const_iterator>									const_reverse_iterator;
 						 typedef	size_t																size_type;
 						 typedef	std::ptrdiff_t														difference_type;
-						 Map (const key_compare& comp = key_compare()) : p(0)
+						 map (const key_compare& comp = key_compare()) : p(0)
 					 {
 						 (void)comp;
 						 this->Helem = 0;
 						 this->Helem = (this->init_last());
 					 }
-						 Map (const Map &x) : p(0)
+						 map (const map &x) : p(0)
 					 {
 						 this->Helem = 0;
 						 this->Helem = (this->init_last());
@@ -131,7 +131,7 @@ namespace ft
 							 (*this)[it->first] = it->second;
 					 }
 						 template <class InputIterator>
-							 Map (InputIterator first, InputIterator last) : p(0)
+							 map (InputIterator first, InputIterator last) : p(0)
 						 {
 							 this->Helem = 0;
 							 this->Helem = (this->init_last());
@@ -139,7 +139,7 @@ namespace ft
 							 for(iterator it = first; it != last; it++)
 								 (*this)[it->first] = it->second;
 						 }
-						 Map& operator= (const Map& x)
+						 map& operator= (const map& x)
 						 {
 							 this->clear();
 							 delete Helem;
@@ -148,7 +148,7 @@ namespace ft
 								 (*this)[it->first] = it->second;
 							 return *this;
 						 }
-						 ~Map()
+						 ~map()
 						 {
 							 this->clear();
 							 delete Helem;
@@ -401,7 +401,7 @@ namespace ft
 								 erase(tmp);
 							 }
 						 }
-						 void swap (Map& x)
+						 void swap (map& x)
 						 {
 							 std::swap(*this, x);
 						 }
