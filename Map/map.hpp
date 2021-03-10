@@ -142,6 +142,7 @@ namespace ft
 						 map& operator= (const map& x)
 						 {
 							 this->clear();
+							 delete Helem->value;
 							 delete Helem;
 							 this->Helem = (this->init_last());
 							 for(const_iterator it = x.begin(); it != x.end(); it++)
@@ -151,6 +152,7 @@ namespace ft
 						 ~map()
 						 {
 							 this->clear();
+							 delete Helem->value;
 							 delete Helem;
 						 }
 						 mapped_type& operator[] (const key_type& k)
@@ -261,7 +263,7 @@ namespace ft
 									 t = tmp;
 									 tmp = tmp->next;
 								 }
-								 if(t == this->p)
+								 if(tmp == this->p)
 									 this->p = 0;
 								 if(t)
 									 t->next = 0;
