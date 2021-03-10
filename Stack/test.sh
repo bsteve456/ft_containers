@@ -12,5 +12,5 @@ then
 	echo "KO, you can see the result in the res file"
 else
 	echo "OK pass all tests"
-	rm res my_stack true_stack my_result true_result
+	rm res true_stack my_result true_result
 fi
