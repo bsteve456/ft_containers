@@ -319,7 +319,7 @@ namespace ft
 						}
 						for (size_type j = 0; j < i; j++)
 							tmp[j] = this->p[j];
-						for (size_type j = i; j < this->capacity(); j++)
+						for (size_type j = i; j < this->capacity() - 1; j++)
 							tmp[j] = this->p[j + 1];
 						tp = this->size();
 						tv = this->capacity();
