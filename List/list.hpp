@@ -6,7 +6,7 @@
 /*   By: stbaleba <stbaleba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:54:47 by stbaleba          #+#    #+#             */
-/*   Updated: 2021/03/09 17:57:25 by stbaleba         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:02:39 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ namespace ft
 				*this = l;
 			}
 				template <class InputIterator>
-				list<value_type>(InputIterator first, InputIterator last) : p(0)
+				list<value_type>(InputIterator first, typename enable_if<is_pointer<InputIterator>::value | is_input_iterator<is_integral_float<InputIterator>::value | is_pointer<InputIterator>::value, InputIterator>::value, InputIterator>::type last) : p(0)
 			{
 				this->Helem = 0;
 				this->Helem = (this->init_last());
