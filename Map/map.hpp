@@ -131,7 +131,7 @@ namespace ft
 							 (*this)[it->first] = it->second;
 					 }
 						 template <class InputIterator>
-							 map (InputIterator first, InputIterator last) : p(0)
+							 map (InputIterator first, typename enable_if<is_input_iterator<is_integral_float<InputIterator>::value, InputIterator>::value, InputIterator>::type last) : p(0)
 						 {
 							 this->Helem = 0;
 							 this->Helem = (this->init_last());
@@ -319,7 +319,7 @@ namespace ft
 							 return iterator(ret);
 						 }
 						 template <class InputIterator>
-							 void insert (InputIterator first, InputIterator last)
+							 void insert (InputIterator first, typename enable_if<is_input_iterator<is_integral_float<InputIterator>::value, InputIterator>::value, InputIterator>::type last)
 							 {
 								 for(iterator it = first; it != last; ++it)
 									 (*this)[it->first] = it->second;
