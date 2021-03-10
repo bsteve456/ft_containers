@@ -359,6 +359,8 @@ namespace ft
 										 prev->next = next;
 									 if(next)
 										 next->prev = prev;
+									 if(position->first == this->p->value->first)
+										 this->p = next;
 									 delete(tmp->value);
 									 delete(tmp);
 									 return ;
